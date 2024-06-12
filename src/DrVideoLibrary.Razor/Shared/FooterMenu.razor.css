@@ -1,0 +1,20 @@
+﻿ul, li {
+    list-style: none
+}
+
+ul {
+    display: flex;
+}
+
+    ul li {
+        flex-wrap: wrap;
+    }
+
+        ul li ::deep a {
+            color: forestgreen;
+        }
+
+            ul li ::deep a.is-active {
+                background-color: ghostwhite;
+                color: greenyellow;
+            }

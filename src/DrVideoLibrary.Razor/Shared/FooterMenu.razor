@@ -1,0 +1,10 @@
+﻿<ul>
+    <li><NavLink href="" ActiveClass="is-active" Match="NavLinkMatch.All">@FooterES.AllMoviesLabel</NavLink></li>
+    <li><NavLink href="watchlist" ActiveClass="is-active" Match="NavLinkMatch.All">@FooterES.Watchlist</NavLink></li>
+    <li><NavLink href="viewing" ActiveClass="is-active" Match="NavLinkMatch.All">@FooterES.Viewing</NavLink></li>
+    <AuthorizeView>
+        <Authorized>
+            <li><NavLink href="add" ActiveClass="is-active">@FooterES.AddMoview</NavLink></li>
+        </Authorized>
+    </AuthorizeView>
+</ul>

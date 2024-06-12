@@ -1,0 +1,28 @@
+﻿@page "/watchlist"
+
+<div class="columns">
+    <div class="column">
+        <h1 class="title">@WatchlistES.TitleLabel</h1>
+    </div>
+    <div class="column">
+        <img alt="Camara" />
+    </div>
+</div>
+<div class="columns">
+    <div class="column list-wrapper">
+        <h2 class="subtitle">
+            <span>@WatchlistES.ListLabel</span>
+            <span>@string.Format(WatchlistES.TotalMinutesTemplateLabel, ViewModel.TotalMinutes)</span>
+        </h2>
+        <div class="list-card-wrapper">
+            @if (ViewModel.IsReady)
+            {
+                foreach (WatchedCard watched in ViewModel.Watcheds)
+                {
+                    <WatchedCardComponent Movie=watched />
+                }
+            }
+        </div>
+    </div>
+</div>
+

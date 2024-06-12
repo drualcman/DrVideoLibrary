@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Razor", "src\DrVideoLibrary.Razor\DrVideoLibrary.Razor.csproj", "{CDB815FA-A299-4994-8854-38B93B7E1A7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InterfaceAdapters", "InterfaceAdapters", "{8A324746-93A9-46A4-8453-B1CE75E6CC75}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Api", "src\DrVideoLibrary.Api\DrVideoLibrary.Api.csproj", "{5F06B7F3-31E1-4E38-8D44-00ED2C0AA8F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Client", "src\DrVideoLibrary.Client\DrVideoLibrary.Client.csproj", "{6BADA424-9167-40AC-B43D-4F947907E566}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrameworksAndDrivers", "FrameworksAndDrivers", "{386A61EF-66B4-4039-B230-2458F854ECC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{8A6D7111-125C-470C-836B-B98AE08DBFBB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C3A992B3-388E-46A2-9E94-053C1D78E0FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Entities", "src\DrVideoLibrary.Entities\DrVideoLibrary.Entities.csproj", "{148EFEBA-DBF2-4020-9BC9-3561A320C91B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDB815FA-A299-4994-8854-38B93B7E1A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB815FA-A299-4994-8854-38B93B7E1A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB815FA-A299-4994-8854-38B93B7E1A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB815FA-A299-4994-8854-38B93B7E1A7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F06B7F3-31E1-4E38-8D44-00ED2C0AA8F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F06B7F3-31E1-4E38-8D44-00ED2C0AA8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F06B7F3-31E1-4E38-8D44-00ED2C0AA8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F06B7F3-31E1-4E38-8D44-00ED2C0AA8F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BADA424-9167-40AC-B43D-4F947907E566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BADA424-9167-40AC-B43D-4F947907E566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BADA424-9167-40AC-B43D-4F947907E566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BADA424-9167-40AC-B43D-4F947907E566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{148EFEBA-DBF2-4020-9BC9-3561A320C91B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{148EFEBA-DBF2-4020-9BC9-3561A320C91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{148EFEBA-DBF2-4020-9BC9-3561A320C91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{148EFEBA-DBF2-4020-9BC9-3561A320C91B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CDB815FA-A299-4994-8854-38B93B7E1A7C} = {8A324746-93A9-46A4-8453-B1CE75E6CC75}
+		{5F06B7F3-31E1-4E38-8D44-00ED2C0AA8F0} = {8A6D7111-125C-470C-836B-B98AE08DBFBB}
+		{6BADA424-9167-40AC-B43D-4F947907E566} = {8A6D7111-125C-470C-836B-B98AE08DBFBB}
+		{8A6D7111-125C-470C-836B-B98AE08DBFBB} = {386A61EF-66B4-4039-B230-2458F854ECC5}
+		{148EFEBA-DBF2-4020-9BC9-3561A320C91B} = {C3A992B3-388E-46A2-9E94-053C1D78E0FF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25E8966B-A48B-47E6-8C1D-FAE8AA930869}
+	EndGlobalSection
+EndGlobal

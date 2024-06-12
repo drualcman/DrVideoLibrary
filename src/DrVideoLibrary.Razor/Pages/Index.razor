@@ -1,0 +1,18 @@
+﻿@page "/"
+
+<h1>@IndexES.PageTitle</h1>
+<div class="wrapper">
+    @foreach (ListCard movie in Movies)
+    {
+        <ListCardComponent Movie=movie />
+    }
+</div>
+
+@code {
+    List<ListCard> Movies =
+    [
+        new ListCard(Guid.NewGuid().ToString(), "El nacimiento", "", 1976, ["miedo", "terror"]),
+        new ListCard(Guid.NewGuid().ToString(), "El traviero", "", 1979, ["comedia", "drama"]),
+        new ListCard(Guid.NewGuid().ToString(), "El colegio", "", 1982, ["ciencia ficcion", "comedia", "accion", "drama"])
+    ];
+}

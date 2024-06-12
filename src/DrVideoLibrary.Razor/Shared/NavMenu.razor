@@ -1,0 +1,42 @@
+﻿<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        </a>
+
+        <button type="button" @onclick="() => IsActive = !IsActive" role="button" class="navbar-burger @BurgerActive" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <div class="navbar-menu @BurgerActive">
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <AuthorizeView>
+                    <Authorized>
+                        <div class="buttons">
+                            <span class="" ActiveClass="@Active">
+                                <img src="" alt="User avatar" />
+                            </span>
+                        </div>
+                    </Authorized>  
+                    <NotAuthorized>
+                        <div class="buttons">
+                            <NavLink class="button is-light" ActiveClass="@Active">
+                                Log in
+                            </NavLink>
+                        </div>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </div>
+        </div>
+    </div>
+</nav>
+
+@code{
+    const string Active = "is-active";
+    bool IsActive;
+    string BurgerActive => IsActive ? Active : "";
+}
