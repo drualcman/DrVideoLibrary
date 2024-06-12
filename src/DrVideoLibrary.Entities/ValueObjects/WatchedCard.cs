@@ -14,5 +14,6 @@ public class WatchedCard
         Cover = cover;
         Duration = duration;
         Rate = rate;
+        Cover = "https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg";
     }
 }

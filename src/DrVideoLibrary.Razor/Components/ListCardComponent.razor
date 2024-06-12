@@ -1,21 +1,24 @@
-﻿@using DrVideoLibrary.Razor.Resources
-<div class="card-wrapper">
-    <div class="columns">
-        <div class="column">
-            <img src="@Movie.Cover" alt="cover" />
+﻿<div class="card-wrapper">
+    <div class="columns is-mobile is-vcentered card-content">
+        <div class="column is-one-quarter">
+            <figure class="image">
+                <img src="@Movie.Cover" alt="cover" class="cover-image" />
+            </figure>
         </div>
-        <div class="column">
-            <h2>@Movie.Title</h2>
-            <div>
-                @foreach (string category in Movie.Categories)
-                {
-                    <span>@category</span>
-                }
+        <div class="column content-column">
+            <div class="content-top">
+                <h2 class="title is-4">@Movie.Title</h2>
+                <div class="tags">
+                    @foreach (string category in Movie.Categories)
+                    {
+                        <span class="tag is-light">@category</span>
+                    }
+                </div>
             </div>
-            <p>@ListCardES.ReleaseYearLabel @Movie.Year</p>
-            <a href="movie/@Movie.Id" class="button is-link">@ListCardES.DetailsLabel</a>
+            <div class="content-bottom">
+                <p class="subtitle is-6">@ListCardES.ReleaseYearLabel @Movie.Year</p>
+                <a href="movie/@Movie.Id" class="button is-primary">@ListCardES.DetailsLabel</a>
+            </div>
         </div>
     </div>
 </div>
-
-

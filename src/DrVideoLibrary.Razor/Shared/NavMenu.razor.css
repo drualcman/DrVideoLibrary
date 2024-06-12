@@ -1,0 +1,19 @@
+﻿.navbar-brand .navbar-item img {
+    max-height: 3rem; /* Ajusta según sea necesario */
+}
+
+.navbar-item .user-avatar {
+    border-radius: 50%;
+    width: 2rem; /* Ajusta según sea necesario */
+    height: 2rem; /* Ajusta según sea necesario */
+    object-fit: cover;
+}
+
+.navbar-burger {
+    margin-left: auto; /* Asegura que el botón de menú esté a la derecha */
+}
+
+.navbar-end {
+    display: flex;
+    align-items: center;
+}

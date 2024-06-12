@@ -1,9 +1,102 @@
-﻿.card-wrapper {
+﻿
+.card-wrapper {
     background-color: white;
     box-shadow: rgb(0 0 0 / 21%) 0px 0px 8px 1px;
-    border-radius: 2rem;
-    margin-top: 1.5rem;
+    border-radius: 1rem;
     padding: 1rem;
     display: flex;
     flex-direction: column;
 }
+
+.card-content {
+    display: flex;
+    height: 100%;
+    padding: 0;
+    flex: 1;
+}
+
+.columns.is-mobile {
+    display: flex;
+    flex-wrap: nowrap; 
+    height: 100%;
+}
+
+.column.is-one-quarter {
+    padding-left: 2px;
+    padding-right: 2px;
+    flex: 0 0 120px; 
+    max-width: 120px; 
+    display: flex;
+    align-items: center;
+}
+
+.cover-image {
+    border-radius: 0.25rem;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc; 
+}
+
+figure.image {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.content-top {
+    flex-grow: 1;
+}
+
+.content-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    margin-top: auto; 
+}
+
+.title.is-4 {
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: bold;
+    text-align: justify;
+}
+
+.subtitle.is-6 {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+    .tags .tag {
+        background-color: #f5f5f5; 
+        color: #333; 
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+.button.is-primary {
+    background-color: #6a0ae4;
+    border-color: transparent;
+    color: white;
+    margin-top: 0.5rem;
+    border-radius: 2rem;
+}
+
+    .button.is-primary:hover {
+        background-color: #6a1b9a; 
+    }

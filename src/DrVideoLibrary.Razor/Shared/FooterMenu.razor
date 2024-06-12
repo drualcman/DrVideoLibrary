@@ -1,10 +1,40 @@
-﻿<ul>
-    <li><NavLink href="" ActiveClass="is-active" Match="NavLinkMatch.All">@FooterES.AllMoviesLabel</NavLink></li>
-    <li><NavLink href="watchlist" ActiveClass="is-active" Match="NavLinkMatch.All">@FooterES.Watchlist</NavLink></li>
-    <li><NavLink href="viewing" ActiveClass="is-active" Match="NavLinkMatch.All">@FooterES.Viewing</NavLink></li>
-    <AuthorizeView>
-        <Authorized>
-            <li><NavLink href="add" ActiveClass="is-active">@FooterES.AddMoview</NavLink></li>
-        </Authorized>
-    </AuthorizeView>
-</ul>
+﻿<div class="menu">
+    <ul class="menu-list custom-menu">
+        <li>
+            <NavLink href="" ActiveClass="is-active" Match="NavLinkMatch.All" class="custom-nav-link">
+                <span class="icon"><i class="fas fa-film"></i></span>
+                <span>@FooterES.AllMoviesLabel</span>
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="watchlist" ActiveClass="is-active" Match="NavLinkMatch.All" class="custom-nav-link">
+                <span class="icon"><i class="fas fa-list"></i></span>
+                <span>@FooterES.Watchlist</span>
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="viewing" ActiveClass="is-active" Match="NavLinkMatch.All" class="custom-nav-link">
+                <span class="icon"><i class="fas fa-eye"></i></span>
+                <span>@FooterES.Viewing</span>
+            </NavLink>
+        </li>
+        <AuthorizeView>
+            <Authorized>
+                <li>
+                    <NavLink href="add" ActiveClass="is-active" class="custom-nav-link">
+                        <span class="icon"><i class="fas fa-plus"></i></span>
+                        <span>@FooterES.AddMoview</span>
+                    </NavLink>
+                </li>
+            </Authorized>
+            <NotAuthorized>
+                <li>
+                    <NavLink href="add" ActiveClass="is-active" class="custom-nav-link">
+                        <span class="icon"><i class="fas fa-plus"></i></span>
+                        <span>@FooterES.AddMoview</span>
+                    </NavLink>
+                </li>
+            </NotAuthorized>
+        </AuthorizeView>
+    </ul>
+</div>

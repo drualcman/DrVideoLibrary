@@ -17,11 +17,11 @@
                 <AuthorizeView>
                     <Authorized>
                         <div class="buttons">
-                            <span class="" ActiveClass="@Active">
-                                <img src="" alt="User avatar" />
+                            <span class="navbar-item @Active">
+                                <img src="https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg" alt="User avatar" class="user-avatar" />
                             </span>
                         </div>
-                    </Authorized>  
+                    </Authorized>
                     <NotAuthorized>
                         <div class="buttons">
                             <NavLink class="button is-light" ActiveClass="@Active">
@@ -35,7 +35,7 @@
     </div>
 </nav>
 
-@code{
+@code {
     const string Active = "is-active";
     bool IsActive;
     string BurgerActive => IsActive ? Active : "";
