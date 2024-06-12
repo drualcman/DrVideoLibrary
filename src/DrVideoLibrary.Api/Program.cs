@@ -1,13 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
-builder.Services.AddServices(options => builder.Configuration.Bind("Local", options.ProviderOptions));
-//builder.Services.AddOidcAuthentication(options =>
-//{
-//    // Configure your authentication provider options here.
-//    // For more information, see https://aka.ms/blazor-standalone-auth
-//    builder.Configuration.Bind("Local", options.ProviderOptions);
-//});
+
 // Add services to the container.
+builder.Services.AddServices();
+//builder.Services.AddServices(options => builder.Configuration.Bind("Local", options.ProviderOptions));
 
 var app = builder.Build();
 

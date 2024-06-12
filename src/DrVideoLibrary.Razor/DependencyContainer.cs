@@ -5,12 +5,21 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 namespace Microsoft.Extensions.DependencyInjection;
 public static class DependencyContainer
 {
-    public static IServiceCollection AddServices(this IServiceCollection services, Action<RemoteAuthenticationOptions<OidcProviderOptions>> authOptions)
+    public static IServiceCollection AddServices(this IServiceCollection services,
+        Action<RemoteAuthenticationOptions<OidcProviderOptions>> authOptions = null)
     {
-        services.AddAuthorizationCore();                          //can remove is use OAuth
-        services.AddCascadingAuthenticationState();               //can remove is use OAuth
-        //services.AddOidcAuthentication(authOptions);              //to use with OAuth
+        if (authOptions == null)
+        {
+            services.AddAuthorizationCore();
+            services.AddCascadingAuthenticationState();
+        }
+        else
+        {
+            //to use with OAuth
+            services.AddOidcAuthentication(authOptions);
+        }
         services.AddScoped<AuthenticationStateProvider, PersistentAuthenticationStateProvider>();
+        services.AddScoped<WatchlistViewModel>();
         return services;
     }
 }

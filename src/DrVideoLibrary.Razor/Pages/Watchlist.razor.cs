@@ -1,8 +1,7 @@
-﻿
-namespace DrVideoLibrary.Razor.Pages;
+﻿namespace DrVideoLibrary.Razor.Pages;
 public partial class Watchlist
 {
-    [Inject] WatchlistViewModel ViewModel {get;set;}
+    [Inject] WatchlistViewModel ViewModel { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

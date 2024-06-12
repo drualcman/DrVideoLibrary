@@ -1,4 +1,4 @@
-﻿namespace DrVideoLibrary.Entities.ViewModels;
+﻿namespace DrVideoLibrary.Razor.ViewModels;
 public class WatchlistViewModel
 {
     public List<WatchedCard> Watcheds { get; private set; }

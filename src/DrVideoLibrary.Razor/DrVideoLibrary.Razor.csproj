@@ -25,6 +25,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppES.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\CustomAuthorizationMessageHandlerES.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CustomAuthorizationMessageHandlerES.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\FooterES.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -51,6 +56,10 @@
     <EmbeddedResource Update="Resources\AppES.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\CustomAuthorizationMessageHandlerES.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CustomAuthorizationMessageHandlerES.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\FooterES.resx">
       <Generator>ResXFileCodeGenerator</Generator>
