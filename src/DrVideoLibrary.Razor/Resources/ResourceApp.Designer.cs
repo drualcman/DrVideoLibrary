@@ -22,14 +22,14 @@ namespace DrVideoLibrary.Razor.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ListCardES {
+    internal class ResourceApp {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ListCardES() {
+        internal ResourceApp() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DrVideoLibrary.Razor.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.ListCardES", typeof(ListCardES).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.ResourceApp", typeof(ResourceApp).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,20 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ver detalles.
+        ///   Looks up a localized string similar to No autorizado..
         /// </summary>
-        internal static string DetailsLabel {
+        internal static string Error401Message {
             get {
-                return ResourceManager.GetString("DetailsLabel", resourceCulture);
+                return ResourceManager.GetString("Error401Message", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lanzamiento:.
+        ///   Looks up a localized string similar to El contenido que buscas no se ha encontrado..
         /// </summary>
-        internal static string ReleaseYearLabel {
+        internal static string Error404Message {
             get {
-                return ResourceManager.GetString("ReleaseYearLabel", resourceCulture);
+                return ResourceManager.GetString("Error404Message", resourceCulture);
             }
         }
     }

@@ -22,14 +22,14 @@ namespace DrVideoLibrary.Razor.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class FooterES {
+    internal class ResourceWatchedCardComponent {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal FooterES() {
+        internal ResourceWatchedCardComponent() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DrVideoLibrary.Razor.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.FooterES", typeof(FooterES).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.ResourceWatchedCardComponent", typeof(ResourceWatchedCardComponent).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,20 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agregar.
+        ///   Looks up a localized string similar to Duración.
         /// </summary>
-        internal static string AddMoview {
+        internal static string Duration {
             get {
-                return ResourceManager.GetString("AddMoview", resourceCulture);
+                return ResourceManager.GetString("Duration", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ver todo.
+        ///   Looks up a localized string similar to Valoración.
         /// </summary>
-        internal static string AllMoviesLabel {
+        internal static string Rate {
             get {
-                return ResourceManager.GetString("AllMoviesLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Viendo.
-        /// </summary>
-        internal static string Viewing {
-            get {
-                return ResourceManager.GetString("Viewing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Visto.
-        /// </summary>
-        internal static string Watchlist {
-            get {
-                return ResourceManager.GetString("Watchlist", resourceCulture);
+                return ResourceManager.GetString("Rate", resourceCulture);
             }
         }
     }

@@ -22,14 +22,14 @@ namespace DrVideoLibrary.Razor.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class WatchlistES {
+    internal class ResourceListCard {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal WatchlistES() {
+        internal ResourceListCard() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DrVideoLibrary.Razor.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.WatchlistES", typeof(WatchlistES).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.ResourceListCard", typeof(ResourceListCard).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,20 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recientemente visto.
+        ///   Looks up a localized string similar to Ver detalles.
         /// </summary>
-        internal static string ListLabel {
+        internal static string DetailsLabel {
             get {
-                return ResourceManager.GetString("ListLabel", resourceCulture);
+                return ResourceManager.GetString("DetailsLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Explora las películas.
+        ///   Looks up a localized string similar to Lanzamiento:.
         /// </summary>
-        internal static string TitleLabel {
+        internal static string ReleaseYearLabel {
             get {
-                return ResourceManager.GetString("TitleLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} mins.
-        /// </summary>
-        internal static string TotalMinutesTemplateLabel {
-            get {
-                return ResourceManager.GetString("TotalMinutesTemplateLabel", resourceCulture);
+                return ResourceManager.GetString("ReleaseYearLabel", resourceCulture);
             }
         }
     }

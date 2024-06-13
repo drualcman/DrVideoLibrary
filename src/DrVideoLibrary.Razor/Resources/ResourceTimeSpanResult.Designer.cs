@@ -22,14 +22,14 @@ namespace DrVideoLibrary.Razor.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AppES {
+    internal class ResourceTimeSpanResult {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppES() {
+        internal ResourceTimeSpanResult() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DrVideoLibrary.Razor.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.AppES", typeof(AppES).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.ResourceTimeSpanResult", typeof(ResourceTimeSpanResult).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,47 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No autorizado..
+        ///   Looks up a localized string similar to {0} Dias.
         /// </summary>
-        internal static string Error401Message {
+        internal static string Days {
             get {
-                return ResourceManager.GetString("Error401Message", resourceCulture);
+                return ResourceManager.GetString("Days", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El contenido que buscas no se ha encontrado..
+        ///   Looks up a localized string similar to {0} Horas.
         /// </summary>
-        internal static string Error404Message {
+        internal static string Hours {
             get {
-                return ResourceManager.GetString("Error404Message", resourceCulture);
+                return ResourceManager.GetString("Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Minutos.
+        /// </summary>
+        internal static string Minutes {
+            get {
+                return ResourceManager.GetString("Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Meses.
+        /// </summary>
+        internal static string Months {
+            get {
+                return ResourceManager.GetString("Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Años.
+        /// </summary>
+        internal static string Years {
+            get {
+                return ResourceManager.GetString("Years", resourceCulture);
             }
         }
     }

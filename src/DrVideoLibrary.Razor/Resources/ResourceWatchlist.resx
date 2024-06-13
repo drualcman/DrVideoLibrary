@@ -124,6 +124,6 @@
     <value>Explora las películas</value>
   </data>
   <data name="TotalMinutesTemplateLabel" xml:space="preserve">
-    <value>{0} mins</value>
+    <value>{0:N} mins</value>
   </data>
 </root>
