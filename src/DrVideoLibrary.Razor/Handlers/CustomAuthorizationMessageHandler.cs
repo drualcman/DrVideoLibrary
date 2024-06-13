@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using System.Net.Http.Headers;
+﻿namespace DrVideoLibrary.Razor.Handlers;
 
-namespace DrVideoLibrary.Razor.Handlers;
-
-public class CustomAuthorizationMessageHandler(IAccessTokenProvider tokenProvider) : DelegatingHandler
-{        
+public class CustomAuthorizationMessageHandler(IAccessTokenProvider tokenProvider, 
+    IStringLocalizer<ResourceCustomAuthorizationMessageHandler> localizer) : DelegatingHandler
+{
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         await AddAuthorizationHeaderIfAvailable(request);
@@ -23,7 +21,7 @@ public class CustomAuthorizationMessageHandler(IAccessTokenProvider tokenProvide
     private void ThrowIfUnauthorized(HttpResponseMessage response)
     {
         if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-            throw new UnauthorizedAccessException(CustomAuthorizationMessageHandlerES.UnauthorizedAccessExceptionMessage);
+            throw new UnauthorizedAccessException(localizer.GetString(nameof(ResourceCustomAuthorizationMessageHandler.UnauthorizedAccessExceptionMessage)));
     }
 }
 

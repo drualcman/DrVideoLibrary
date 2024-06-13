@@ -1,8 +1,9 @@
 ﻿@page "/watchlist"
+@using System.Globalization
 
 <div class="columns">
     <div class="column">
-        <h1 class="title">@WatchlistES.TitleLabel</h1>
+        <h1 class="title">@Localizer.GetString(nameof(ResourceWatchlist.TitleLabel))</h1>
     </div>
     <div class="column">
         <img alt="Camara" />
@@ -10,19 +11,23 @@
 </div>
 <div class="columns">
     <div class="column list-wrapper">
-        <h2 class="subtitle">
-            <span>@WatchlistES.ListLabel</span>
-            <span>@string.Format(WatchlistES.TotalMinutesTemplateLabel, ViewModel.TotalMinutes)</span>
-        </h2>
-        <div class="list-card-wrapper">
-            @if (ViewModel.IsReady)
-            {
-                foreach (WatchedCard watched in ViewModel.Watcheds)
+        @if (ViewModel.IsReady)
+        {
+            <h2 class="subtitle">
+                <span>@Localizer.GetString(nameof(ResourceWatchlist.ListLabel))</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>@ViewModel.TotalTime.ToString(TimeSpanLocalizer)</span>
+            </h2>
+
+            <div class="pagination-container">
+                <Paginator Handler=ViewModel.Paginator OnPageChange=ToPage />
+            </div>
+            <div class="list-card-wrapper">
+                @foreach (WatchedCard watched in ViewModel.Items)
                 {
                     <WatchedCardComponent Movie=watched />
                 }
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>
 

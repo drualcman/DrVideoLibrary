@@ -14,4 +14,10 @@
     <ProjectReference Include="..\DrVideoLibrary.Razor\DrVideoLibrary.Razor.csproj" />
   </ItemGroup>
 
+	<PropertyGroup>
+		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+		<BlazorEnableCompression>false</BlazorEnableCompression>
+	</PropertyGroup>
+
+
 </Project>

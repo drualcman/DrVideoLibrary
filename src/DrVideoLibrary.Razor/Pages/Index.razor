@@ -1,26 +1,17 @@
 ﻿@page "/"
 
-<h1 class="title">@IndexES.PageTitle #@Movies.Count</h1>
-<div class="wrapper">
-    @foreach (ListCard movie in Movies)
-    {
-        <ListCardComponent Movie=movie />
-    }
-</div>
-
-@code {
-    List<ListCard> Movies =
-    [
-        new ListCard(Guid.NewGuid().ToString(), "Un nacimiento de un ser muy especial en la tierra media de nuestro señor", "", 1976, ["miedo", "terror"]),
-        new ListCard(Guid.NewGuid().ToString(), "El traviero", "", 1979, ["comedia", "drama"]),
-        new ListCard(Guid.NewGuid().ToString(), "El colegio, que miedo", "", 1982, ["ciencia ficcion", "comedia", "accion", "drama"])
-    ];
-
-    protected override void OnInitialized()
-    {
-        for (int i = 0; i < 1000; i++)
+@if (ViewModel.IsReady)
+{
+    <h1 class="title">@Localizer.GetString(nameof(ResourceIndex.PageTitle)) #@ViewModel.TotalMovies</h1>
+    <div class="pagination-container">
+        <Paginator Handler=ViewModel.Paginator OnPageChange=ToPage />
+    </div>
+    <div class="wrapper">
+        @foreach (ListCard movie in ViewModel.Items)
         {
-            Movies.Add(new ListCard(Guid.NewGuid().ToString(), "El traviero", "", 1979, ["comedia", "drama"]));
+            <ListCardComponent Movie=movie />
         }
-    }
+    </div>
 }
+
+

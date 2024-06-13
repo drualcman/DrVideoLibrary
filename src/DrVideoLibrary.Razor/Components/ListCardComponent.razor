@@ -16,8 +16,8 @@
                 </div>
             </div>
             <div class="content-bottom">
-                <p class="subtitle is-6">@ListCardES.ReleaseYearLabel @Movie.Year</p>
-                <a href="movie/@Movie.Id" class="button is-primary">@ListCardES.DetailsLabel</a>
+                <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceListCard.ReleaseYearLabel)) @Movie.Year</p>
+                <a href="movie/@Movie.Id" class="button is-primary">@Localizer.GetString(nameof(ResourceListCard.DetailsLabel))</a>
             </div>
         </div>
     </div>

@@ -1,10 +1,9 @@
-﻿@using DrVideoLibrary.Razor.Resources
-<div class="card-wrapper">
+﻿<div class="card-wrapper">
     <a href="movie/@Movie.Id" class="columns">
         <div class="column">
             <h2>@Movie.Title</h2>
-            <p>@ListCardES.ReleaseYearLabel @Movie.Duration</p>
-            <p>@ListCardES.ReleaseYearLabel @Movie.Rate</p>
+            <p>@Localizer.GetString(nameof(ResourceWatchedCardComponent.Duration)) @Movie.Duration</p>
+            <p>@Localizer.GetString(nameof(ResourceWatchedCardComponent.Rate)) @Movie.Rate</p>
         </div>
         <div class="column">
             <img src="@Movie.Cover" />

@@ -1,0 +1,58 @@
+<ul class="pagination-list">
+    <li>
+        <button @onclick="() => ToPage(1)" class="pagination-link" disabled="@(!Handler.HasPreviousPage)">
+            <i class="fas fa-angle-double-left"></i>
+        </button>
+    </li>
+    <li>
+        <button @onclick="() => ToPage(Handler.ActualPage - 1)" class="pagination-link" disabled="@(!Handler.HasPreviousPage)">
+            <i class="fas fa-angle-left"></i>
+        </button>
+    </li>
+
+    @foreach (int pageNumber in GetPageNumbers())
+    {
+        <li>
+            <button @onclick="() => ToPage(pageNumber)" class="pagination-link @(Handler.ActualPage == pageNumber ? "is-current" : "")">@pageNumber</button>
+        </li>
+    }
+
+    <li>
+        <button @onclick="() => ToPage(Handler.ActualPage + 1)" class="pagination-link" disabled="@(!Handler.HasNextPage)">
+            <i class="fas fa-angle-right"></i>
+        </button>
+    </li>
+    <li>
+        <button @onclick="() => ToPage(Handler.TotalPages)" class="pagination-link" disabled="@(!Handler.HasNextPage)">
+            <i class="fas fa-angle-double-right"></i>
+        </button>
+    </li>
+</ul>
+
+@code {
+    [Parameter] public PaginatorHandler Handler { get; set; }
+    [Parameter] public EventCallback<int> OnPageChange { get; set; }
+
+    private const int MaxVisiblePages = 5;
+
+    async Task ToPage(int page)
+    {
+        Handler.ToPage(page);
+        await InvokeAsync(StateHasChanged);
+        if (OnPageChange.HasDelegate)
+            await OnPageChange.InvokeAsync(Handler.ActualPage);
+    }
+
+    IEnumerable<int> GetPageNumbers()
+    {
+        int start = Math.Max(1, Handler.ActualPage - MaxVisiblePages / 2);
+        int end = Math.Min(Handler.TotalPages, start + MaxVisiblePages - 1);
+
+        if (end - start < MaxVisiblePages)
+        {
+            start = Math.Max(1, end - MaxVisiblePages + 1);
+        }
+
+        return Enumerable.Range(start, end - start + 1);
+    }
+}

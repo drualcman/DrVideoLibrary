@@ -1,82 +1,101 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
 
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.6" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.6" />
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.6" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DrVideoLibrary.Entities\DrVideoLibrary.Entities.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DrVideoLibrary.Entities\DrVideoLibrary.Entities.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Resources\AppES.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AppES.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\CustomAuthorizationMessageHandlerES.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CustomAuthorizationMessageHandlerES.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\FooterES.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>FooterES.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\IndexES.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>IndexES.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\ListCardES.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ListCardES.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\WatchlistES.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>WatchlistES.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Resources\ResourceApp.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourceApp.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ResourceCustomAuthorizationMessageHandler.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourceCustomAuthorizationMessageHandler.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ResourceFooter.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourceFooter.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ResourceIndex.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourceIndex.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ResourceListCard.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourceListCard.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ResourceTimeSpanResult.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourceTimeSpanResult.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ResourceWatchedCardComponent.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourceWatchedCardComponent.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ResourceWatchlist.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourceWatchlist.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\AppES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\CustomAuthorizationMessageHandlerES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CustomAuthorizationMessageHandlerES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\FooterES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>FooterES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\IndexES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>IndexES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\ListCardES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ListCardES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\WatchlistES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>WatchlistES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\ResourceApp.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ResourceApp.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceCustomAuthorizationMessageHandler.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ResourceCustomAuthorizationMessageHandler.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceFooter.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ResourceFooter.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceIndex.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ResourceIndex.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceListCard.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ResourceListCard.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceTimeSpanResult.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ResourceTimeSpanResult.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceWatchedCardComponent.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ResourceWatchedCardComponent.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceWatchlist.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ResourceWatchlist.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 
 </Project>
