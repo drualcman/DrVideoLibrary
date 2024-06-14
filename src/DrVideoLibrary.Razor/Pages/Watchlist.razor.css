@@ -1,4 +1,11 @@
-﻿.list-wrapper {
+﻿.wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.list-wrapper {
     background-color: ghostwhite;
     box-shadow: rgb(0 0 0 / 21%) 0px 0px 8px 1px;
     border-radius: 2rem;
@@ -20,7 +27,7 @@
         border-radius: 2rem;
         margin: 0;
         padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
     }

@@ -4,8 +4,6 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
-
-
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
@@ -97,5 +95,4 @@
 			<LastGenOutput>ResourceWatchlist.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
-
 </Project>

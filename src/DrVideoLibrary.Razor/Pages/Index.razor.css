@@ -5,10 +5,6 @@
     padding: 1rem;
 }
 
-    .wrapper ::deep .card-wrapper {
-        height: 250px;
-    }
-
 .title {
     margin: 1rem;
 }

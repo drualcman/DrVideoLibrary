@@ -1,5 +1,7 @@
 ﻿.card-wrapper {
     border-bottom: 3px solid whitesmoke;
-    margin:1rem;
+    margin: 1rem;
     padding: 1rem 1rem 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
 }

@@ -11,35 +11,31 @@
         margin: 1rem 0;
     }
 
-        ul.pagination-list li {
-            margin: 0 5px;
+        ul.pagination-list li button {
+            border: 1px solid #dbdbdb;
+            background-color: #fff;
+            color: #363636;
+            cursor: pointer;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-            ul.pagination-list li button {
-                border: 1px solid #dbdbdb;
-                background-color: #fff;
-                color: #363636;
-                cursor: pointer;
-                padding: 0.5rem 0.75rem;
-                border-radius: 0.25rem;
-                transition: background-color 0.3s, color 0.3s;
+            ul.pagination-list li button:hover {
+                background-color: #3273dc;
+                color: #fff;
             }
 
-                ul.pagination-list li button:hover {
-                    background-color: #3273dc;
-                    color: #fff;
-                }
+            ul.pagination-list li button.is-current {
+                background-color: #3273dc;
+                color: #fff;
+                border-color: #3273dc;
+                cursor: default;
+            }
 
-                ul.pagination-list li button.is-current {
-                    background-color: #3273dc;
-                    color: #fff;
-                    border-color: #3273dc;
-                    cursor: default;
-                }
-
-                ul.pagination-list li button:disabled {
-                    background-color: #f5f5f5;
-                    color: #b5b5b5;
-                    border-color: #b5b5b5;
-                    cursor: not-allowed;
-                }
+            ul.pagination-list li button:disabled {
+                background-color: #f5f5f5;
+                color: #b5b5b5;
+                border-color: #b5b5b5;
+                cursor: not-allowed;
+            }

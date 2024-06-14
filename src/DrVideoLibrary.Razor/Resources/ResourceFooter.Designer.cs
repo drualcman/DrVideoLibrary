@@ -81,9 +81,9 @@ namespace DrVideoLibrary.Razor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Viendo.
         /// </summary>
-        internal static string Viewing {
+        internal static string Watching {
             get {
-                return ResourceManager.GetString("Viewing", resourceCulture);
+                return ResourceManager.GetString("Watching", resourceCulture);
             }
         }
         
