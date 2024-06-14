@@ -1,0 +1,23 @@
+﻿<div class="rating-container">
+    @for (int i = 0; i < FullStars; i++)
+    {
+        <span class="star full"><i class="fa-solid fa-star"></i></span>
+    }
+    @if (HasHalfStar)
+    {
+        <span class="star half"><i class="fa-regular fa-star-half-stroke"></i></span>
+    }
+    @for (int i = 0; i < EmptyStars; i++)
+    {
+        <span class="star empty"><i class="fa-regular fa-star"></i></span>
+    }
+</div>
+
+@code {
+    [Parameter] public int Rate { get; set; }
+
+    private int FullStars => Rate / 2;
+    private bool HasHalfStar => Rate % 2 != 0;
+    private int EmptyStars => 5 - FullStars - (HasHalfStar ? 1 : 0);
+}
+
