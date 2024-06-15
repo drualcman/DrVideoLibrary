@@ -10,6 +10,7 @@ public static class DependencyContainer
         {
             services.AddAuthorizationCore();
             services.AddCascadingAuthenticationState();
+            services.AddScoped<AuthenticationStateProvider, PersistentAuthenticationStateProvider>();
         }
         else
         {
@@ -22,7 +23,6 @@ public static class DependencyContainer
         services.AddHttpClient();
         services.AddHttpClient<ApiClient>();
         services.AddLocalization();
-        services.AddScoped<AuthenticationStateProvider, PersistentAuthenticationStateProvider>();
         services.AddScoped<IndexViewModel>();
         services.AddScoped<WatchlistViewModel>();
         CultureInfo culture = new CultureInfo("es");

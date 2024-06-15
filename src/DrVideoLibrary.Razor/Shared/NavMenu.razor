@@ -1,4 +1,5 @@
-﻿<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+﻿@inject NavigationManager Navigation
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="">
             <img src="_content/DrVideoLibrary.Razor/img/logo.png" >
@@ -16,15 +17,16 @@
             <div class="navbar-item">
                 <AuthorizeView>
                     <Authorized>
+                        <span class="navbar-item @Active">
+                            <img src="https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg" alt="User avatar" class="user-avatar" />
+                        </span>
                         <div class="buttons">
-                            <span class="navbar-item @Active">
-                                <img src="https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg" alt="User avatar" class="user-avatar" />
-                            </span>
+                            <button class="button is-danger is-small" @onclick="BeginLogOut">Log out</button>
                         </div>
                     </Authorized>
                     <NotAuthorized>
                         <div class="buttons">
-                            <NavLink class="button is-light" ActiveClass="@Active">
+                            <NavLink href="authentication/login" class="button is-light" ActiveClass="@Active">
                                 <span class="icon">
                                     <i class="fa-solid fa-user-lock"></i>
                                 </span>
@@ -41,4 +43,9 @@
     const string Active = "is-active";
     bool IsActive;
     string BurgerActive => IsActive ? Active : "";
+
+    public void BeginLogOut()
+    {
+        Navigation.NavigateToLogout("authentication/logout");
+    }
 }
