@@ -13,3 +13,6 @@ global using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 global using System.Globalization;
 global using Microsoft.Extensions.Localization;
 global using System.Net.Http.Headers;
+global using DrVideoLibrary.Entities.Models;
+global using System.Net.Http.Json;
+global using DrVideoLibrary.Razor.Services;

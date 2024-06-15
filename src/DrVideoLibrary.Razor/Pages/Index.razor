@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+<PageTitle>@Localizer.GetString(nameof(ResourceIndex.PageTitle)) #@ViewModel.TotalMovies</PageTitle>
+
 @if (ViewModel.IsReady)
 {
     <h1 class="title">@Localizer.GetString(nameof(ResourceIndex.PageTitle)) #@ViewModel.TotalMovies</h1>

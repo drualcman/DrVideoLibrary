@@ -1,0 +1,14 @@
+﻿@if (Relatives is not null && Relatives.Any())
+{
+    <div class="relatives-section">
+        @foreach (RelativeMovie relative in Relatives)
+        {
+            <a href="movie/@relative.Id" class="relative-item">
+                <img src="@relative.Cover" alt="@relative.Title" class="relative-image" />
+                <p class="relative-title">@relative.Title</p>
+            </a>
+        }
+    </div>
+}
+
+

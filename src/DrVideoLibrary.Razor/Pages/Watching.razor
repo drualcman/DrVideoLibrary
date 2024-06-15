@@ -1,50 +1,7 @@
 ﻿@page "/watching"
 
 <div class="container">
-    <div class="header">
-        <img src="https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg" class="header-image" alt="Movie Image" />
-        <h1 class="title header-title">The Matrix</h1>
-    </div>
-    <div class="info-section">
-        <div class="info-item">
-            <p class="subtitle is-6"><RateStarComponent Rate=WatchingNow.Movie.Rate /></p>
-            <p class="title is-5">Rating</p>
-        </div>
-        <div class="info-item">
-            <p class="subtitle is-6">Released</p>
-            <p class="title is-5">@WatchingNow.Movie.Released.ToShortDateString()</p>
-        </div>
-        <div class="info-item">
-            <p class="subtitle is-6">Total Views</p>
-            <p class="title is-5">789</p>
-        </div>
-    </div>
-    <ProgressBarComponent Start="WatchingNow.Start" TotalMinutes="WatchingNow.Movie.Duration" />
-    <div class="tags-section">
-        <span class="tag">Action</span>
-        <span class="tag">Drama</span>
-        <span class="tag">Sci-Fi</span>
-    </div>
-    <div class="additional-info">
-        <p class="subtitle is-5"><strong>Actors:</strong> Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss</p>
-        <p class="subtitle is-5"><strong>Directors:</strong> Lana Wachowski, Lilly Wachowski</p>
-        <p class="subtitle is-5"><strong>Prologue:</strong> In a dystopian future, humanity is unknowingly trapped inside a simulated reality, the Matrix, created by intelligent machines to distract humans while using their bodies as an energy source.</p>
-    </div>
-    <div class="info-section">
-        <div class="info-item">
-            <p class="title is-5">Relacionadas</p>
-        </div>
-    </div>
-    <div class="relatives-section">
-        @foreach (var relative in WatchingNow.Movie.Relatives)
-        {
-            <div class="relative-item">
-                <img src="@relative.Cover" alt="@relative.Title" class="relative-image" />
-                <p class="relative-title">@relative.Title</p>
-            </div>
-        }
-    </div>
+    <MovieDetailComponent Movie=WatchingNow.Movie>
+        <ProgressBarComponent Start="WatchingNow.Start" TotalMinutes="WatchingNow.Movie.Duration" />
+    </MovieDetailComponent>    
 </div>
-
-
-

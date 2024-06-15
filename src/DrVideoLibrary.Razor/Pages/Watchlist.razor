@@ -1,12 +1,12 @@
 ﻿@page "/watchlist"
-@using System.Globalization
+<PageTitle>@Localizer.GetString(nameof(ResourceWatchlist.TitleLabel))</PageTitle>
 
 <div class="columns">
     <div class="column">
         <h1 class="title">@Localizer.GetString(nameof(ResourceWatchlist.TitleLabel))</h1>
     </div>
     <div class="column">
-        <img alt="Camara" />
+        <img src="_content/DrVideoLibrary.Razor/img/camara.png" alt="camara" />
     </div>
 </div>
 <div class="columns">
@@ -14,7 +14,7 @@
         @if (ViewModel.IsReady)
         {
             <h2 class="subtitle">
-                <span>@Localizer.GetString(nameof(ResourceWatchlist.ListLabel))</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>@Localizer.GetString(nameof(ResourceWatchlist.ListLabel))</span>
                 <span>@ViewModel.TotalTime.ToString(TimeSpanLocalizer)</span>
             </h2>
 

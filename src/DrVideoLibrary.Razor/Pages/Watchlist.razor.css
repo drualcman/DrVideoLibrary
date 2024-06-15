@@ -17,9 +17,8 @@
 
     .list-wrapper .subtitle {
         display: flex;
-        flex-direction: column;
-        flex-flow: wrap;
         margin: 2rem;
+        justify-content: space-between;
     }
 
     .list-wrapper .list-card-wrapper {

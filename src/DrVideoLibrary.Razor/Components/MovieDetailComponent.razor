@@ -1,0 +1,44 @@
+﻿<div class="container">
+    <div class="header">
+        <img src="@Movie.Cover" class="header-image" alt="Movie Image" />
+        <h1 class="title header-title">@Movie.Title</h1>
+    </div>
+    <div class="info-section">
+        <div class="info-item">
+            <p class="subtitle is-6"><RateStarComponent Rate=Movie.Rate /></p>
+            <p class="title is-5">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Rating))</p>
+        </div>
+        <div class="info-item">
+            <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Released))</p>
+            <p class="title is-5">@Movie.Released.ToShortDateString()</p>
+        </div>
+        <div class="info-item">
+            <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.TotalViews))</p>
+            <p class="title is-5">@Movie.TotalViews</p>
+        </div>
+    </div>
+    @ChildContent
+    <div class="tags-section">
+        @foreach (string category in Movie.Categories)
+        {
+            <span class="tag is-success">@category</span>
+        }
+    </div>
+    <div class="additional-info">
+        <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Actors)):</strong> @string.Join(", ", Movie.Actors)</p>
+        <p>@Movie.Prologo</p>
+        <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Directors))</strong> @string.Join(", ", Movie.Directors)</p>
+    </div>
+    <div class="info-section">
+        <div class="info-item">
+            <p class="title is-5">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Relatives))</p>
+        </div>
+    </div>
+    <RelativeMoviesComponent MovieId="@Movie.Id" />
+</div>
+
+@code {
+    [Inject] IStringLocalizer<ResourceMovieDetailComponent> Localizer { get; set; }
+    [Parameter] public Movie Movie { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+}

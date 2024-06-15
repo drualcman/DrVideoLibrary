@@ -3,16 +3,49 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>DrVideoLibrary.Client</title>
+    <title>Movies Colleccion</title>
     <base href="/" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/mago.css" />
     <link href="_content/DrVideoLibrary.Razor/css/app.css" rel="stylesheet" />
     <link href="DrVideoLibrary.Client.styles.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+    <div id="app">
+        <div class="loading-body">
+            <div class="scene">
+                <div class="objects">
+                    <div class="square"></div>
+                    <div class="circle"></div>
+                    <div class="triangle"></div>
+                </div>
+                <div class="wizard">
+                    <div class="body"></div>
+                    <div class="right-arm">
+                        <div class="right-hand"></div>
+                    </div>
+                    <div class="left-arm">
+                        <div class="left-hand"></div>
+                    </div>
+                    <div class="head">
+                        <div class="beard"></div>
+                        <div class="face">
+                            <div class="adds"></div>
+                        </div>
+                        <div class="hat">
+                            <div class="hat-of-the-hat"></div>
+                            <div class="four-point-star --first"></div>
+                            <div class="four-point-star --second"></div>
+                            <div class="four-point-star --third"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="progress"></div>
+        </div>
+    </div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.

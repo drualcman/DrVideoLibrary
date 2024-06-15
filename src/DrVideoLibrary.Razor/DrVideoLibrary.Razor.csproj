@@ -4,6 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
+
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
@@ -11,6 +12,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.6" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.6" />
 	</ItemGroup>
 
@@ -43,6 +45,11 @@
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>ResourceListCard.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ResourceMovieDetailComponent.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceMovieDetailComponent.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceTimeSpanResult.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -82,6 +89,10 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>ResourceListCard.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceMovieDetailComponent.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ResourceMovieDetailComponent.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceTimeSpanResult.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>ResourceTimeSpanResult.Designer.cs</LastGenOutput>
@@ -95,4 +106,6 @@
 			<LastGenOutput>ResourceWatchlist.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
+
+
 </Project>

@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recientemente visto.
+        ///   Looks up a localized string similar to Tiempo total visto.
         /// </summary>
         internal static string ListLabel {
             get {
@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Explora las películas.
+        ///   Looks up a localized string similar to Explora las películas recientemente vistas.
         /// </summary>
         internal static string TitleLabel {
             get {

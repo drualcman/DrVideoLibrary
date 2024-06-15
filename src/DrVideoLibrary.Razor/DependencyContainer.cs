@@ -3,6 +3,7 @@ public static class DependencyContainer
 {
     public static IServiceCollection AddServices(this IServiceCollection services,
         Action<RemoteAuthenticationOptions<OidcProviderOptions>> authOptions = null,
+        Action<ApiClientOptions> apiOptions = null,
         Action<PaginatorOptions> paginatorOptions = null)
     {
         if (authOptions == null)
@@ -15,7 +16,11 @@ public static class DependencyContainer
             //to use with OAuth
             services.AddOidcAuthentication(authOptions);
         }
+        services.Configure(apiOptions);
         services.Configure(paginatorOptions);
+
+        services.AddHttpClient();
+        services.AddHttpClient<ApiClient>();
         services.AddLocalization();
         services.AddScoped<AuthenticationStateProvider, PersistentAuthenticationStateProvider>();
         services.AddScoped<IndexViewModel>();
