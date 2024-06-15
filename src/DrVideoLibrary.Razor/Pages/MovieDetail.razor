@@ -1,9 +1,7 @@
 ﻿@page "/movie/{id}"
-@attribute [Authorize]
 
 <div class="container">
-    <MovieDetailComponent Movie=Movie>
-    </MovieDetailComponent>
+    <MovieDetailComponent Movie=Movie />
 </div>
 
 @code {
@@ -26,5 +24,4 @@
             Actors = new List<string> { "Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss" }
         };
     }
-
 }
