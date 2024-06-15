@@ -7,8 +7,8 @@ internal class ApplicationStartup : FunctionsStartup
     //{
     //    base.ConfigureAppConfiguration(builder);
     //    var context = builder.GetContext();
-    //    builder.ConfigurationBuilder.AddJsonFile(Path.Combine(context.ApplicationRootPath, "appsettings.json"), true, false);
-    //    builder.ConfigurationBuilder.AddJsonFile(Path.Combine(context.ApplicationRootPath, "appsettings.Development.json"), true, false);
+    //    //builder.ConfigurationBuilder.AddJsonFile(Path.Combine(context.ApplicationRootPath, "appsettings.json"), true, false);
+    //    //builder.ConfigurationBuilder.AddJsonFile(Path.Combine(context.ApplicationRootPath, "appsettings.Development.json"), true, false);
     //    builder.ConfigurationBuilder.AddEnvironmentVariables();
     //}
 
@@ -16,8 +16,8 @@ internal class ApplicationStartup : FunctionsStartup
     {
         IConfiguration configuration = builder.GetContext().Configuration;
         builder.Services.AddApplicationOptions(
-            database => configuration.GetSection(ConnectionStringsOptions.SectionKey).Bind(database),
-            storage => configuration.GetSection(StorageOptions.SectionKey).Bind(storage));
+            database => configuration.Bind(database),
+            storage => configuration.Bind(storage));
         builder.Services.AddBlobStorageServices();
         builder.Services.AddUseCases();
     }

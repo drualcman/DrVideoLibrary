@@ -17,6 +17,7 @@
 	<PropertyGroup>
 		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 		<BlazorEnableCompression>false</BlazorEnableCompression>
+		<UserSecretsId>5959dff2-ff82-40ce-9fff-a4e32168cffa</UserSecretsId>
 	</PropertyGroup>
 
 
