@@ -2,7 +2,7 @@
   "profiles": {
     "DrVideoLibrary.Api": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7130",
+      "commandLineArgs": "host start --useHttps --port 44769 --cors * --cert \"D:\\Repos\\DrVideoLibrary\\localhost.pfx\" --password \"password\"",
       "launchBrowser": false
     }
   }
