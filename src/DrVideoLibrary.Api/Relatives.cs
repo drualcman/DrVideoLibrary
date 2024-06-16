@@ -11,7 +11,7 @@ namespace DrVideoLibrary.Api
 
         [FunctionName("relatives")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "relatives/{id}")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "relatives/{id}")] HttpRequest req,
             ILogger log, string id)
         {
             log.LogInformation("Get all relatives movies");
