@@ -16,5 +16,11 @@ internal class ApiClient
         using HttpResponseMessage response = await Client.GetAsync($"{Options.Relatives}/{id}");
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<IEnumerable<RelativeMovie>>();
+    } 
+    public async Task<Movie> GetMovieDetailsAsync(string id)
+    {
+        using HttpResponseMessage response = await Client.GetAsync($"{Options.Movies}/{id}");
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<Movie>();
     }
 }

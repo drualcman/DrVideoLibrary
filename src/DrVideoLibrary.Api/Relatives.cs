@@ -9,7 +9,7 @@ namespace DrVideoLibrary.Api
             Controller = controller;
         }
 
-        [FunctionName("relatives")]
+        [FunctionName("GetRelatives")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "relatives/{id}")] HttpRequest req,
             ILogger log, string id)
