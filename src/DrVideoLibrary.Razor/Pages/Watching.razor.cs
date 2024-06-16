@@ -12,7 +12,7 @@ public partial class Watching
                 Id = "1",
                 Title = "The Matrix",
                 Cover = "https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg",
-                Released = new DateTime(1999, 3, 31),
+                Year = 1999,
                 Prologo = "In a dystopian future, humanity is unknowingly trapped inside a simulated reality, the Matrix, created by intelligent machines to distract humans while using their bodies as an energy source.",
                 Rate = 9,
                 Duration = 136,

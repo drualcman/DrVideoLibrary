@@ -16,3 +16,6 @@ global using System.Net.Http.Headers;
 global using DrVideoLibrary.Entities.Models;
 global using System.Net.Http.Json;
 global using DrVideoLibrary.Razor.Services;
+global using DrVideoLibrary.Entities.Interfaces;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;

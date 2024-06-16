@@ -1,0 +1,49 @@
+﻿
+/* Contenedor principal para la selección de películas */
+.movie-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Espacio entre las opciones */
+    justify-content: center;
+}
+
+/* Cada opción de película */
+.movie-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px; /* Ancho fijo para cada opción */
+    padding: 0.5rem;
+    border: 1px solid #ddd; /* Borde para cada opción */
+    border-radius: 8px; /* Esquinas redondeadas */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transiciones para efectos */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+
+    .movie-option:hover {
+        transform: translateY(-5px); /* Levantar un poco la tarjeta al pasar por encima */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra al pasar por encima */
+    }
+
+/* Imagen de la portada */
+.movie-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 4px; /* Esquinas redondeadas para la imagen */
+}
+
+/* Información de la película */
+.movie-info {
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.movie-title {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.movie-year {
+    color: #777; /* Color más claro para el año */
+    font-size: 0.9rem;
+}

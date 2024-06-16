@@ -51,6 +51,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>ResourceMovieDetailComponent.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Resources\ResourceSearchMovieComponent.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceSearchMovieComponent.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Resources\ResourceTimeSpanResult.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -92,6 +97,10 @@
 		<EmbeddedResource Update="Resources\ResourceMovieDetailComponent.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ResourceMovieDetailComponent.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceSearchMovieComponent.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ResourceSearchMovieComponent.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceTimeSpanResult.resx">
 			<Generator>ResXFileCodeGenerator</Generator>

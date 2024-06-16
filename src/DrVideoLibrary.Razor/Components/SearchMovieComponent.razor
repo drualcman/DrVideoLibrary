@@ -1,0 +1,26 @@
+﻿@typeparam TSearchService
+@inject IStringLocalizer<ResourceSearchMovieComponent> Localizer
+
+<div class="field">
+    <label class="label">@Localizer.GetString(nameof(ResourceSearchMovieComponent.TitleLabel))</label>
+    <div class="field has-addons">
+        <div class="control is-expanded">
+            <input class="input" type="text" placeholder="@Localizer.GetString(nameof(ResourceSearchMovieComponent.TitlePlaceHolder))" @bind="SearchTitle">
+        </div>
+        <div class="control">
+            <button class="button is-primary" @onclick="SearchMovie">@Localizer.GetString(nameof(ResourceSearchMovieComponent.ButtonLabel))</button>
+        </div>
+    </div>
+</div>
+
+@if (string.IsNullOrEmpty(Messages) == false)
+{
+    <div class="notification is-danger">
+        @Messages
+    </div>
+}
+
+<SearchMovieResultsComponent SearchResults=SearchResults OnSelect=OnMovieSelect />
+
+
+

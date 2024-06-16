@@ -4,15 +4,23 @@
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    @if (context.User.Identity?.IsAuthenticated != true)
-                    {
-                        <RedirectToLogin />
-                    }
-                    else
-                    {
-                        <h1 class="title">401</h1>
-                        <h2 class="subtitle">@Localizer.GetString(nameof(ResourceApp.Error401Message))</h2>
-                    }
+                    <div class="container">
+                        @if (context.User.Identity?.IsAuthenticated != true)
+                        {
+                            <RedirectToLogin />
+                        }
+                        else
+                        {
+                            <section class="hero is-fullheight is-warning">
+                                <div class="hero-body">
+                                    <div class="container">
+                                        <h1 class="title is-1">401</h1>
+                                        <h2 class="subtitle is-3">@Localizer.GetString(nameof(ResourceApp.Error401Message))</h2>
+                                    </div>
+                                </div>
+                            </section>
+                        }
+                    </div>
                 </NotAuthorized>
             </AuthorizeRouteView>
             <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -20,8 +28,14 @@
         <NotFound>
             <PageTitle>Not found</PageTitle>
             <LayoutView Layout="@typeof(MainLayout)">
-                <h1 class="title">404</h1>
-                <h2 class="subtitle">@Localizer.GetString(nameof(ResourceApp.Error404Message))</h2>
+                <section class="hero is-fullheight is-danger">
+                    <div class="hero-body">
+                        <div class="container">
+                            <h1 class="title is-1">404</h1>
+                            <h2 class="subtitle is-3">@Localizer.GetString(nameof(ResourceApp.Error404Message))</h2>
+                        </div>
+                    </div>
+                </section>
             </LayoutView>
         </NotFound>
     </Router>

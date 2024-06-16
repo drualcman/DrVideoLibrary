@@ -1,0 +1,24 @@
+﻿@if (SearchResults is not null && SearchResults.Any())
+{
+    <div class="field">
+        <div class="control">
+            <div class="movie-select">
+                @foreach (SearchMovieResult result in SearchResults)
+                {
+                    <div class="movie-option" @onclick="() => OnMovieSelect(result)">
+                        @if (string.IsNullOrEmpty(result.Cover) == false)
+                        {
+                            <img src="@result.Cover" alt="Cover" class="movie-cover">
+                        }
+                        <div class="movie-info">
+                            <p class="movie-title">@result.Title (@result.OriginalTitle)</p>
+                            <p class="movie-year">@result.ReleaseDate</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+

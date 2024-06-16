@@ -3,8 +3,9 @@ public class Movie
 {
     public string Id { get; set; }
     public string Title { get; set; }
+    public string OriginalTitle { get; set; }
     public string Cover { get; set; }
-    public DateTime Released { get; set; }
+    public int Year { get; set; }
     public string Prologo { get; set; }
     public byte Rate { get; set; }
     public int Duration { get; set; }
