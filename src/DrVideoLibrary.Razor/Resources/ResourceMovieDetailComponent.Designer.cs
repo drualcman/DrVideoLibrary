@@ -79,6 +79,15 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Título original:.
+        /// </summary>
+        internal static string OriginalTtileLabel {
+            get {
+                return ResourceManager.GetString("OriginalTtileLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Valoración.
         /// </summary>
         internal static string Rating {

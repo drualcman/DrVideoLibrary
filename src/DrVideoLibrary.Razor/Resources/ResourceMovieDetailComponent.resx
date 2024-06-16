@@ -123,6 +123,9 @@
   <data name="Directors" xml:space="preserve">
     <value>Directores:</value>
   </data>
+  <data name="OriginalTtileLabel" xml:space="preserve">
+    <value>Título original:</value>
+  </data>
   <data name="Rating" xml:space="preserve">
     <value>Valoración</value>
   </data>
