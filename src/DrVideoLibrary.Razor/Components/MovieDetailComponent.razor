@@ -1,4 +1,5 @@
-﻿<div class="container">
+﻿@if (Movie is not null)
+{
     <div class="header">
         <img src="@Movie.Cover" class="header-image" alt="Movie Image" />
         <h1 class="title header-title">@Movie.Title</h1>
@@ -28,6 +29,10 @@
         <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Actors)):</strong> @string.Join(", ", Movie.Actors)</p>
         <p>@Movie.Prologo</p>
         <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Directors))</strong> @string.Join(", ", Movie.Directors)</p>
+        @if (string.IsNullOrEmpty(Movie.OriginalTitle) == false)
+        {
+            <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.OriginalTtileLabel))</strong> @Movie.OriginalTitle</p>
+        }
     </div>
     <div class="info-section">
         <div class="info-item">
@@ -35,7 +40,12 @@
         </div>
     </div>
     <RelativeMoviesComponent MovieId="@Movie.Id" />
-</div>
+}
+else
+{
+    <WaitingLoader />
+}
+
 
 @code {
     [Inject] IStringLocalizer<ResourceMovieDetailComponent> Localizer { get; set; }
