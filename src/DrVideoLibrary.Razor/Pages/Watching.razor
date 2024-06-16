@@ -1,7 +1,14 @@
 ﻿@page "/watching"
 
 <div class="container">
-    <MovieDetailComponent Movie=WatchingNow.Movie>
-        <ProgressBarComponent Start="WatchingNow.Start" TotalMinutes="WatchingNow.Movie.Duration" />
-    </MovieDetailComponent>    
+    @if (WatchingNow is null)
+    {
+        <WaitingLoader />
+    }
+    else
+    {
+        <MovieDetailComponent Movie=WatchingNow.Movie>
+            <ProgressBarComponent Start="WatchingNow.Start" TotalMinutes="WatchingNow.Movie.Duration" />
+        </MovieDetailComponent>
+    }
 </div>

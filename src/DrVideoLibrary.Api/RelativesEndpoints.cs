@@ -1,16 +1,16 @@
 namespace DrVideoLibrary.Api
 {
-    public class Relatives
+    internal class RelativesEndpoints
     {
         readonly IGetRelativesController Controller;
 
-        public Relatives(IGetRelativesController controller)
+        public RelativesEndpoints(IGetRelativesController controller)
         {
             Controller = controller;
         }
 
         [FunctionName("GetRelatives")]
-        public async Task<IActionResult> Run(
+        public async Task<IActionResult> GetRelatives(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "relatives/{id}")] HttpRequest req,
             ILogger log, string id)
         {
@@ -21,10 +21,11 @@ namespace DrVideoLibrary.Api
                 var result = await Controller.GetRelatives(id);
                 return new OkObjectResult(result);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return new BadRequestObjectResult(ex.Message).ToProblemDetails();
             }
         }
+
     }
 }

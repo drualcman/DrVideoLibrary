@@ -1,19 +1,18 @@
-using DrVideoLibrary.Entities.Models;
-using System.Collections.Generic;
+using DrVideoLibrary.Api.Helpers;
 
 namespace DrVideoLibrary.Api
 {
-    public class Movies
+    internal class MovieEndpoints
     {
         readonly IGetRelativesController Controller;
 
-        public Movies()
+        public MovieEndpoints()
         {
         }
 
-        [FunctionName("movies")]
-        public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "movies/{id}")] HttpRequest req,
+        [FunctionName("GetMovieById")]
+        public async Task<IActionResult> GetMovieById(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "movie/{id}")] HttpRequest req,
             ILogger log, string id)
         {
             log.LogInformation("Get movie details");
@@ -21,7 +20,7 @@ namespace DrVideoLibrary.Api
             try
             {
                 await Task.Delay(1);
-                var result = new Movie
+                var result = new Entities.Models.Movie
                 {
                     Id = id,
                     Title = $"[{id}] The Matrix",
@@ -30,16 +29,38 @@ namespace DrVideoLibrary.Api
                     Prologo = "In a dystopian future, humanity is unknowingly trapped inside a simulated reality, the Matrix, created by intelligent machines to distract humans while using their bodies as an energy source.",
                     Rate = 9,
                     Duration = 136,
+                    TotalViews = 69,
                     Categories = new List<string> { "Action", "Drama", "Sci-Fi" },
                     Directors = new List<string> { "Lana Wachowski", "Lilly Wachowski" },
                     Actors = new List<string> { "Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss" }
                 };
                 return new OkObjectResult(result);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return new BadRequestObjectResult(ex.Message).ToProblemDetails();
             }
         }
+
+        [FunctionName("AddMovie")]
+        public async Task<IActionResult> AddMovie(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "movie")] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation("Add new movie");
+
+            try
+            {
+                await Task.Delay(1);
+                Movie data = await HttpRequestHelper.GetRequestedModel<Movie>(req);
+                return new OkObjectResult(JsonSerializer.Serialize(data));
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message).ToProblemDetails();
+            }
+        }
+
+
     }
 }

@@ -4,7 +4,6 @@ public static class DependencyContainer
     public static IServiceCollection AddServices(this IServiceCollection services,
         Action<RemoteAuthenticationOptions<OidcProviderOptions>> authOptions = null,
         Action<ApiClientOptions> apiOptions = null,
-        Action<TranslationOptions> translationOptions = null,
         Action<SearchMovieOptions> searchMovieOptions = null,
         Action<PaginatorOptions> paginatorOptions = null)
     {
@@ -20,7 +19,6 @@ public static class DependencyContainer
             services.AddOidcAuthentication(authOptions);
         }
         services.Configure(apiOptions);
-        services.Configure(translationOptions);
         services.Configure(searchMovieOptions);
         services.Configure(paginatorOptions);
 
@@ -28,7 +26,6 @@ public static class DependencyContainer
         services.AddHttpClient<ApiClient>();
         services.AddHttpClient<ISearchMovieService<SearchMovieSpanishService>, SearchMovieSpanishService>();
         services.AddHttpClient<ISearchMovieService<SearchMovieEnglishService>, SearchMovieEnglishService>();
-        services.AddHttpClient<ITranslateService, TranslationService>();
         services.AddLocalization();
         services.AddScoped<IndexViewModel>();
         services.AddScoped<WatchlistViewModel>();

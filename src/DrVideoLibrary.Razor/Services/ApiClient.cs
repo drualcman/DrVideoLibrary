@@ -1,5 +1,5 @@
 ﻿namespace DrVideoLibrary.Razor.Services;
-internal class ApiClient
+public class ApiClient
 {
     readonly HttpClient Client;
     readonly ApiClientOptions Options;
@@ -17,10 +17,38 @@ internal class ApiClient
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<IEnumerable<RelativeMovie>>();
     } 
+
+    public async Task<IEnumerable<ListCard>> GetMovies()
+    {
+        using HttpResponseMessage response = await Client.GetAsync($"{Options.Lists}/all");
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<IEnumerable<ListCard>>();
+    } 
+
+    public async Task<IEnumerable<WatchedCard>> GetWatchedListAsync()
+    {
+        using HttpResponseMessage response = await Client.GetAsync($"{Options.Lists}/watched");
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<IEnumerable<WatchedCard>>();
+    } 
+
     public async Task<Movie> GetMovieDetailsAsync(string id)
     {
-        using HttpResponseMessage response = await Client.GetAsync($"{Options.Movies}/{id}");
+        using HttpResponseMessage response = await Client.GetAsync($"{Options.Movie}/{id}");
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<Movie>();
+    } 
+
+    public async Task AddMovieAsync(Movie data)
+    {
+        using HttpResponseMessage response = await Client.PostAsJsonAsync($"{Options.Movie}", data);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public async Task<WatchingNow> GetWatchingNowAsync()
+    {
+        using HttpResponseMessage response = await Client.GetAsync($"{Options.Watching}");
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<WatchingNow>();
     }
 }

@@ -1,6 +1,8 @@
 namespace DrVideoLibrary.Razor.Pages;
 public partial class AddMovie
 {
+    [Inject] ApiClient Client { get; set; }
+
     private Movie Movie;
 
     private void OnMovieSelect(Movie selection)
@@ -8,8 +10,9 @@ public partial class AddMovie
         Movie = selection;
     }
 
-    private void SaveMovie()
+    private async Task SaveMovie()
     {
+        await Client.AddMovieAsync(Movie);
         Movie = null;
     }
 

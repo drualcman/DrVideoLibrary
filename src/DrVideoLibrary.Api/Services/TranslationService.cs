@@ -1,6 +1,6 @@
-﻿namespace DrVideoLibrary.Razor.Services;
+﻿namespace DrVideoLibrary.Api.Services;
 
-public class TranslationService : ITranslateService
+internal class TranslationService : ITranslateService
 {
     private readonly HttpClient Client;
     private readonly TranslationOptions Options;
@@ -8,7 +8,7 @@ public class TranslationService : ITranslateService
     public TranslationService(HttpClient httpClient, IOptions<TranslationOptions> options)
     {
         Client = httpClient;
-        Client.BaseAddress = new Uri(options.Value.Url);
+        Client.BaseAddress = new Uri(options.Value.TranslationUrl);
         Options = options.Value;
     }
 
@@ -16,7 +16,7 @@ public class TranslationService : ITranslateService
     {
         Dictionary<string, string> requestBody = new Dictionary<string, string>
         {
-            { "auth_key", Options.ApiKey },
+            { "auth_key", Options.TranslationApiKey },
             { "text", text },
             { "source_lang", fromLanguage },
             { "target_lang", targetLanguage }
