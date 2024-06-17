@@ -46,7 +46,7 @@ internal class SearchMovieEnglishService : ISearchMovieService<SearchMovieInEngl
         response.EnsureSuccessStatusCode();
         OmdbSearchResult data = await response.Content.ReadFromJsonAsync<OmdbSearchResult>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         IEnumerable<SearchMovieResult> result = null;
-        if (data is not null)
+        if (data is not null && data.Search is not null)
         {
             result = data.Search.Select(r => new SearchMovieResult
             {
