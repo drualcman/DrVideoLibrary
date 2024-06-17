@@ -4,8 +4,8 @@ public static class DependencyContainer
     public static IServiceCollection AddUseCases(this IServiceCollection services)
     {
         services.AddScoped<IGetRelativesController, GetRelativesController>();
-        services.AddScoped<IGetRelativesOutputPort, GetRelativesPresenter>();
         services.AddScoped<IGetRelativesInputPort, GetRelativesInteractor>();
+        services.AddScoped<IGetRelativesOutputPort, GetRelativesPresenter>();
 
         services.AddScoped<ISeachMoviesController, SeachMoviesController>();
         services.AddScoped<ISeachMoviesInputPort, SeachMoviesInteractor>();
@@ -15,6 +15,10 @@ public static class DependencyContainer
 
         services.AddScoped<IAddMovieController, AddMovieController>();
         services.AddScoped<IAddMovieInputPort, AddMovieInteractor>();
+
+        services.AddScoped<IGetAllController, GetAllController>();
+        services.AddScoped<IGetAllInputPort, GetAllInteractor>();
+        services.AddScoped<IGetAllOutputPort, GetAllPresenter>();
         return services;
     }
 

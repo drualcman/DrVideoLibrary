@@ -1,7 +1,4 @@
-﻿
-using DrVideoLibrary.Entities.Models;
-
-namespace DrVideoLibrary.Cosmos.DbContext;
+﻿namespace DrVideoLibrary.Cosmos.DbContext;
 internal class MoviesContext : IMoviesContext
 {
     const string MoviesContainer = "Movies";
@@ -19,5 +16,20 @@ internal class MoviesContext : IMoviesContext
     public async Task AddMovie(MovieModel data)
     {
         await GetContainer().UpsertItemAsync(ObjectConverter.ConvertToLowercaseObject(data, "movies"), Movies);
+    }
+
+    public async Task<IEnumerable<MovieModel>> GetAll()
+    {
+        string queryString = "SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c. directors, c.actors FROM c";
+        FeedIterator<MovieModel> query = GetContainer().GetItemQueryIterator<MovieModel>(new QueryDefinition(queryString));
+        List<MovieModel> results = new List<MovieModel>();
+        List<Task> tasks = new List<Task>();
+        while (query.HasMoreResults)
+        {
+            FeedResponse<MovieModel> response = await query.ReadNextAsync();
+            tasks.AddRange(response.Select(movie => Task.Run(() => results.Add(movie))));
+        }
+        await Task.WhenAll(tasks);
+        return results;
     }
 }

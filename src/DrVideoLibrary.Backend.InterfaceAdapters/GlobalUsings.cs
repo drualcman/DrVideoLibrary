@@ -11,3 +11,8 @@ global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.SearchMoveDetail;
 global using DrVideoLibrary.Entities.Interfaces;
 global using DrVideoLibrary.Entities.Models;
 global using Microsoft.Extensions.DependencyInjection;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetAll;
+global using DrVideoLibrary.Entities.ValueObjects;
+global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetAll;
+global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.Shared;
+global using System.Collections.Concurrent;

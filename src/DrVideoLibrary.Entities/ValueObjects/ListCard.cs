@@ -1,9 +1,9 @@
 ﻿namespace DrVideoLibrary.Entities.ValueObjects;
-public class ListCard
+public class ListCard : IMovie
 {
     public string Id { get; }
     public string Title { get; }
-    public string Cover { get; }
+    public string Cover { get; set; }
     public int Year { get; }
     public IEnumerable<string> Categories { get; }
 
@@ -14,7 +14,5 @@ public class ListCard
         Cover = cover;
         Year = year;
         Categories = categories;
-        Cover = "https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg";
-
     }
 }

@@ -1,5 +1,5 @@
 ﻿namespace DrVideoLibrary.Entities.Models;
-public class SearchMovieResult
+public class SearchMovieResult : IMovie
 {
     public string Id { get; set; }
     public string Title { get; set; }

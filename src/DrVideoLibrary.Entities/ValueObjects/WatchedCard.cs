@@ -1,9 +1,9 @@
 ﻿namespace DrVideoLibrary.Entities.ValueObjects;
-public class WatchedCard
+public class WatchedCard : IMovie
 {
     public string Id { get; }
     public string Title { get; }
-    public string Cover { get; }
+    public string Cover { get; set; }
     public int Duration { get; }
     public byte Rate { get; }
 

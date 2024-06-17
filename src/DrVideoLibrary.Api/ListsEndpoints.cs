@@ -2,8 +2,10 @@ namespace DrVideoLibrary.Api
 {
     internal class ListsEndpoints
     {
-        public ListsEndpoints()
+        readonly IGetAllController GetAllController;
+        public ListsEndpoints(IGetAllController getAllController)
         {
+            GetAllController = getAllController;
         }
 
         [FunctionName("GetMovies")]
@@ -15,25 +17,14 @@ namespace DrVideoLibrary.Api
 
             try
             {
-                await Task.Delay(1);
-                List<ListCard> movies = new List<ListCard>()
-                {
-                    new ListCard(Guid.NewGuid().ToString(), "Un nacimiento de un ser muy especial en la tierra media de nuestro señor", "", 1976, new string[] {"miedo", "terror" }),
-                    new ListCard(Guid.NewGuid().ToString(), "El traviero", "", 1979, new string[] {"comedia", "drama" }),
-                    new ListCard(Guid.NewGuid().ToString(), "El colegio, que miedo", "", 1982, new string[] {"ciencia ficcion", "comedia", "accion", "drama" })
-                };
-
-                for (int i = 0; i < 1000; i++)
-                {
-                    movies.Add(new ListCard(Guid.NewGuid().ToString(), "El traviero", "", 1979, new string[] { "comedia", "drama" }));
-                }
+                IEnumerable<ListCard> movies = await GetAllController.GetAll();
                 return new OkObjectResult(movies);
             }
             catch (Exception ex)
             {
                 return new BadRequestObjectResult(ex.Message).ToProblemDetails();
             }
-        } 
+        }
 
         [FunctionName("GetWatchedList")]
         public async Task<IActionResult> GetWatchedList(
