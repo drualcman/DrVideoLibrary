@@ -27,10 +27,10 @@ internal sealed class FilesHerper
         return stream;
     }
 
-    public static string GenerateRandomeFileName(string extension) =>
-        $"{RemoveDot(Path.GetRandomFileName())}-{RemoveDot(Path.GetRandomFileName())}.{RemoveDot(extension)}";
+    public static string GenerateRandomeFileName(string extension, string id) =>
+        $"{RemoveDot(id)}-{RemoveDot(Path.GetRandomFileName())}.{RemoveDot(extension)}";
 
     private static string RemoveDot(string path) =>
-        path.Replace(".", "");
+        path?.Replace(".", "") ?? "";
 
 }

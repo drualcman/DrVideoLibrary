@@ -6,12 +6,15 @@ public static class DependencyContainer
         services.AddScoped<IGetRelativesController, GetRelativesController>();
         services.AddScoped<IGetRelativesOutputPort, GetRelativesPresenter>();
         services.AddScoped<IGetRelativesInputPort, GetRelativesInteractor>();
-        
+
         services.AddScoped<ISeachMoviesController, SeachMoviesController>();
         services.AddScoped<ISeachMoviesInputPort, SeachMoviesInteractor>();
 
         services.AddScoped<ISearchMoveDetailController, SearchMoveDetailController>();
         services.AddScoped<ISearchMoveDetailInputPort, SearchMoveDetailInteractor>();
+
+        services.AddScoped<IAddMovieController, AddMovieController>();
+        services.AddScoped<IAddMovieInputPort, AddMovieInteractor>();
         return services;
     }
 

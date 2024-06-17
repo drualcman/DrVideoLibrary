@@ -7,6 +7,7 @@ public static class DependencyContainer
         services.AddHttpClient<ISearchMovieService<SearchMovieInSpanish>, SearchMovieSpanishService>();
         services.AddHttpClient<ISearchMovieService<SearchMovieInEnglish>, SearchMovieEnglishService>();
         services.AddHttpClient<ITranslateService, TranslationService>();
+        services.AddScoped<IMoviesRepository, MoviesRepository>();
         return services;
     }
 }

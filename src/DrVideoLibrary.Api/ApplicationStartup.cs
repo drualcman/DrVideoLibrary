@@ -14,6 +14,7 @@ internal class ApplicationStartup : FunctionsStartup
             storage => configuration.Bind(storage));
 
         builder.Services.AddBlobStorageServices();
+        builder.Services.AddContextServices();
         builder.Services.AddBackendServices();
         builder.Services.AddUseCases();
     }

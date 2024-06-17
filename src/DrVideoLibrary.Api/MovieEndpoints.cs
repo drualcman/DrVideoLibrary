@@ -2,10 +2,11 @@ namespace DrVideoLibrary.Api
 {
     internal class MovieEndpoints
     {
-        readonly IGetRelativesController Controller;
+        readonly IAddMovieController AddMovieController;
 
-        public MovieEndpoints()
+        public MovieEndpoints(IAddMovieController addMovieController)
         {
+            AddMovieController = addMovieController;
         }
 
         [FunctionName("GetMovieById")]
@@ -18,13 +19,13 @@ namespace DrVideoLibrary.Api
             try
             {
                 await Task.Delay(1);
-                var result = new Entities.Models.Movie
+                var result = new Movie
                 {
                     Id = id,
                     Title = $"[{id}] The Matrix",
                     Cover = "https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg",
                     Year = 1999,
-                    Prologo = "In a dystopian future, humanity is unknowingly trapped inside a simulated reality, the Matrix, created by intelligent machines to distract humans while using their bodies as an energy source.",
+                    Description = "In a dystopian future, humanity is unknowingly trapped inside a simulated reality, the Matrix, created by intelligent machines to distract humans while using their bodies as an energy source.",
                     Rate = 9,
                     Duration = 136,
                     TotalViews = 69,
@@ -49,9 +50,9 @@ namespace DrVideoLibrary.Api
 
             try
             {
-                await Task.Delay(1);
                 Movie data = await HttpRequestHelper.GetRequestedModel<Movie>(req);
-                return new OkObjectResult(JsonSerializer.Serialize(data));
+                await AddMovieController.AddMovie(data);
+                return new OkResult();
             }
             catch (Exception ex)
             {

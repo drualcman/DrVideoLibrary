@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces;
+
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class DependencyContainer
 {
