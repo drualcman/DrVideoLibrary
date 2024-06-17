@@ -8,6 +8,6 @@ internal class RegisterWatchingNowController : IRegisterWatchingNowController
         Input = input;
     }
 
-    public Task RegisterWatchingNow(string id)  => 
-        Input.Handle(id);
+    public Task RegisterWatchingNow(WatchingNowDto data)  => 
+        Input.Handle(data);
 }

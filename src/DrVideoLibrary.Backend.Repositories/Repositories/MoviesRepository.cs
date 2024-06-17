@@ -1,4 +1,4 @@
-﻿using DrVideoLibrary.Backend.ApplicationBusinessRules.Dtos;
+﻿using DrVideoLibrary.Entities.Dtos;
 
 namespace DrVideoLibrary.Backend.Repositories.Repositories;
 internal class MoviesRepository : IMoviesRepository
@@ -39,14 +39,14 @@ internal class MoviesRepository : IMoviesRepository
         RegisterView registerView = await Context.GetWatchingNow();
         return new WatchingNowDto
         {
-            MovieId = registerView.Id,
+            MovieId = registerView.MovieId,
             Start = registerView.Start
         };
     }
 
-    public async Task RegisterWatchingNow(string id)
+    public async Task RegisterWatchingNow(WatchingNowDto now)
     {
-        RegisterView data = new RegisterView(id, DateTime.UtcNow);
+        RegisterView data = new RegisterView(now.MovieId, now.Start);
         await Context.RegisterWatchingNow(data);
     }
 }

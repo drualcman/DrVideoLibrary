@@ -54,7 +54,12 @@ public class ApiClient
 
     public async Task RegisterWatchingNowAsync(string id)
     {
-        using HttpResponseMessage response = await Client.PostAsJsonAsync($"{Options.Watching}", id);
+        WatchingNowDto data = new WatchingNowDto
+        {
+            MovieId = id,
+            Start = DateTime.Now,
+        };
+        using HttpResponseMessage response = await Client.PostAsJsonAsync($"{Options.Watching}", data);
         response.EnsureSuccessStatusCode();
     }
 }

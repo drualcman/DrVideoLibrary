@@ -19,3 +19,4 @@ global using DrVideoLibrary.Razor.Services;
 global using DrVideoLibrary.Entities.Interfaces;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
+global using DrVideoLibrary.Entities.Dtos;

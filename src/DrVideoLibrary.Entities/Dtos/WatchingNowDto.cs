@@ -1,4 +1,5 @@
-﻿namespace DrVideoLibrary.Backend.ApplicationBusinessRules.Dtos;
+﻿namespace DrVideoLibrary.Entities.Dtos;
+
 public class WatchingNowDto
 {
     public string MovieId { get; set; }

@@ -2,11 +2,13 @@
 public class RegisterView
 {
     public string Id { get; set; }
+    public string MovieId { get; set; }
     public DateTime Start { get; set; }
 
-    public RegisterView(string id, DateTime start)
+    public RegisterView(string movieId, DateTime start)
     {
-        Id = id;
+        Id = Guid.NewGuid().ToString();
+        MovieId = movieId;
         Start = start;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetWhatchingNow;
+﻿using DrVideoLibrary.Entities.Dtos;
+
+namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetWhatchingNow;
 internal class GetWhatchingNowInteractor : IGetWhatchingNowInputPort
 {
     readonly IMoviesRepository Repository;

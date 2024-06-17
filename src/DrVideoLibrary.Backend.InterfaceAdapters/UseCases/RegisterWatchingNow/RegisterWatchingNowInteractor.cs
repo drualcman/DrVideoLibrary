@@ -9,6 +9,6 @@ internal class RegisterWatchingNowInteractor : IRegisterWatchingNowInputPort
         Repository = repository;
     }
 
-    public async Task Handle(string id) =>
-        await Repository.RegisterWatchingNow(id);
+    public async Task Handle(WatchingNowDto data) =>
+        await Repository.RegisterWatchingNow(data);
 }

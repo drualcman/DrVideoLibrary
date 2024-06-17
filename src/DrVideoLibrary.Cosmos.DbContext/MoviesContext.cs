@@ -43,7 +43,7 @@ internal class MoviesContext : IMoviesContext
 
     public async Task<RegisterView> GetWatchingNow()
     {
-        string queryString = $"SELECT top 1 c.id, c.start FROM c WHERE c.register = 'views' ORDER BY c.start desc";
+        string queryString = $"SELECT top 1 c.id, c.movieid, c.start FROM c WHERE c.register = 'views' ORDER BY c.start desc";
         FeedIterator<RegisterView> query = GetContainer().GetItemQueryIterator<RegisterView>(new QueryDefinition(queryString));
         RegisterView result = null;
         if (query.HasMoreResults)
@@ -56,7 +56,7 @@ internal class MoviesContext : IMoviesContext
 
     public async Task<IEnumerable<RegisterView>> GetTotalViews(string movieId)
     {
-        string queryString = $"SELECT c.id, c.start FROM c WHERE c.register = 'views' AND c.id = '{movieId}'";
+        string queryString = $"SELECT c.id, c.start FROM c WHERE c.register = 'views' AND c.movieid = '{movieId}'";
         FeedIterator<RegisterView> query = GetContainer().GetItemQueryIterator<RegisterView>(new QueryDefinition(queryString));
         ConcurrentBag<RegisterView> results = new ConcurrentBag<RegisterView>();
         List<Task> tasks = new List<Task>();

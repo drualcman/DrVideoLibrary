@@ -1,4 +1,5 @@
 using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWhatchingNow;
+using DrVideoLibrary.Entities.Dtos;
 
 namespace DrVideoLibrary.Api
 {
@@ -41,8 +42,8 @@ namespace DrVideoLibrary.Api
 
             try
             {
-                string id = await HttpRequestHelper.GetRequestedModel<string>(req);
-                await RegisterController.RegisterWatchingNow(id);
+                WatchingNowDto data = await HttpRequestHelper.GetRequestedModel<WatchingNowDto>(req);
+                await RegisterController.RegisterWatchingNow(data);
                 return new OkResult();
             }
             catch (Exception ex)
