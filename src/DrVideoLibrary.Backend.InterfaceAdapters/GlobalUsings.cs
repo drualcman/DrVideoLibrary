@@ -2,3 +2,9 @@ global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases
 global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetRelatives;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.Files;
 global using DrVideoLibrary.Entities.Models;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.SeachMovies;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.Models;
+global using DrVideoLibrary.Entities.Interfaces;
+global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.SeachMovies;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.SearchMoveDetail;
+global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.SearchMoveDetail;

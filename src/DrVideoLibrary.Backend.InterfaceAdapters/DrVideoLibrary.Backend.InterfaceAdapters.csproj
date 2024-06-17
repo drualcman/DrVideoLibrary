@@ -10,7 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DrVideoLibrary.Backend.ApplicationBusinessRules\DrVideoLibrary.Backend.ApplicationBusinessRules.csproj" />
+    <ProjectReference Include="..\DrVideoLibrary.Backend.Repositories\DrVideoLibrary.Backend.Repositories.csproj" />
+    <ProjectReference Include="..\DrVideoLibrary.Backend.Storage\DrVideoLibrary.Backend.Storage.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,11 +5,11 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Razor", "src\DrVideoLibrary.Razor\DrVideoLibrary.Razor.csproj", "{CDB815FA-A299-4994-8854-38B93B7E1A7C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InterfaceAdapters", "InterfaceAdapters", "{8A324746-93A9-46A4-8453-B1CE75E6CC75}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{8A324746-93A9-46A4-8453-B1CE75E6CC75}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Client", "src\DrVideoLibrary.Client\DrVideoLibrary.Client.csproj", "{6BADA424-9167-40AC-B43D-4F947907E566}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrameworksAndDrivers", "FrameworksAndDrivers", "{386A61EF-66B4-4039-B230-2458F854ECC5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frameworks", "Frameworks", "{386A61EF-66B4-4039-B230-2458F854ECC5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C3A992B3-388E-46A2-9E94-053C1D78E0FF}"
 EndProject
@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Backend.Inte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Backend.Storage", "src\DrVideoLibrary.Backend.Storage\DrVideoLibrary.Backend.Storage.csproj", "{5FC1AA18-7FC7-44EF-802D-FCA0C27F7FAF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enterprice", "Enterprice", "{F8E42916-188D-4FF0-8891-A7DF2A201CE7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{F8E42916-188D-4FF0-8891-A7DF2A201CE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrVideoLibrary.Backend.Repositories", "src\DrVideoLibrary.Backend.Repositories\DrVideoLibrary.Backend.Repositories.csproj", "{7698AFA8-1355-43F8-8CC2-D3E5D63EC915}"
 EndProject

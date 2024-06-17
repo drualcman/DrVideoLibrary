@@ -1,6 +1,4 @@
-﻿using DrVideoLibrary.Entities.Models;
-
-namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetRelatives;
+﻿namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetRelatives;
 internal class GetRelativesController : IGetRelativesController
 {
     readonly IGetRelativesInputPort Input;

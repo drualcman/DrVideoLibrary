@@ -12,7 +12,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\DrVideoLibrary.Backend.InterfaceAdapters\DrVideoLibrary.Backend.InterfaceAdapters.csproj" />
 		<ProjectReference Include="..\DrVideoLibrary.Backend.Repositories\DrVideoLibrary.Backend.Repositories.csproj" />
-		<ProjectReference Include="..\DrVideoLibrary.Backend.Storage\DrVideoLibrary.Backend.Storage.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="host.json">

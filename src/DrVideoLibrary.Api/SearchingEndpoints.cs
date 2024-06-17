@@ -2,14 +2,14 @@ namespace DrVideoLibrary.Api
 {
     internal class SearchingEndpoints
     {
-        readonly ISearchMovieService<SearchMovieInEnglish> EnglishService;
-        readonly ISearchMovieService<SearchMovieInSpanish> SpanishService;
+        readonly ISeachMoviesController SearchMoviesService;
+        readonly ISearchMoveDetailController SearchMovieDetailService;
         public SearchingEndpoints(
-            ISearchMovieService<SearchMovieInEnglish> englishService,
-            ISearchMovieService<SearchMovieInSpanish> spanishService)
+            ISeachMoviesController searchMoviesService,
+            ISearchMoveDetailController searchMovieDetailService)
         {
-            EnglishService = englishService;
-            SpanishService = spanishService;
+            SearchMoviesService = searchMoviesService;
+            SearchMovieDetailService = searchMovieDetailService;
         }
 
         [FunctionName("GetMoviesFromTitle")]
@@ -23,19 +23,7 @@ namespace DrVideoLibrary.Api
             {
                 string text = req.Query["s"];
                 string lang = req.Query["l"];
-                IEnumerable<SearchMovieResult> data;
-                switch (lang.ToLower())
-                {
-                    case "en":
-                        data = await EnglishService.SearchMovies(text);
-                        break;
-                    case "es":
-                        data = await SpanishService.SearchMovies(text);
-                        break;
-                    default:
-                        data = new List<SearchMovieResult>();
-                        break;
-                };
+                IEnumerable<SearchMovieResult> data = await SearchMoviesService.SearchMovies(text, lang);
                 return new OkObjectResult(data);
             }
             catch (Exception ex)
@@ -54,19 +42,7 @@ namespace DrVideoLibrary.Api
             try
             {
                 string lang = req.Query["l"];
-                Movie movie;
-                switch (lang.ToLower())
-                {
-                    case "en":
-                        movie = await EnglishService.GetMovieDetails(id);
-                        break;
-                    case "es":
-                        movie = await SpanishService.GetMovieDetails(id);
-                        break;
-                    default:
-                        movie = null;
-                        break;
-                };
+                Movie movie = await SearchMovieDetailService.SearchMoveDetail(id, lang);
                 return new OkObjectResult(movie);
             }
             catch (Exception ex)
