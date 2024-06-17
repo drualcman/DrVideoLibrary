@@ -26,7 +26,7 @@ internal class SearchMovieSpanishService : ISearchMovieService<SearchMovieInSpan
                 OriginalTitle = data.OriginalTitle,
                 Cover = $"https://image.tmdb.org/t/p/w500{data.PosterPath}",
                 Year = DateTime.TryParse(data.ReleaseDate, out DateTime d) ? d.Year : DateTime.Today.Year,
-                Prologo = data.Overview,
+                Description = data.Overview,
                 Duration = data.Runtime,
                 Actors = data.Credits.Cast.Where(c => c.Department == "Acting").Select(c => c.Name).ToList(),
                 Directors = data.Credits.Crew.Where(c => c.Job == "Director").Select(c => c.Name).ToList(),

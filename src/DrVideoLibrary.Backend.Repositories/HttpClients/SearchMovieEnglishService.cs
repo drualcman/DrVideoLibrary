@@ -29,7 +29,7 @@ internal class SearchMovieEnglishService : ISearchMovieService<SearchMovieInEngl
                 OriginalTitle = data.Title,
                 Cover = data.Poster,
                 Year = int.TryParse(data.Year, out int y) ? y : DateTime.Now.Year,
-                Prologo = translatedText,
+                Description = translatedText,
                 Duration = ParseRuntime(data.Runtime),
                 Directors = data.Director?.Split(',').Select(d => d.Trim()).ToList(),
                 Actors = data.Actors?.Split(',').Select(a => a.Trim()).ToList(),

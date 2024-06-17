@@ -6,7 +6,7 @@ public class Movie
     public string OriginalTitle { get; set; }
     public string Cover { get; set; }
     public int Year { get; set; }
-    public string Prologo { get; set; }
+    public string Description { get; set; }
     public byte Rate { get; set; }
     public int Duration { get; set; }
     public int TotalViews { get; set; }
