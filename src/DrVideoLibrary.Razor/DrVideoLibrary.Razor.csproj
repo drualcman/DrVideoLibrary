@@ -21,6 +21,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Resources\ResourceAddMovie.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceAddMovie.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Resources\ResourceApp.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -74,6 +79,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Update="Resources\ResourceAddMovie.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ResourceAddMovie.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceApp.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>ResourceApp.Designer.cs</LastGenOutput>

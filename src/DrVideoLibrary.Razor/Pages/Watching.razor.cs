@@ -15,7 +15,7 @@ public partial class Watching
 		catch (Exception ex)
 		{
 			await Console.Out.WriteLineAsync(ex.ToString());
-			WatchingNow = new() { Movie = new() { Actors = [], Directors = [], Categories = ["Not found"], Title = "Not Found", Id = "", Year = DateTime.Today.Year, Prologo = ex.Message } };
+			WatchingNow = new() { Movie = new() { Actors = [], Directors = [], Categories = ["Not found"], Title = "Not Found", Id = "", Year = DateTime.Today.Year, Description = ex.Message } };
 		}
     }
 }

@@ -1,4 +1,5 @@
 ﻿@page "/add"
+@inject IStringLocalizer<ResourceAddMovie> Localizer
 @* @attribute [Authorize] *@
 
 <div class="container">
@@ -9,20 +10,20 @@
         <div class="columns">
             <div class="column">
                 <div class="field">
-                    <label class="label">Titulo español</label>
+                    <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.TitileLabel))</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="Cover URL" @bind="Movie.Title">
+                        <input class="input" type="text" placeholder="@Localizer.GetString(nameof(ResourceAddMovie.TitileLabel))" @bind="Movie.Title">
                     </div>
                 </div>
             </div>
             <div class="column">
                 <div class="field">
-                    <label class="label">Totulo original</label>
+                    <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.TitleOriginal))</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="Cover URL" @bind="Movie.OriginalTitle">
+                        <input class="input" type="text" placeholder="@Localizer.GetString(nameof(ResourceAddMovie.TitleOriginal))" @bind="Movie.OriginalTitle">
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
 
 
@@ -37,15 +38,15 @@
             </div>
             <div class="column">
                 <div class="field">
-                    <label class="label">Cover URL</label>
+                    <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.CoverUrlLabel))</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="Cover URL" @bind="Movie.Cover">
+                        <input class="input" type="text" @bind="Movie.Cover">
                     </div>
                 </div>
 
                 <div class="box">
                     <div class="field">
-                        <label class="label">Categories</label>
+                        <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.CategoriesLabel))</label>
                         <div class="control">
                             <div class="tags">
                                 @foreach (string category in Movie.Categories)
@@ -68,26 +69,26 @@
             <div class="column">
 
                 <div class="field">
-                    <label class="label">Rating</label>
+                    <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.RatingLabel))</label>
                     <div class="control">
-                        <input class="input" type="number" placeholder="Rating" @bind="Movie.Rate">
+                        <input class="input" type="number" placeholder="@Localizer.GetString(nameof(ResourceAddMovie.RatingLabel))" @bind="Movie.Rate">
                         <RateStarComponent Rate=Movie.Rate />
                     </div>
                 </div>
             </div>
             <div class="column">
                 <div class="field">
-                    <label class="label">Duracion</label>
+                    <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.DurationLabel))</label>
                     <div class="control">
-                        <input class="input" type="number" placeholder="Cover URL" @bind="Movie.Duration">
+                        <input class="input" type="number" placeholder="69" @bind="Movie.Duration">
                     </div>
                 </div>
             </div>
             <div class="column">
                 <div class="field">
-                    <label class="label">Año</label>
+                    <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.ReleasedLabel))</label>
                     <div class="control">
-                        <input class="input" type="number" placeholder="Cover URL" @bind="Movie.Year">
+                        <input class="input" type="number" placeholder="1976" @bind="Movie.Year">
                     </div>
                 </div>
             </div>
@@ -95,7 +96,7 @@
 
         <div class="box">
             <div class="field">
-                <label class="label">Actores</label>
+                <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.ActorsLabel))</label>
                 <div class="control">
                     <div class="tags">
                         @foreach (string actor in Movie.Actors)
@@ -113,7 +114,7 @@
         </div>
         <div class="box">
             <div class="field">
-                <label class="label">Directores</label>
+                <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.DirectorsLabel))</label>
                 <div class="control">
                     <div class="tags">
                         @foreach (string director in Movie.Directors)
@@ -131,14 +132,14 @@
         </div>
 
         <div class="field">
-            <label class="label">Add notes</label>
+            <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.DescriptionLabel))</label>
             <div class="control">
-                <textarea class="textarea" placeholder="Add notes" @bind="Movie.Prologo"></textarea>
+                <textarea class="textarea" placeholder="@Localizer.GetString(nameof(ResourceAddMovie.DescriptionLabel))" @bind="Movie.Description"></textarea>
             </div>
         </div>
 
         <div class="control">
-            <button class="button is-primary" @onclick="SaveMovie">Save Movie</button>
+            <button class="button is-primary" @onclick="SaveMovie">@Localizer.GetString(nameof(ResourceAddMovie.ButtonSaveLabel))</button>
         </div>
     }
     else
@@ -149,6 +150,16 @@
             </div>
             <div class="column">
                 <SearchMovieComponent OnSelect=OnMovieSelect TSearchService="SearchMovieEnglishService" />
+            </div> 
+            <div class="column">
+                <div class="field">
+                    <label class="label">&nbsp;</label>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary" @onclick="NewMovie">@Localizer.GetString(nameof(ResourceAddMovie.ButtonAddLabel))</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     }

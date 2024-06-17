@@ -10,6 +10,17 @@ public partial class AddMovie
         Movie = selection;
     }
 
+    void NewMovie()
+    {
+        Movie = new Movie
+        {
+            Categories = [],
+            Directors = [],
+            Actors = [],
+            Year = DateTime.Today.Year
+        };
+    }
+
     private async Task SaveMovie()
     {
         await Client.AddMovieAsync(Movie);
