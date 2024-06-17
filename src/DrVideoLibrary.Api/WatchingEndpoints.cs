@@ -2,12 +2,12 @@ namespace DrVideoLibrary.Api
 {
     internal class WatchingEndpoints
     {
-        readonly IGetRelativesController Controller;
+        readonly IRegisterWatchingNowController WatchingNowController;
 
-        public WatchingEndpoints()
+        public WatchingEndpoints(IRegisterWatchingNowController watchingNowController)
         {
+            WatchingNowController = watchingNowController;
         }
-
 
         [FunctionName("GetWhatching")]
         public async Task<IActionResult> GetWhatching(
@@ -22,7 +22,7 @@ namespace DrVideoLibrary.Api
                 string id = Guid.NewGuid().ToString();
                 var result = new WatchingNow
                 {
-                    Movie = new Entities.Models.Movie
+                    Movie = new Movie
                     {
                         Id = id,
                         Title = $"[{id}] The Matrix",
@@ -45,7 +45,25 @@ namespace DrVideoLibrary.Api
                 return new BadRequestObjectResult(ex.Message).ToProblemDetails();
             }
         }
+    
 
+        [FunctionName("RegisterWatchingNow")]
+        public async Task<IActionResult> RegisterWatchingNow(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "watching")] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation("Register what movie is watching right now");
 
+            try
+            {
+                string id = await HttpRequestHelper.GetRequestedModel<string>(req);
+                await WatchingNowController.RegisterWatchingNow(id);
+                return new OkResult();
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message).ToProblemDetails();
+            }
+        }
     }
 }

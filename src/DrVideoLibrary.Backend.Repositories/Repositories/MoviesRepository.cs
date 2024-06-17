@@ -1,6 +1,4 @@
-﻿using DrVideoLibrary.Entities.ValueObjects;
-
-namespace DrVideoLibrary.Backend.Repositories.Repositories;
+﻿namespace DrVideoLibrary.Backend.Repositories.Repositories;
 internal class MoviesRepository : IMoviesRepository
 {
     readonly IMoviesContext context;
@@ -16,9 +14,20 @@ internal class MoviesRepository : IMoviesRepository
         await context.AddMovie(model);
     }
 
-    public async Task<IEnumerable<ListCard>> GetAll()
+    public async Task<IEnumerable<Movie>> GetAll()
     {
         IEnumerable<MovieModel> movies = await context.GetAll();
-        return movies.Select(m=> new ListCard(m.Id, m.Title, m.Cover, m.Year, m.Categories));
+        return movies.Select(m => m.ToMovie());
+    }
+
+    public Task<Movie> GetById(string id)
+    {
+        return Task.FromResult(new Movie { Id = id });
+    }
+
+    public async Task RegisterWatchingNow(string id)
+    {
+        RegisterView data = new RegisterView(id, DateTime.UtcNow);
+        await context.RegisterWatchingNow(data);
     }
 }

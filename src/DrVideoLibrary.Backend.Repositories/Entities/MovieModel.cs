@@ -13,6 +13,22 @@ public class MovieModel
     public string[] Directors { get; set; }
     public string[] Actors { get; set; }
 
+    public Movie ToMovie() => new Movie
+    {
+        Id = Id,
+        Title = Title,
+        OriginalTitle = OriginalTitle,
+        Cover = Cover,
+        Year = Year,
+        Description = Description,
+        Rate = Rate,
+        Duration = Duration,
+        Categories = new List<string>(Categories),
+        Directors = new List<string>(Directors),
+        Actors = new List<string>(Actors),
+        TotalViews = 0
+    };
+
     public static MovieModel FromMovie(Movie movie) => new MovieModel
     {
         Id = movie.Id,

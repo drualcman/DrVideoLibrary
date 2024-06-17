@@ -17,7 +17,19 @@
             </div>
             <div class="content-bottom">
                 <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceListCard.ReleaseYearLabel)) @Movie.Year</p>
-                <a href="movie/@Movie.Id" class="button is-primary">@Localizer.GetString(nameof(ResourceListCard.DetailsLabel))</a>
+                <div class="buttons">
+                    <a href="movie/@Movie.Id" class="button is-primary">@Localizer.GetString(nameof(ResourceListCard.DetailsLabel))</a>
+                    <AuthorizeView>
+                        <Authorized>
+
+                        </Authorized>
+                    </AuthorizeView>
+                    <button type="button" class="button is-success" @onclick=OnPlay_Click>
+                        <span class="icon">
+                            <i class="fa-solid fa-play"></i>
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

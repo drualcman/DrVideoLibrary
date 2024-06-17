@@ -2,5 +2,8 @@
 public interface IMoviesRepository
 {
     Task AddMovie(Movie data);
-    Task<IEnumerable<ListCard>> GetAll();
+    Task<IEnumerable<Movie>> GetAll();
+    Task<Movie> GetById(string id);
+    Task RegisterWatchingNow(string id);
+
 }

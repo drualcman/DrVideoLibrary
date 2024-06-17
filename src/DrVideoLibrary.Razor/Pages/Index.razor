@@ -11,7 +11,7 @@
     <div class="wrapper">
         @foreach (ListCard movie in ViewModel.Items)
         {
-            <ListCardComponent Movie=movie />
+            <ListCardComponent Movie=movie OnPlay=StartPlayMovie />
         }
     </div>
 }

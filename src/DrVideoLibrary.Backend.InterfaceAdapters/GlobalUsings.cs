@@ -16,3 +16,5 @@ global using DrVideoLibrary.Entities.ValueObjects;
 global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetAll;
 global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.Shared;
 global using System.Collections.Concurrent;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.RegisterWatchingNow;
+global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.RegisterWatchingNow;

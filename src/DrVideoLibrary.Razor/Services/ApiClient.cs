@@ -51,4 +51,10 @@ public class ApiClient
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<WatchingNow>();
     }
+
+    public async Task RegisterWatchingNowAsync(string id)
+    {
+        using HttpResponseMessage response = await Client.PostAsJsonAsync($"{Options.Watching}", id);
+        response.EnsureSuccessStatusCode();
+    }
 }

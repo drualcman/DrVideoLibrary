@@ -89,14 +89,23 @@ figure.image {
         margin-bottom: 0.5rem;
     }
 
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.button.is-primary, .button.is-success {
+    margin-top: 0.5rem;
+    border-radius: 2rem;
+}
 .button.is-primary {
     background-color: #6a0ae4;
     border-color: transparent;
     color: white;
-    margin-top: 0.5rem;
-    border-radius: 2rem;
 }
 
     .button.is-primary:hover {
         background-color: #6a1b9a; 
     }
+

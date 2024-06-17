@@ -13,7 +13,7 @@ internal class GetAllInteractor : IGetAllInputPort
 
     public async Task Handle()
     {
-        IEnumerable<ListCard> data = await Repository.GetAll();
-        await Output.Handle(data);
+        IEnumerable<Movie> data = await Repository.GetAll();
+        await Output.Handle(data.Select(m=> new ListCard(m.Id, m.Title, m.Cover, m.Year, m.Categories)));
     }
 }

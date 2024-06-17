@@ -32,4 +32,9 @@ internal class MoviesContext : IMoviesContext
         await Task.WhenAll(tasks);
         return results;
     }
+
+    public async Task RegisterWatchingNow(RegisterView data)
+    {
+        await GetContainer().UpsertItemAsync(ObjectConverter.ConvertToLowercaseObject(data, "views"), Views);
+    }
 }

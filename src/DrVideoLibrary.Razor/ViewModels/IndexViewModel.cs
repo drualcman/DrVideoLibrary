@@ -17,4 +17,9 @@ public class IndexViewModel : PaginatorViewModel<ListCard>
         IsReady = true;
         await ValueTask.CompletedTask;
     }
+
+    public async Task StartPlayMovie(string movieId)
+    {
+        await Client.RegisterWatchingNowAsync(movieId);
+    }
 }
