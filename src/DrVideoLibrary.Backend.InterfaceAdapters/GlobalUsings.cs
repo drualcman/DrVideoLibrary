@@ -18,3 +18,6 @@ global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.Shared;
 global using System.Collections.Concurrent;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.RegisterWatchingNow;
 global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.RegisterWatchingNow;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWhatchingNow;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.Dtos;
+global using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetWhatchingNow;

@@ -1,12 +1,16 @@
+using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWhatchingNow;
+
 namespace DrVideoLibrary.Api
 {
     internal class WatchingEndpoints
     {
-        readonly IRegisterWatchingNowController WatchingNowController;
+        readonly IGetWhatchingNowController WatchingNowController;
+        readonly IRegisterWatchingNowController RegisterController;
 
-        public WatchingEndpoints(IRegisterWatchingNowController watchingNowController)
+        public WatchingEndpoints(IGetWhatchingNowController watchingNowController, IRegisterWatchingNowController registerController)
         {
             WatchingNowController = watchingNowController;
+            RegisterController = registerController;
         }
 
         [FunctionName("GetWhatching")]
@@ -18,26 +22,7 @@ namespace DrVideoLibrary.Api
 
             try
             {
-                await Task.Delay(1);
-                string id = Guid.NewGuid().ToString();
-                var result = new WatchingNow
-                {
-                    Movie = new Movie
-                    {
-                        Id = id,
-                        Title = $"[{id}] The Matrix",
-                        Cover = "https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg",
-                        Year = 1999,
-                        Description = "In a dystopian future, humanity is unknowingly trapped inside a simulated reality, the Matrix, created by intelligent machines to distract humans while using their bodies as an energy source.",
-                        Rate = 9,
-                        Duration = 136,
-                        TotalViews = 69,
-                        Categories = new List<string> { "Action", "Drama", "Sci-Fi" },
-                        Directors = new List<string> { "Lana Wachowski", "Lilly Wachowski" },
-                        Actors = new List<string> { "Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss" }
-                    },
-                    Start = DateTime.Now.AddMinutes(-75)
-                };
+                WatchingNow result = await WatchingNowController.GetWhatchingNow();
                 return new OkObjectResult(result);
             }
             catch (Exception ex)
@@ -57,7 +42,7 @@ namespace DrVideoLibrary.Api
             try
             {
                 string id = await HttpRequestHelper.GetRequestedModel<string>(req);
-                await WatchingNowController.RegisterWatchingNow(id);
+                await RegisterController.RegisterWatchingNow(id);
                 return new OkResult();
             }
             catch (Exception ex)

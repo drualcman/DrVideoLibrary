@@ -1,33 +1,52 @@
-﻿namespace DrVideoLibrary.Backend.Repositories.Repositories;
+﻿using DrVideoLibrary.Backend.ApplicationBusinessRules.Dtos;
+
+namespace DrVideoLibrary.Backend.Repositories.Repositories;
 internal class MoviesRepository : IMoviesRepository
 {
-    readonly IMoviesContext context;
+    readonly IMoviesContext Context;
 
     public MoviesRepository(IMoviesContext context)
     {
-        this.context = context;
+        Context = context;
     }
 
     public async Task AddMovie(Movie data)
     {
         MovieModel model = MovieModel.FromMovie(data);
-        await context.AddMovie(model);
+        await Context.AddMovie(model);
     }
 
     public async Task<IEnumerable<Movie>> GetAll()
     {
-        IEnumerable<MovieModel> movies = await context.GetAll();
+        IEnumerable<MovieModel> movies = await Context.GetAll();
         return movies.Select(m => m.ToMovie());
     }
 
-    public Task<Movie> GetById(string id)
+    public async Task<Movie> GetMovieById(string id)
     {
-        return Task.FromResult(new Movie { Id = id });
+        MovieModel movie = await Context.GetMovieById(id);
+        return movie.ToMovie();
+    }
+
+    public async Task<int> GetTotalViews(string movieId)
+    {
+        IEnumerable<RegisterView> moviesWatched = await Context.GetTotalViews(movieId);
+        return moviesWatched.Count();
+    }
+
+    public async Task<WatchingNowDto> GetWatchingNow()
+    {
+        RegisterView registerView = await Context.GetWatchingNow();
+        return new WatchingNowDto
+        {
+            MovieId = registerView.Id,
+            Start = registerView.Start
+        };
     }
 
     public async Task RegisterWatchingNow(string id)
     {
         RegisterView data = new RegisterView(id, DateTime.UtcNow);
-        await context.RegisterWatchingNow(data);
+        await Context.RegisterWatchingNow(data);
     }
 }

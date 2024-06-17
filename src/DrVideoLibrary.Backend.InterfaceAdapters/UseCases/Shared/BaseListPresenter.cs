@@ -1,4 +1,6 @@
-﻿namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.Shared;
+﻿using System.Collections.Concurrent;
+
+namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.Shared;
 internal class BaseListPresenter<T> where T : IMovie
 {
     protected readonly IFileContent FileContent;
@@ -12,8 +14,8 @@ internal class BaseListPresenter<T> where T : IMovie
 
     public async Task Handle(IEnumerable<T> data)
     {
-        var result = new ConcurrentBag<T>();
-        var tasks = data.Select(async item =>
+        ConcurrentBag<T> result = new ConcurrentBag<T>();
+        IEnumerable<Task> tasks = data.Select(async item =>
         {
             await UpdateCoverAsync(item);
             result.Add(item);

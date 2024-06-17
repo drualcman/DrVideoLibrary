@@ -18,10 +18,14 @@ public static class DependencyContainer
 
         services.AddScoped<IGetAllController, GetAllController>();
         services.AddScoped<IGetAllInputPort, GetAllInteractor>();
-        services.AddScoped<IGetAllOutputPort, GetAllPresenter>();
+        services.AddScoped<IGetAllOutputPort, GetAllPresenter>(); 
 
         services.AddScoped<IRegisterWatchingNowController, RegisterWatchingNowController>();
         services.AddScoped<IRegisterWatchingNowInputPort, RegisterWatchingNowInteractor>();
+
+        services.AddScoped<IGetWhatchingNowController, GetWhatchingNowController>();
+        services.AddScoped<IGetWhatchingNowInputPort, GetWhatchingNowInteractor>();
+        services.AddScoped<IGetWhatchingNowOutputPort, GetWhatchingNowPresenter>();
         return services;
     }
 
