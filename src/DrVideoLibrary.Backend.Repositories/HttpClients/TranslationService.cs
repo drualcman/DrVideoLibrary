@@ -1,4 +1,4 @@
-﻿namespace DrVideoLibrary.Api.Services;
+﻿namespace DrVideoLibrary.Backend.Repositories.HttpClients;
 
 internal class TranslationService : ITranslateService
 {

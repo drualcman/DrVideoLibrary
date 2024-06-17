@@ -13,10 +13,8 @@ internal class ApplicationStartup : FunctionsStartup
             translation => configuration.Bind(translation),
             storage => configuration.Bind(storage));
 
-        builder.Services.AddHttpClient<ISearchMovieService<SearchMovieSpanishService>, SearchMovieSpanishService>();
-        builder.Services.AddHttpClient<ISearchMovieService<SearchMovieEnglishService>, SearchMovieEnglishService>();
-        builder.Services.AddHttpClient<ITranslateService, TranslationService>();
         builder.Services.AddBlobStorageServices();
+        builder.Services.AddBackendServices();
         builder.Services.AddUseCases();
     }
 }

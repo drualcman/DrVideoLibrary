@@ -2,11 +2,11 @@ namespace DrVideoLibrary.Api
 {
     internal class SearchingEndpoints
     {
-        readonly ISearchMovieService<SearchMovieEnglishService> EnglishService;
-        readonly ISearchMovieService<SearchMovieSpanishService> SpanishService;
+        readonly ISearchMovieService<SearchMovieInEnglish> EnglishService;
+        readonly ISearchMovieService<SearchMovieInSpanish> SpanishService;
         public SearchingEndpoints(
-            ISearchMovieService<SearchMovieEnglishService> englishService,
-            ISearchMovieService<SearchMovieSpanishService> spanishService)
+            ISearchMovieService<SearchMovieInEnglish> englishService,
+            ISearchMovieService<SearchMovieInSpanish> spanishService)
         {
             EnglishService = englishService;
             SpanishService = spanishService;

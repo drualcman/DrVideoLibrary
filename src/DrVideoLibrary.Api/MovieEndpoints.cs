@@ -1,5 +1,3 @@
-using DrVideoLibrary.Api.Helpers;
-
 namespace DrVideoLibrary.Api
 {
     internal class MovieEndpoints

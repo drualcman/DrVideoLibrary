@@ -1,5 +1,5 @@
-﻿namespace DrVideoLibrary.Api.Services;
-internal class SearchMovieSpanishService : ISearchMovieService<SearchMovieSpanishService>
+﻿namespace DrVideoLibrary.Backend.Repositories.HttpClients;
+internal class SearchMovieSpanishService : ISearchMovieService<SearchMovieInSpanish>
 {
     private readonly HttpClient Client;
     private readonly SearchMovieSpanishOption Options;
