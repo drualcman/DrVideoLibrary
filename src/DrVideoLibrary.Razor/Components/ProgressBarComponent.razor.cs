@@ -16,7 +16,7 @@ public partial class ProgressBarComponent : IDisposable
 
     private void UpdateProgress(object state)
     {
-        var elapsed = DateTime.Now - Start;
+        var elapsed = DateTime.UtcNow - Start;
         var elapsedMinutes = elapsed.TotalMinutes;
         ProgressWidth = Math.Min((elapsedMinutes / TotalMinutes) * 100, 100).ToString("F2", CultureInfo.InvariantCulture);
         DisplayTime = $"{elapsed.Hours:D2}:{elapsed.Minutes:D2}:{elapsed.Seconds:D2}";

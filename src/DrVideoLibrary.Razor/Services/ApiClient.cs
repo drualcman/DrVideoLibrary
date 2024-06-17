@@ -57,7 +57,7 @@ public class ApiClient
         WatchingNowDto data = new WatchingNowDto
         {
             MovieId = id,
-            Start = DateTime.Now,
+            Start = DateTime.UtcNow,
         };
         using HttpResponseMessage response = await Client.PostAsJsonAsync($"{Options.Watching}", data);
         response.EnsureSuccessStatusCode();
