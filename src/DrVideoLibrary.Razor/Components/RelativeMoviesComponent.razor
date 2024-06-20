@@ -10,6 +10,15 @@
             <a href="movie/@relative.Id" class="relative-item">
                 <img src="@relative.Cover" alt="@relative.Title" class="relative-image" />
                 <p class="relative-title">@relative.Title</p>
+                <div class="match-results">
+                    <h4>@relative.Data.RelativeOf</h4>
+                    <div class="tags is-flex is-justify-content-center">
+                        @foreach (string match in relative.Data.Data)
+                        {
+                            <span class="tag">@match</span>
+                        }
+                    </div>
+                </div>
             </a>
         }
     }

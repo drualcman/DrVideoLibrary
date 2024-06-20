@@ -10,7 +10,7 @@ internal class GetRelativesController : IGetRelativesController
         Presenter = presenter;
     }
 
-    public async Task<IEnumerable<RelativeMovie>> GetRelatives(GetRelativesDto query)
+    public async Task<IEnumerable<RelativeMovie>> GetRelatives(RelativesDto query)
     {
         await Input.Handle(query);
         return Presenter.Content;

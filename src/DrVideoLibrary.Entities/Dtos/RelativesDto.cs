@@ -1,5 +1,5 @@
 ﻿namespace DrVideoLibrary.Entities.Dtos;
-public class GetRelativesDto
+public class RelativesDto
 {
     public RelativeType RelativeOf { get; set; }
     public string[] Data { get; set; }

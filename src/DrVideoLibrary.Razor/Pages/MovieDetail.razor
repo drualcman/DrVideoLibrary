@@ -1,5 +1,7 @@
 ﻿@page "/movie/{id}"
 
+<PageTitle>@Movie?.Title</PageTitle>
+
 <div class="container">
     <MovieDetailComponent Movie=Movie />
 </div>
@@ -8,6 +10,11 @@
     [Inject] ApiClient Client { get; set; }
     [Parameter] public string Id { get; set; }
     Movie Movie;
+
+    protected override void OnParametersSet()
+    {
+        Movie = null;
+    }
 
     protected override async Task OnParametersSetAsync()
     {

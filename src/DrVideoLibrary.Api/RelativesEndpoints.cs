@@ -20,7 +20,7 @@ namespace DrVideoLibrary.Api
 
             try
             {
-                GetRelativesDto data = await HttpRequestHelper.GetRequestedModel<GetRelativesDto>(req);
+                RelativesDto data = await HttpRequestHelper.GetRequestedModel<RelativesDto>(req);
                 IEnumerable<RelativeMovie> result = await Controller.GetRelatives(data);
                 return new OkObjectResult(result);
             }

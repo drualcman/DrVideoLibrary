@@ -5,13 +5,13 @@ public partial class MovieDetailComponent
     [Parameter] public Movie Movie { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
 
-    GetRelativesDto RelativesData;
+    RelativesDto RelativesData;
 
     protected override void OnParametersSet()
     {
         if (Movie is not null)
         {
-            RelativesData = new GetRelativesDto
+            RelativesData = new RelativesDto
             {
                 RelativeOf = RelativeType.CATEGORY,
                 Data = Movie.Categories.ToArray()
@@ -21,7 +21,7 @@ public partial class MovieDetailComponent
 
     Task ChangeRelative(RelativeType relativeType)
     {
-        RelativesData = new GetRelativesDto
+        RelativesData = new RelativesDto
         {
             RelativeOf = relativeType
         };

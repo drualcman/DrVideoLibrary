@@ -1,13 +1,15 @@
+using System.Text.RegularExpressions;
+
 namespace DrVideoLibrary.Razor.Components;
 public partial class RelativeMoviesComponent
 {
     [Inject] ApiClient ApiClient { get; set; }
     [Inject] IStringLocalizer<ResourceRelativeMoviesComponent> Localizer { get; set; }
     [Parameter] public string MovieId { get; set; }
-    [Parameter] public GetRelativesDto Data { get; set; }
+    [Parameter] public RelativesDto Data { get; set; }
     [Parameter] public EventCallback<RelativeType> OnChangeRelative { get; set; }
 
-    IEnumerable<RelativeMovie> Relatives;
+    IEnumerable<RelativeMovie> Relatives;    
     bool ShouldRequest = true;
 
     protected override void OnParametersSet()

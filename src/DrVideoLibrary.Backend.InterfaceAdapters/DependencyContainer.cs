@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetMovieById;
+
+namespace Microsoft.Extensions.DependencyInjection;
 public static class DependencyContainer
 {
     public static IServiceCollection AddUseCases(this IServiceCollection services)
@@ -25,7 +27,11 @@ public static class DependencyContainer
 
         services.AddScoped<IGetWhatchingNowController, GetWhatchingNowController>();
         services.AddScoped<IGetWhatchingNowInputPort, GetWhatchingNowInteractor>();
-        services.AddScoped<IGetWhatchingNowOutputPort, GetWhatchingNowPresenter>();
+        services.AddScoped<IGetWhatchingNowOutputPort, GetWhatchingNowPresenter>();  
+
+        services.AddScoped<IGetMovieByIdController, GetMovieByIdController>();
+        services.AddScoped<IGetMovieByIdInputPort, GetMovieByIdInteractor>();
+        services.AddScoped<IGetMovieByIdOutputPort, GetMovieByIdPresenter>();
         return services;
     }
 
