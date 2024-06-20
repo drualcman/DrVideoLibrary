@@ -1,6 +1,10 @@
-﻿@if (Relatives is not null && Relatives.Any())
-{
-    <div class="relatives-section">
+﻿<div class="relatives-section">
+    @if (Relatives is null)
+    {
+        <LoaderSpining />
+    }
+    else if (Relatives.Any())
+    {
         @foreach (RelativeMovie relative in Relatives)
         {
             <a href="movie/@relative.Id" class="relative-item">
@@ -8,7 +12,21 @@
                 <p class="relative-title">@relative.Title</p>
             </a>
         }
+    }
+    else
+    {
+        <p>@Localizer.GetString(nameof(ResourceRelativeMoviesComponent.NotFound))</p>
+    }
+</div>
+<div class="columns mb-4">
+    <div class="column has-text-centered">
+        <h3 class="subtitle is-6">@Localizer.GetString(nameof(ResourceRelativeMoviesComponent.SearchTitle))</h3>
+        <div class="tags is-flex is-justify-content-center">
+            <span class="tag" @onclick="() => ChangeRelative(RelativeType.CATEGORY)"><i class="fa-solid fa-film"></i></span>
+            <span class="tag" @onclick="() => ChangeRelative(RelativeType.ACTOR)"><i class="fa-solid fa-user-tag"></i></span>
+            <span class="tag" @onclick="() => ChangeRelative(RelativeType.DIRECTOR)"><i class="fa-solid fa-clapperboard"></i></span>
+        </div>
     </div>
-}
+</div>
 
 

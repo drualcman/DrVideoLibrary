@@ -24,6 +24,58 @@ internal class MoviesContext : IMoviesContext
     public async Task<IEnumerable<MovieModel>> GetAll()
     {
         string queryString = "SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c.directors, c.actors FROM c WHERE c.register = 'movies'";
+        return await GetMoviesCollection(queryString);
+    } 
+
+    public async Task<IEnumerable<MovieModel>> GetAllByActors(string[] actors)
+    {
+        List<string> conditions = new List<string>();
+
+        if (actors != null && actors.Length > 0)
+        {
+            string actorCondition = string.Join(" OR ", actors.Select(actor => $"ARRAY_CONTAINS(c.actors, '{actor}')"));
+            conditions.Add($"({actorCondition})");
+        }
+        return await GetAllBy(conditions);
+    }
+    public async Task<IEnumerable<MovieModel>> GetAllByDirectors(string[] directors)
+    {
+        List<string> conditions = new List<string>();
+
+        if (directors != null && directors.Length > 0)
+        {
+            string directorCondition = string.Join(" OR ", directors.Select(director => $"ARRAY_CONTAINS(c.directors, '{director}')"));
+            conditions.Add($"({directorCondition})");
+        }
+        return await GetAllBy(conditions);
+    }
+    public async Task<IEnumerable<MovieModel>> GetAllByCategories(string[] categories)
+    {
+        List<string> conditions = new List<string>();
+        if (categories != null && categories.Length > 0)
+        {
+            string categoryCondition = string.Join(" OR ", categories.Select(category => $"ARRAY_CONTAINS(c.categories, '{category}')"));
+            conditions.Add($"({categoryCondition})");
+        }
+        return await GetAllBy(conditions);
+    } 
+    
+    private async Task<IEnumerable<MovieModel>> GetAllBy(IEnumerable<string> conditions)
+    {
+        string conditionsString = string.Join(" OR ", conditions);
+
+        string queryString = $"SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c.directors, c.actors FROM c WHERE c.register = 'movies'";
+
+        if (!string.IsNullOrEmpty(conditionsString))
+        {
+            queryString += $" AND ({conditionsString})";
+        }
+        return await GetMoviesCollection(queryString);
+    }
+
+
+    private async Task<IEnumerable<MovieModel>> GetMoviesCollection(string queryString)
+    {
         FeedIterator<MovieModel> query = GetContainer().GetItemQueryIterator<MovieModel>(new QueryDefinition(queryString));
         ConcurrentBag<MovieModel> results = new ConcurrentBag<MovieModel>();
         List<Task> tasks = new List<Task>();

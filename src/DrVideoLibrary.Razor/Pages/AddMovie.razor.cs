@@ -24,7 +24,7 @@ public partial class AddMovie
     private async Task SaveMovie()
     {
         await Task.Delay(1);
-        //await Client.AddMovieAsync(Movie);
+        await Client.AddMovieAsync(Movie);
         Movie = null;
     }
 

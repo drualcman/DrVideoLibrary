@@ -21,6 +21,21 @@ internal class MoviesRepository : IMoviesRepository
         IEnumerable<MovieModel> movies = await Context.GetAll();
         return movies.Select(m => m.ToMovie());
     }
+    public async Task<IEnumerable<Movie>> GetAllByActors(string[] actors)
+    {
+        IEnumerable<MovieModel> movies = await Context.GetAllByActors(actors);
+        return movies.Select(m => m.ToMovie());
+    } 
+    public async Task<IEnumerable<Movie>> GetAllByDirectors(string[] directors)
+    {
+        IEnumerable<MovieModel> movies = await Context.GetAllByDirectors(directors);
+        return movies.Select(m => m.ToMovie());
+    } 
+    public async Task<IEnumerable<Movie>> GetAllByCategories(string[] categories)
+    {
+        IEnumerable<MovieModel> movies = await Context.GetAllByCategories(categories);
+        return movies.Select(m => m.ToMovie());
+    }
 
     public async Task<Movie> GetMovieById(string id)
     {

@@ -11,9 +11,9 @@ public class ApiClient
         Options = options.Value;
     }
 
-    public async Task<IEnumerable<RelativeMovie>> GetRelativesAsync(string id)
+    public async Task<IEnumerable<RelativeMovie>> GetRelativesAsync(GetRelativesDto data)
     {
-        using HttpResponseMessage response = await Client.GetAsync($"{Options.Relatives}/{id}");
+        using HttpResponseMessage response = await Client.PostAsJsonAsync($"{Options.Relatives}", data);
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<IEnumerable<RelativeMovie>>();
     } 

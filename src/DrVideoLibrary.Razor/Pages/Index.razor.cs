@@ -18,7 +18,7 @@ public partial class Index
     public async Task StartPlayMovie(string movieId)
     {
         await Task.Delay(1);
-        //await ViewModel.StartPlayMovie(movieId);
+        await ViewModel.StartPlayMovie(movieId);
         Navigation.NavigateTo("watching");
     }
 }

@@ -1,3 +1,5 @@
+using DrVideoLibrary.Entities.Dtos;
+
 namespace DrVideoLibrary.Api
 {
     internal class RelativesEndpoints
@@ -11,14 +13,15 @@ namespace DrVideoLibrary.Api
 
         [FunctionName("GetRelatives")]
         public async Task<IActionResult> GetRelatives(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "relatives/{id}")] HttpRequest req,
-            ILogger log, string id)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "relatives")] HttpRequest req,
+            ILogger log)
         {
             log.LogInformation("Get all relatives movies");
 
             try
             {
-                var result = await Controller.GetRelatives(id);
+                GetRelativesDto data = await HttpRequestHelper.GetRequestedModel<GetRelativesDto>(req);
+                IEnumerable<RelativeMovie> result = await Controller.GetRelatives(data);
                 return new OkObjectResult(result);
             }
             catch (Exception ex)

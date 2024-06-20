@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{F8E429
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Backend.Repositories", "src\DrVideoLibrary.Backend.Repositories\DrVideoLibrary.Backend.Repositories.csproj", "{7698AFA8-1355-43F8-8CC2-D3E5D63EC915}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrVideoLibrary.Cosmos.DbContext", "src\DrVideoLibrary.Cosmos.DbContext\DrVideoLibrary.Cosmos.DbContext.csproj", "{61D25808-2C45-4668-A005-B2B127A1B85D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Cosmos.DbContext", "src\DrVideoLibrary.Cosmos.DbContext\DrVideoLibrary.Cosmos.DbContext.csproj", "{61D25808-2C45-4668-A005-B2B127A1B85D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

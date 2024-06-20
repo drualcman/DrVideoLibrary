@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-
-namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.Shared;
+﻿namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.Shared;
 internal class BaseListPresenter<T> where T : IMovie
 {
     protected readonly IFileContent FileContent;

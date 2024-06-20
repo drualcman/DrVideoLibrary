@@ -56,6 +56,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>ResourceMovieDetailComponent.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Resources\ResourceRelativeMoviesComponent.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceRelativeMoviesComponent.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Resources\ResourceSearchMovieComponent.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -107,6 +112,10 @@
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ResourceMovieDetailComponent.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceRelativeMoviesComponent.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ResourceRelativeMoviesComponent.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceSearchMovieComponent.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ResourceSearchMovieComponent.Designer.cs</LastGenOutput>
@@ -124,6 +133,4 @@
 			<LastGenOutput>ResourceWatchlist.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
-
-
 </Project>

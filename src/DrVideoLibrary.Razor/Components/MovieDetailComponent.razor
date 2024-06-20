@@ -39,16 +39,9 @@
             <p class="title is-5">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Relatives))</p>
         </div>
     </div>
-    <RelativeMoviesComponent MovieId="@Movie.Id" />
+    <RelativeMoviesComponent Data=RelativesData OnChangeRelative="ChangeRelative" MovieId="@Movie.Id" />
 }
 else
 {
     <WaitingLoader />
-}
-
-
-@code {
-    [Inject] IStringLocalizer<ResourceMovieDetailComponent> Localizer { get; set; }
-    [Parameter] public Movie Movie { get; set; }
-    [Parameter] public RenderFragment ChildContent { get; set; }
 }
