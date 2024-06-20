@@ -18,8 +18,8 @@ internal class BaseListPresenter<T> where T : IMovie
             await UpdateCoverAsync(item);
             result.Add(item);
         });
-        await Task.WhenAll(tasks);
-        Content = result;
+        await Task.WhenAll(tasks);        
+        Content = result.OrderBy(m=> m.Title);                
     }
 
     private async Task UpdateCoverAsync(T movie)
