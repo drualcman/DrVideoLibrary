@@ -16,7 +16,7 @@ internal class GetRelativesInteractor: IGetRelativesInputPort
     {
         IEnumerable<Movie> relatives;
         Func<Movie, IEnumerable<string>> selector;
-        string[] data = query.Data.Take(15).ToArray();
+        string[] data = query.Data.ToArray();
 
         switch (query.RelativeOf)
         {

@@ -1,4 +1,6 @@
-﻿namespace DrVideoLibrary.Cosmos.DbContext;
+﻿using System.IO;
+
+namespace DrVideoLibrary.Cosmos.DbContext;
 internal class MoviesContext : IMoviesContext
 {
     const string MoviesContainer = "Movies";
@@ -21,7 +23,7 @@ internal class MoviesContext : IMoviesContext
     public async Task<IEnumerable<MovieModel>> GetAll()
     {
         string queryString = "SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c.directors, c.actors FROM c WHERE c.register = 'movies'";
-        return await GetMoviesCollection(queryString);
+        return await GetMoviesCollection(new QueryDefinition(queryString));
     }
 
     public async Task<IEnumerable<MovieModel>> GetAllByActors(string[] actors)
@@ -30,36 +32,41 @@ internal class MoviesContext : IMoviesContext
 
         if (actors != null && actors.Length > 0)
         {
-            string actorCondition = string.Join(" OR ", actors.Select(actor => $"ARRAY_CONTAINS(c.actors, '{actor}')"));
+            string actorCondition = string.Join(" OR ", actors.Select((actor, index) => $"ARRAY_CONTAINS(c.actors, @value{index})"));
             conditions.Add($"({actorCondition})");
         }
-        return await GetAllBy(conditions);
+        actors = actors.Select(actor => actor.Replace("'", "''")).ToArray();
+        return await GetAllBy(conditions, actors);
     }
+
     public async Task<IEnumerable<MovieModel>> GetAllByDirectors(string[] directors)
     {
         List<string> conditions = new List<string>();
 
         if (directors != null && directors.Length > 0)
         {
-            string directorCondition = string.Join(" OR ", directors.Select(director => $"ARRAY_CONTAINS(c.directors, '{director}')"));
+            string directorCondition = string.Join(" OR ", directors.Select((director, index) => $"ARRAY_CONTAINS(c.directors, @value{index})"));
             conditions.Add($"({directorCondition})");
         }
-        return await GetAllBy(conditions);
+        directors = directors.Select(director => director.Replace("'", "''")).ToArray();
+        return await GetAllBy(conditions, directors);
     }
+
     public async Task<IEnumerable<MovieModel>> GetAllByCategories(string[] categories)
     {
         List<string> conditions = new List<string>();
         if (categories != null && categories.Length > 0)
         {
-            string categoryCondition = string.Join(" OR ", categories.Select(category => $"ARRAY_CONTAINS(c.categories, '{category}')"));
+            string categoryCondition = string.Join(" OR ", categories.Select((category, index) => $"ARRAY_CONTAINS(c.categories, @value{index})"));
             conditions.Add($"({categoryCondition})");
         }
-        return await GetAllBy(conditions);
+        categories = categories.Select(category => category.Replace("'", "''")).ToArray();
+        return await GetAllBy(conditions, categories);
     }
 
-    private async Task<IEnumerable<MovieModel>> GetAllBy(IEnumerable<string> conditions)
+    private async Task<IEnumerable<MovieModel>> GetAllBy(IEnumerable<string> conditions, string[] values)
     {
-        string conditionsString = string.Join(" OR ", conditions);
+        string conditionsString = string.Join(" AND ", conditions);
 
         string queryString = $"SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c.directors, c.actors FROM c WHERE c.register = 'movies'";
 
@@ -67,13 +74,20 @@ internal class MoviesContext : IMoviesContext
         {
             queryString += $" AND ({conditionsString})";
         }
-        return await GetMoviesCollection(queryString);
+
+        QueryDefinition queryDefinition = new QueryDefinition(queryString);
+        for (int i = 0; i < values.Length; i++)
+        {
+            queryDefinition.WithParameter($"@value{i}", values[i]);
+        }
+
+        return await GetMoviesCollection(queryDefinition);
     }
 
 
-    private async Task<IEnumerable<MovieModel>> GetMoviesCollection(string queryString)
+    private async Task<IEnumerable<MovieModel>> GetMoviesCollection(QueryDefinition queryDefinition)
     {
-        FeedIterator<MovieModel> query = GetContainer().GetItemQueryIterator<MovieModel>(new QueryDefinition(queryString));
+        FeedIterator<MovieModel> query = GetContainer().GetItemQueryIterator<MovieModel>(queryDefinition);
         ConcurrentBag<MovieModel> results = new ConcurrentBag<MovieModel>();
         List<Task> tasks = new List<Task>();
         while (query.HasMoreResults)
@@ -84,6 +98,8 @@ internal class MoviesContext : IMoviesContext
         await Task.WhenAll(tasks);
         return results;
     }
+
+
 
     public async Task RegisterWatchingNow(RegisterView data)
     {

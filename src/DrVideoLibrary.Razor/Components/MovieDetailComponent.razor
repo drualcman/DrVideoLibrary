@@ -26,7 +26,7 @@
         }
     </div>
     <div class="additional-info">
-        <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Actors)):</strong> @string.Join(", ", Movie.Actors)</p>
+        <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Actors))</strong> @string.Join(", ", Movie.Actors)</p>
         <p>@Movie.Description</p>
         <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Directors))</strong> @string.Join(", ", Movie.Directors)</p>
         @if (string.IsNullOrEmpty(Movie.OriginalTitle) == false)
