@@ -5,3 +5,4 @@ global using DrVideoLibrary.Entities.Models;
 global using System.Text.Json;
 global using WebPush;
 global using DrVideoLibrary.Backend.PushNotifications;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.ValueObjects;

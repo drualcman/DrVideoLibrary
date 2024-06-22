@@ -16,6 +16,20 @@ self.addEventListener('push', event => {
         vibrate: [100, 50, 100],
         data: { url: payLoad.url }
     }));
+    console.log(payLoad);
+    if (payLoad.type) {
+        self.clients.matchAll().then(clients => {
+            console.log(1, clients);
+            clients.forEach(client => {
+                console.log(2, client);
+                client.postMessage({
+                    action: 'updateLocalStorage',
+                    key: payLoad.type,
+                    value: 'true'
+                });
+            });
+        });
+    }
 });
 
 self.addEventListener("notificationclick", event => {

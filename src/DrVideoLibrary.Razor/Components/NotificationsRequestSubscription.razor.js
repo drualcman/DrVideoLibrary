@@ -47,6 +47,14 @@ function hasNotGrandNotifications() {
     return Notification.permission !== "granted";
 }
 
+navigator.serviceWorker.addEventListener('message', function (event) {
+    console.log(11, event);
+    console.log(12, event.data);
+    if (event.data.action === 'updateLocalStorage') {
+        localStorage.setItem(event.data.key, event.data.value);
+    }
+});
+
 export { setupAndSubscribe, getFingerPrint, hasNotGrandNotifications }
 
 async function requestSubscription(registration, applicationServerPublicKey) {

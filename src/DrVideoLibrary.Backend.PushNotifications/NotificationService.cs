@@ -10,7 +10,7 @@ internal class NotificationService : INotificationService
         Repository = repository;
     }
 
-    public async Task SendNotificationAsync(string message, string link)
+    public async Task SendNotificationAsync(SendNotificationType type, string message, string link)
     {
         IEnumerable<NotificationSubscription> subscriptions = await Repository.GetSubscriptions();
         if (subscriptions is not null && subscriptions.Any())
@@ -18,14 +18,14 @@ internal class NotificationService : INotificationService
             List<Task> tasks = new List<Task>();
             foreach (NotificationSubscription subscription in subscriptions)
             {
-                tasks.Add(SendNotification(subscription, message, link));
+                tasks.Add(SendNotification(subscription, type, message, link));
             }
             await Task.WhenAll(tasks);
         }
     }
 
     private async Task SendNotification(
-        NotificationSubscription subscription, string message, string link)
+        NotificationSubscription subscription, SendNotificationType type, string message, string link)
     {
         using WebPushClient client = new WebPushClient();
         VapidDetails vapidDetails = new VapidDetails($"mailto:{Options.NotificationsEmail}", Options.NotificationsPublicKey, Options.NotificationsPrivateKey);
@@ -35,6 +35,7 @@ internal class NotificationService : INotificationService
             string payLoad = JsonSerializer.Serialize(new
             {
                 message,
+                type = type.ToString(),
                 url = link
             });
             await client.SendNotificationAsync(pushSubscription, payLoad, vapidDetails);
