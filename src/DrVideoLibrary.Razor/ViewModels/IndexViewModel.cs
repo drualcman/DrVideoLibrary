@@ -1,9 +1,11 @@
 ﻿namespace DrVideoLibrary.Razor.ViewModels;
 public class IndexViewModel : PaginatorViewModel<ListCard>
 {
+    readonly MoviesCacheService CacheService;
     readonly ApiClient Client;
-    public IndexViewModel(ApiClient client, IOptions<PaginatorOptions> options) : base(options)
+    public IndexViewModel(MoviesCacheService cacheService, ApiClient client, IOptions<PaginatorOptions> options) : base(options)
     {
+        CacheService = cacheService;
         Client = client;
     }
     public int TotalMovies { get; private set; }
@@ -11,7 +13,7 @@ public class IndexViewModel : PaginatorViewModel<ListCard>
 
     public async ValueTask GetList()
     {
-        List<ListCard> movies = new(await Client.GetMovies());
+        List<ListCard> movies = await CacheService.GetList();
         TotalMovies = movies.Count;
         InitializePaginator(movies);
         IsReady = true;
