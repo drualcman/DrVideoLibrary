@@ -11,7 +11,8 @@ internal class ApplicationStartup : FunctionsStartup
             spanish => configuration.Bind(spanish),
             english => configuration.Bind(english),
             translation => configuration.Bind(translation),
-            storage => configuration.Bind(storage));
+            storage => configuration.Bind(storage),
+            notification => configuration.Bind(notification));
 
         builder.Services.AddBlobStorageServices();
         builder.Services.AddContextServices();

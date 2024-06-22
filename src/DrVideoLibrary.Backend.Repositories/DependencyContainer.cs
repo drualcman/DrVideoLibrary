@@ -8,6 +8,7 @@ public static class DependencyContainer
         services.AddHttpClient<ISearchMovieService<SearchMovieInEnglish>, SearchMovieEnglishService>();
         services.AddHttpClient<ITranslateService, TranslationService>();
         services.AddScoped<IMoviesRepository, MoviesRepository>();
+        services.AddScoped<INotificationRepository, NotificationRepository>();
         return services;
     }
 }

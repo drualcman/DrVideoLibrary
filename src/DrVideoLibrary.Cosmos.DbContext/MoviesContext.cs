@@ -1,7 +1,4 @@
-﻿using DrVideoLibrary.Entities.Models;
-using System.Collections.Concurrent;
-
-namespace DrVideoLibrary.Cosmos.DbContext;
+﻿namespace DrVideoLibrary.Cosmos.DbContext;
 internal class MoviesContext : IMoviesContext
 {
     const string MoviesContainer = "Movies";
@@ -25,7 +22,7 @@ internal class MoviesContext : IMoviesContext
     {
         string queryString = "SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c.directors, c.actors FROM c WHERE c.register = 'movies'";
         return await GetMoviesCollection(queryString);
-    } 
+    }
 
     public async Task<IEnumerable<MovieModel>> GetAllByActors(string[] actors)
     {
@@ -58,8 +55,8 @@ internal class MoviesContext : IMoviesContext
             conditions.Add($"({categoryCondition})");
         }
         return await GetAllBy(conditions);
-    } 
-    
+    }
+
     private async Task<IEnumerable<MovieModel>> GetAllBy(IEnumerable<string> conditions)
     {
         string conditionsString = string.Join(" OR ", conditions);

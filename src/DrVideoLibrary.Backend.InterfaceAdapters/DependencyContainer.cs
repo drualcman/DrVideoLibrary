@@ -1,4 +1,5 @@
 ﻿using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetMovieById;
+using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.NotificationSubscribe;
 
 namespace Microsoft.Extensions.DependencyInjection;
 public static class DependencyContainer
@@ -32,6 +33,10 @@ public static class DependencyContainer
         services.AddScoped<IGetMovieByIdController, GetMovieByIdController>();
         services.AddScoped<IGetMovieByIdInputPort, GetMovieByIdInteractor>();
         services.AddScoped<IGetMovieByIdOutputPort, GetMovieByIdPresenter>();
+
+        services.AddScoped<INotificationSubscribeController, NotificationSubscribeController>();
+        services.AddScoped<INotificationSubscribeInputPort, NotificationSubscribeInteractor>();
+
         return services;
     }
 

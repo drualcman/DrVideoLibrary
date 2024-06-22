@@ -22,3 +22,4 @@ global using DrVideoLibrary.Entities.ValueObjects;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Collections.Concurrent;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetMovieById;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.NotificationSubscribe;

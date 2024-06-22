@@ -8,6 +8,7 @@
 		<PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
 		<PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.4.0" />
+		<PackageReference Include="WebPush" Version="1.0.12" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DrVideoLibrary.Backend.InterfaceAdapters\DrVideoLibrary.Backend.InterfaceAdapters.csproj" />
