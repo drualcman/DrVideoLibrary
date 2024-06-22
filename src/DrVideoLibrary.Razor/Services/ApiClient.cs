@@ -7,7 +7,7 @@ public class ApiClient
     public ApiClient(HttpClient client, IOptions<ApiClientOptions> options)
     {
         Client = client;
-        client.BaseAddress = new Uri(options.Value.Url);
+        Client.BaseAddress = new Uri(options.Value.Url);
         Options = options.Value;
     }
 
