@@ -1,0 +1,109 @@
+﻿.bell-container {
+    position: fixed;
+    bottom: 4.5rem;
+    left: 2rem;
+    z-index: 1000;
+}
+
+.body {
+    height: 100%;
+    overflow-x: hidden;
+    margin: 0 auto;
+    background: #f6f7fc;
+}
+
+
+.bell, .bell-border, .btn-bell {
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bell {
+    height: 60px;
+    width: 60px;
+    box-shadow: -1px 2px 10px #999;
+    background: #7844E8;
+    animation-name: col;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.bell-border {
+    height: 59px;
+    width: 59px;
+    border: 1px solid #7844E8 !important;
+    animation-name: bord-pop;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    box-shadow: 2px 2px 5px #ccc, -2px -2px 5px #ccc;
+}
+
+.btn-bell {
+    color: white;
+    font-size: 20px;
+    animation-name: bell-ring;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bord-pop {
+
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.9);
+        opacity: 0.1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.9);
+        opacity: 0;
+    }
+}
+
+@keyframes col {
+
+    0% {
+        transform: scale(1) translate(0,0);
+    }
+
+    10% {
+        transform: scale(1.1) translate(0,0);
+    }
+
+    75% {
+        transform: scale(1) translate(0,0);
+    }
+
+    100% {
+        transform: scale(1) translate(0,0);
+    }
+}
+
+@keyframes bell-ring {
+
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    5%, 15% {
+        transform: translate(-50%, -50%) rotate(25deg);
+    }
+
+    10%, 20% {
+        transform: translate(-50%, -50%) rotate(-25deg);
+    }
+
+    25% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}

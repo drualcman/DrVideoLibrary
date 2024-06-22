@@ -10,6 +10,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="DrUalcman-BlazorIndexedDb" Version="1.6.41" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.6" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
@@ -55,6 +56,11 @@
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>ResourceMovieDetailComponent.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ResourceNotificationsRequestSubscription.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceNotificationsRequestSubscription.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceRelativeMoviesComponent.Designer.cs">
 		  <DesignTime>True</DesignTime>
@@ -111,6 +117,10 @@
 		<EmbeddedResource Update="Resources\ResourceMovieDetailComponent.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ResourceMovieDetailComponent.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceNotificationsRequestSubscription.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ResourceNotificationsRequestSubscription.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceRelativeMoviesComponent.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>

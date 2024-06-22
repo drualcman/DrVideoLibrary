@@ -1,0 +1,12 @@
+@if (HasNotGrandNotifications)
+{
+    <div class="bell-container">
+        <div class="body" @onclick=RequestNotificationPermission
+             title="@Localizer.GetString(nameof(ResourceNotificationsRequestSubscription.ButtonTitleText))">
+            <div class="bell">
+                <div class="bell-border"></div>
+                <i class="fas fa-bell btn-bell"></i>
+            </div>
+        </div>
+    </div>
+}

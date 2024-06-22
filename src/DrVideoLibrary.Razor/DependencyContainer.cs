@@ -1,11 +1,13 @@
 ﻿namespace Microsoft.Extensions.DependencyInjection;
-public static class DependencyContainer
+public static partial class DependencyContainer
 {
     public static IServiceCollection AddServices(this IServiceCollection services,
         Action<RemoteAuthenticationOptions<OidcProviderOptions>> authOptions = null,
         Action<ApiClientOptions> apiOptions = null,
         Action<SearchMovieOptions> searchMovieOptions = null,
-        Action<PaginatorOptions> paginatorOptions = null)
+        Action<PaginatorOptions> paginatorOptions = null,
+        Action<CacheDbOptions> cacheDbOptions = null,
+        Action<PushNotificationOptions> pushNotificationOptions = null)
     {
         if (authOptions == null)
         {
@@ -21,9 +23,13 @@ public static class DependencyContainer
         services.Configure(apiOptions);
         services.Configure(searchMovieOptions);
         services.Configure(paginatorOptions);
+        services.Configure(pushNotificationOptions);
+
+        services.AddCacheServices(cacheDbOptions);
 
         services.AddHttpClient();
         services.AddHttpClient<ApiClient>();
+        services.AddHttpClient<INotificationClient, NotificationsClient>();
         services.AddHttpClient<ISearchMovieService<SearchMovieSpanishService>, SearchMovieSpanishService>();
         services.AddHttpClient<ISearchMovieService<SearchMovieEnglishService>, SearchMovieEnglishService>();
         services.AddLocalization();
