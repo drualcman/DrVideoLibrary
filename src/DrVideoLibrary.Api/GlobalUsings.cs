@@ -24,3 +24,4 @@ global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetAll;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.RegisterWatchingNow;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.NotificationSubscribe;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces;

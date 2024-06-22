@@ -8,6 +8,9 @@ internal class NotificationRepository : INotificationRepository
         Context = context;
     }
 
+    public Task DeleteSubscription(string userId, string auth)  =>
+        Context.DeleteSubscription(userId, auth);
+
     public async Task<IEnumerable<NotificationSubscription>> GetSubscriptions()
     {
         IEnumerable<SubscriptionModel> subscriptions = await Context.GetSubscriptions();

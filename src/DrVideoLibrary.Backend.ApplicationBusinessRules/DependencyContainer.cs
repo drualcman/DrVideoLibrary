@@ -2,7 +2,7 @@
 
 public static class DependencyContainer
 {
-    public static IServiceCollection AddApplicationOptions(this IServiceCollection services,
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services,
         Action<ConnectionStringsOptions> connectionStringsOptions,
         Action<SearchMovieSpanishOption> searchMovieSpanishOption,
         Action<SearchMovieEnglishOption> searchMovieEnglishOption,
@@ -16,6 +16,8 @@ public static class DependencyContainer
         services.Configure(translationOptions);
         services.Configure(storageOptions);
         services.Configure(notificationOptions);
+        services.AddSingleton<IUrlProvider, UrlProvider>();
+        services.AddSingleton(typeof(IEventHub<>), typeof(EventHub<>));
         return services;
     }
 }

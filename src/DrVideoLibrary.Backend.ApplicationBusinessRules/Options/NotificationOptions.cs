@@ -5,4 +5,5 @@ public class NotificationOptions
     public string NotificationsPublicKey { get; set; }
     public string NotificationsPrivateKey { get; set; }
     public string NotificationsEmail { get; set; }
+    public string ClientUri { get; set; }
 }

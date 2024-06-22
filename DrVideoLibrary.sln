@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Backend.Repo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Cosmos.DbContext", "src\DrVideoLibrary.Cosmos.DbContext\DrVideoLibrary.Cosmos.DbContext.csproj", "{61D25808-2C45-4668-A005-B2B127A1B85D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrVideoLibrary.Backend.PushNotifications", "src\DrVideoLibrary.Backend.PushNotifications\DrVideoLibrary.Backend.PushNotifications.csproj", "{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{61D25808-2C45-4668-A005-B2B127A1B85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61D25808-2C45-4668-A005-B2B127A1B85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61D25808-2C45-4668-A005-B2B127A1B85D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +91,7 @@ Global
 		{5FC1AA18-7FC7-44EF-802D-FCA0C27F7FAF} = {8A324746-93A9-46A4-8453-B1CE75E6CC75}
 		{7698AFA8-1355-43F8-8CC2-D3E5D63EC915} = {8A324746-93A9-46A4-8453-B1CE75E6CC75}
 		{61D25808-2C45-4668-A005-B2B127A1B85D} = {386A61EF-66B4-4039-B230-2458F854ECC5}
+		{6758FD98-4A05-4D0C-9C9D-B4743AED7B88} = {8A324746-93A9-46A4-8453-B1CE75E6CC75}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25E8966B-A48B-47E6-8C1D-FAE8AA930869}

@@ -3,6 +3,7 @@
     bottom: 4.5rem;
     left: 2rem;
     z-index: 1000;
+    cursor: pointer;
 }
 
 .body {

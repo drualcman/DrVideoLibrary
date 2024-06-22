@@ -1,4 +1,6 @@
-﻿using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetMovieById;
+﻿using DrVideoLibrary.Backend.ApplicationBusinessRules.ValueObjects;
+using DrVideoLibrary.Backend.InterfaceAdapters.Events;
+using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetMovieById;
 using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.NotificationSubscribe;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -6,6 +8,10 @@ public static class DependencyContainer
 {
     public static IServiceCollection AddUseCases(this IServiceCollection services)
     {
+        services.AddScoped<IEventHandler<SendNotificationSubscription>, AddMovieHandler>();
+        services.AddScoped<IEventHandler<SendNotificationSubscription>, CollectionChangeHandler>();
+        services.AddScoped<IEventHandler<SendNotificationSubscription>, WatchingMovieHandler>();
+
         services.AddScoped<IGetRelativesController, GetRelativesController>();
         services.AddScoped<IGetRelativesInputPort, GetRelativesInteractor>();
         services.AddScoped<IGetRelativesOutputPort, GetRelativesPresenter>();

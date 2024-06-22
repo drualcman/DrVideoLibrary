@@ -2,10 +2,12 @@
 internal class AddMovieInteractor : IAddMovieInputPort
 {
     readonly IServiceScopeFactory ScopeFactory;
+    readonly IEventHub<SendNotificationSubscription> EventHub;
 
-    public AddMovieInteractor(IServiceScopeFactory scopeFactory)
+    public AddMovieInteractor(IServiceScopeFactory scopeFactory, IEventHub<SendNotificationSubscription> eventHub)
     {
         ScopeFactory = scopeFactory;
+        EventHub = eventHub;
     }
 
     public Task AddMovie(Movie data)
@@ -25,6 +27,10 @@ internal class AddMovieInteractor : IAddMovieInputPort
                 data.Cover = filename;
             }
             await moviesRepository.AddMovie(data);
+            EventHub.Rise(new SendNotificationSubscription(
+                $"Tengo una peli nueva!",
+                data.Id,
+                ApplicationBusinessRules.ValueObjects.SendNotificationType.CATALOG));
         });
         return Task.CompletedTask;
     }

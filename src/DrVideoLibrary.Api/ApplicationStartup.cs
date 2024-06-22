@@ -6,7 +6,7 @@ internal class ApplicationStartup : FunctionsStartup
     public override void Configure(IFunctionsHostBuilder builder)
     {
         IConfiguration configuration = builder.GetContext().Configuration;
-        builder.Services.AddApplicationOptions(
+        builder.Services.AddApplicationServices(
             database => configuration.Bind(database),
             spanish => configuration.Bind(spanish),
             english => configuration.Bind(english),
@@ -17,6 +17,7 @@ internal class ApplicationStartup : FunctionsStartup
         builder.Services.AddBlobStorageServices();
         builder.Services.AddContextServices();
         builder.Services.AddBackendServices();
+        builder.Services.AddPushNotifications();
         builder.Services.AddUseCases();
     }
 }

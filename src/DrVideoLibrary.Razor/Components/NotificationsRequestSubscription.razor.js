@@ -13,6 +13,7 @@
         await navigator.serviceWorker.ready;
         console.info('Notification Service Worker is ready');
         const permission = await Notification.requestPermission();
+        console.log('permiso', permission);
         if (permission !== "granted") {
             console.warn('Notification permission not granted');
             return null;
