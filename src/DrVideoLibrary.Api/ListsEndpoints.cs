@@ -1,11 +1,15 @@
+using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWatchList;
+
 namespace DrVideoLibrary.Api
 {
     internal class ListsEndpoints
     {
         readonly IGetAllController GetAllController;
-        public ListsEndpoints(IGetAllController getAllController)
+        readonly IGetWatchListController WatchListController;
+        public ListsEndpoints(IGetAllController getAllController, IGetWatchListController watchListController)
         {
             GetAllController = getAllController;
+            WatchListController = watchListController;
         }
 
         [FunctionName("GetMovies")]
@@ -35,23 +39,7 @@ namespace DrVideoLibrary.Api
 
             try
             {
-                await Task.Delay(1);
-                List<WatchedCard> watcheds = new List<WatchedCard>()
-                {
-                    new WatchedCard(Guid.NewGuid().ToString(), "Start Wars Episodio I", "", 215, 80),
-                    new WatchedCard(Guid.NewGuid().ToString(), "Start Wars Episodio II", "", 215, 75),
-                    new WatchedCard(Guid.NewGuid().ToString(), "Start Wars Episodio III", "", 215, 65),
-                    new WatchedCard(Guid.NewGuid().ToString(), "Start Wars Episodio IV", "", 215, 100),
-                    new WatchedCard(Guid.NewGuid().ToString(), "Start Wars Episodio V", "", 215, 95),
-                    new WatchedCard(Guid.NewGuid().ToString(), "Start Wars Episodio VI", "", 215, 100),
-                    new WatchedCard(Guid.NewGuid().ToString(), "Start Wars Episodio VII", "", 215, 50),
-                    new WatchedCard(Guid.NewGuid().ToString(), "Start Wars Episodio VIII", "", 215, 90),
-                    new WatchedCard(Guid.NewGuid().ToString(), "Start Wars Episodio IX", "", 215, 85),
-                };
-                for (int i = 0; i < 100; i++)
-                {
-                    watcheds.Add(new WatchedCard(Guid.NewGuid().ToString(), "Popelle el marino", "", 215, 80));
-                }
+                IEnumerable<WatchedCard> watcheds = await WatchListController.GetWatchList();
                 return new OkObjectResult(watcheds);
             }
             catch (Exception ex)

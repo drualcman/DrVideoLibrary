@@ -24,3 +24,4 @@ global using System.Collections.Concurrent;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetMovieById;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.NotificationSubscribe;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.Events;
+global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWatchList;

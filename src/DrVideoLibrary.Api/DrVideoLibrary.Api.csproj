@@ -13,6 +13,7 @@
 		<ProjectReference Include="..\DrVideoLibrary.Backend.InterfaceAdapters\DrVideoLibrary.Backend.InterfaceAdapters.csproj" />
 		<ProjectReference Include="..\DrVideoLibrary.Backend.PushNotifications\DrVideoLibrary.Backend.PushNotifications.csproj" />
 		<ProjectReference Include="..\DrVideoLibrary.Backend.Repositories\DrVideoLibrary.Backend.Repositories.csproj" />
+		<ProjectReference Include="..\DrVideoLibrary.Backend.Storage\DrVideoLibrary.Backend.Storage.csproj" />
 		<ProjectReference Include="..\DrVideoLibrary.Cosmos.DbContext\DrVideoLibrary.Cosmos.DbContext.csproj" />
 	</ItemGroup>
 	<ItemGroup>

@@ -1,23 +1,23 @@
 ﻿namespace DrVideoLibrary.Razor.Cache.Services;
 public class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, IJSRuntime JsRuntime)
 {
-    public async ValueTask<List<ListCard>> GetList()
+    public async ValueTask<IEnumerable<ListCard>> GetList()
     {
-        List<ListCard> movies = [];
+        IEnumerable<ListCard> movies = [];
         List<MovieCardModel> cached = await CacheContext.Movies.SelectAsync();
         if (await GetShouldUpdate())
             cached = null;
         if (cached == null || !cached.Any())
         {
-            movies = new(await Client.GetMovies());
+            movies = new List<ListCard>(await Client.GetMovies());
             await CacheContext.Movies.CleanAsync();            
             _ = CacheContext.Movies.AddAsync(movies.Select(MovieCardModel.FromListCard).ToList());
         }
         else
         {
-            movies = cached.Select(MovieCardModel.ToListCard).ToList();
+            movies = cached.Select(MovieCardModel.ToListCard);
         }
-        return movies;
+        return movies.OrderBy(m=> m.Title).ThenBy(m=> m.Year);
     }
 
     private async ValueTask<bool> GetShouldUpdate()

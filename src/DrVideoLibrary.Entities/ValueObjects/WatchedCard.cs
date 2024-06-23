@@ -6,14 +6,15 @@ public class WatchedCard : IMovie
     public string Cover { get; set; }
     public int Duration { get; }
     public byte Rate { get; }
+    public int Times { get; }
 
-    public WatchedCard(string id, string title, string cover, int duration, byte rate)
+    public WatchedCard(string id, string title, string cover, int duration, byte rate, int times)
     {
         Id = id;
         Title = title;
         Cover = cover;
         Duration = duration;
         Rate = rate;
-        Cover = "https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg";
+        Times = times;
     }
 }

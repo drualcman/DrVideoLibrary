@@ -10,7 +10,7 @@ internal class GetWatchingNowController : IGetWatchingNowController
         Presenter = presenter;
     }
 
-    public async Task<WatchingNow> GetWhatchingNow()
+    public async Task<WatchingNow> GetWatchingNow()
     {
         await Input.Handle();
         return Presenter.Content;

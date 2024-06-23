@@ -1,4 +1,5 @@
 using DrVideoLibrary.Entities.Dtos;
+using System.Linq;
 
 namespace DrVideoLibrary.Api
 {
@@ -22,7 +23,7 @@ namespace DrVideoLibrary.Api
             {
                 RelativesDto data = await HttpRequestHelper.GetRequestedModel<RelativesDto>(req);
                 IEnumerable<RelativeMovie> result = await Controller.GetRelatives(data);
-                return new OkObjectResult(result);
+                return new OkObjectResult(result.OrderBy(m => m.Title));
             }
             catch (Exception ex)
             {

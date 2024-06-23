@@ -4,6 +4,7 @@ public partial class MovieDetailComponent
     [Inject] IStringLocalizer<ResourceMovieDetailComponent> Localizer { get; set; }
     [Parameter] public Movie Movie { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public EventCallback OnPlayClick { get; set; }
 
     RelativesDto RelativesData;
 

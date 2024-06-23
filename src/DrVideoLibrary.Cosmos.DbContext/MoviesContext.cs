@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace DrVideoLibrary.Cosmos.DbContext;
+﻿namespace DrVideoLibrary.Cosmos.DbContext;
 internal class MoviesContext : IMoviesContext
 {
     const string MoviesContainer = "Movies";
@@ -20,13 +18,13 @@ internal class MoviesContext : IMoviesContext
         await GetContainer().UpsertItemAsync(ObjectConverter.ConvertToLowercaseObject(data, "movies"), Movies);
     }
 
-    public async Task<IEnumerable<MovieModel>> GetAll()
+    public async Task<IEnumerable<MovieModel>> GetMoviesAll()
     {
         string queryString = "SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c.directors, c.actors FROM c WHERE c.register = 'movies'";
-        return await GetMoviesCollection(new QueryDefinition(queryString));
+        return await GetCollection<MovieModel>(new QueryDefinition(queryString));
     }
 
-    public async Task<IEnumerable<MovieModel>> GetAllByActors(string[] actors)
+    public async Task<IEnumerable<MovieModel>> GetMoviesAllByActors(string[] actors)
     {
         List<string> conditions = new List<string>();
 
@@ -39,7 +37,7 @@ internal class MoviesContext : IMoviesContext
         return await GetAllBy(conditions, actors);
     }
 
-    public async Task<IEnumerable<MovieModel>> GetAllByDirectors(string[] directors)
+    public async Task<IEnumerable<MovieModel>> GetMoviesAllByDirectors(string[] directors)
     {
         List<string> conditions = new List<string>();
 
@@ -52,7 +50,7 @@ internal class MoviesContext : IMoviesContext
         return await GetAllBy(conditions, directors);
     }
 
-    public async Task<IEnumerable<MovieModel>> GetAllByCategories(string[] categories)
+    public async Task<IEnumerable<MovieModel>> GetMoviesAllByCategories(string[] categories)
     {
         List<string> conditions = new List<string>();
         if (categories != null && categories.Length > 0)
@@ -81,25 +79,8 @@ internal class MoviesContext : IMoviesContext
             queryDefinition.WithParameter($"@value{i}", values[i]);
         }
 
-        return await GetMoviesCollection(queryDefinition);
+        return await GetCollection<MovieModel>(queryDefinition);
     }
-
-
-    private async Task<IEnumerable<MovieModel>> GetMoviesCollection(QueryDefinition queryDefinition)
-    {
-        FeedIterator<MovieModel> query = GetContainer().GetItemQueryIterator<MovieModel>(queryDefinition);
-        ConcurrentBag<MovieModel> results = new ConcurrentBag<MovieModel>();
-        List<Task> tasks = new List<Task>();
-        while (query.HasMoreResults)
-        {
-            FeedResponse<MovieModel> response = await query.ReadNextAsync();
-            tasks.AddRange(response.Select(movie => Task.Run(() => results.Add(movie))));
-        }
-        await Task.WhenAll(tasks);
-        return results;
-    }
-
-
 
     public async Task RegisterWatchingNow(RegisterView data)
     {
@@ -109,11 +90,30 @@ internal class MoviesContext : IMoviesContext
     public async Task<RegisterView> GetWatchingNow()
     {
         string queryString = $"SELECT top 1 c.id, c.movieid, c.start FROM c WHERE c.register = 'views' ORDER BY c.start desc";
-        FeedIterator<RegisterView> query = GetContainer().GetItemQueryIterator<RegisterView>(new QueryDefinition(queryString));
-        RegisterView result = null;
+        return await GetSingle<RegisterView>(new QueryDefinition(queryString));
+    }
+
+    private async Task<IEnumerable<TModel>> GetCollection<TModel>(QueryDefinition queryDefinition) where TModel : class
+    {
+        FeedIterator<TModel> query = GetContainer().GetItemQueryIterator<TModel>(queryDefinition);
+        ConcurrentBag<TModel> results = new ConcurrentBag<TModel>();
+        List<Task> tasks = new List<Task>();
+        while (query.HasMoreResults)
+        {
+            FeedResponse<TModel> response = await query.ReadNextAsync();
+            tasks.AddRange(response.Select(item => Task.Run(() => results.Add(item))));
+        }
+        await Task.WhenAll(tasks);
+        return results;
+    }
+
+    private async Task<TModel> GetSingle<TModel>(QueryDefinition queryDefinition) where TModel : class
+    {
+        FeedIterator<TModel> query = GetContainer().GetItemQueryIterator<TModel>(queryDefinition);
+        TModel result = default;
         if (query.HasMoreResults)
         {
-            FeedResponse<RegisterView> response = await query.ReadNextAsync();
+            FeedResponse<TModel> response = await query.ReadNextAsync();
             result = response.FirstOrDefault();
         }
         return result;
@@ -122,28 +122,24 @@ internal class MoviesContext : IMoviesContext
     public async Task<IEnumerable<RegisterView>> GetTotalViews(string movieId)
     {
         string queryString = $"SELECT c.id, c.start FROM c WHERE c.register = 'views' AND c.movieid = '{movieId}'";
-        FeedIterator<RegisterView> query = GetContainer().GetItemQueryIterator<RegisterView>(new QueryDefinition(queryString));
-        ConcurrentBag<RegisterView> results = new ConcurrentBag<RegisterView>();
-        List<Task> tasks = new List<Task>();
-        while (query.HasMoreResults)
-        {
-            FeedResponse<RegisterView> response = await query.ReadNextAsync();
-            tasks.AddRange(response.Select(movie => Task.Run(() => results.Add(movie))));
-        }
-        await Task.WhenAll(tasks);
-        return results;
+        return await GetCollection<RegisterView>(new QueryDefinition(queryString));
     }
 
     public async Task<MovieModel> GetMovieById(string id)
     {
         string queryString = $"SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c. directors, c.actors FROM c WHERE c.register = 'movies' AND c.id = '{id}'";
-        FeedIterator<MovieModel> query = GetContainer().GetItemQueryIterator<MovieModel>(new QueryDefinition(queryString));
-        MovieModel result = null;
-        if (query.HasMoreResults)
-        {
-            FeedResponse<MovieModel> response = await query.ReadNextAsync();
-            result = response.FirstOrDefault();
-        }
-        return result;
+        return await GetSingle<MovieModel>(new QueryDefinition(queryString));
+    }
+
+    public async Task<IEnumerable<WatchedModel>> GetWatchedMoviesAll()
+    {
+        string queryString = "SELECT c.id, c.title, c.cover, c.duration, c.rate FROM c WHERE c.register = 'movies'";
+        return await GetCollection<WatchedModel>(new QueryDefinition(queryString));
+    }
+
+    public async Task<IEnumerable<WatchedCountModel>> GetWatchedViewsAll()
+    {
+        string queryString = "SELECT v.movieid, COUNT(1) AS times FROM c v WHERE v.register = 'views' GROUP BY v.movieid";
+        return await GetCollection<WatchedCountModel>(new QueryDefinition(queryString));
     }
 }

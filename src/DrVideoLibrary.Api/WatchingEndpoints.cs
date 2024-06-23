@@ -1,4 +1,5 @@
 using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWatchingNow;
+using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWatchList;
 using DrVideoLibrary.Entities.Dtos;
 
 namespace DrVideoLibrary.Api
@@ -8,14 +9,15 @@ namespace DrVideoLibrary.Api
         readonly IGetWatchingNowController WatchingNowController;
         readonly IRegisterWatchingNowController RegisterController;
 
-        public WatchingEndpoints(IGetWatchingNowController watchingNowController, IRegisterWatchingNowController registerController)
+        public WatchingEndpoints(IGetWatchingNowController watchingNowController, 
+            IRegisterWatchingNowController registerController)
         {
             WatchingNowController = watchingNowController;
             RegisterController = registerController;
         }
 
-        [FunctionName("GetWhatching")]
-        public async Task<IActionResult> GetWhatching(
+        [FunctionName("GetWatching")]
+        public async Task<IActionResult> GetWatching(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "watching")] HttpRequest req,
             ILogger log)
         {
@@ -23,7 +25,7 @@ namespace DrVideoLibrary.Api
 
             try
             {
-                WatchingNow result = await WatchingNowController.GetWhatchingNow();
+                WatchingNow result = await WatchingNowController.GetWatchingNow();
                 return new OkObjectResult(result);
             }
             catch (Exception ex)

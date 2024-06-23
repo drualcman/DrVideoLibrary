@@ -17,6 +17,18 @@
             <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.TotalViews))</p>
             <p class="title is-5">@Movie.TotalViews</p>
         </div>
+        @if (OnPlayClick.HasDelegate)
+        {
+            <AuthorizeView>
+                <Authorized>
+                    <button type="button" class="button is-success" @onclick=OnPlayClick>
+                        <span class="icon">
+                            <i class="fa-solid fa-play"></i>
+                        </span>
+                    </button>
+                </Authorized>
+            </AuthorizeView>
+        }
     </div>
     @ChildContent
     <div class="tags-section">

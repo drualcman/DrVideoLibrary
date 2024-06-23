@@ -13,7 +13,7 @@ public class IndexViewModel : PaginatorViewModel<ListCard>
 
     public async ValueTask GetList()
     {
-        List<ListCard> movies = await CacheService.GetList();
+        List<ListCard> movies = new(await CacheService.GetList());
         TotalMovies = movies.Count;
         InitializePaginator(movies);
         IsReady = true;
