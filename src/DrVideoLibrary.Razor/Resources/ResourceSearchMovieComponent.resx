@@ -130,7 +130,7 @@
     <value>Ingresa un título por favor.</value>
   </data>
   <data name="TitleLabel" xml:space="preserve">
-    <value>Título en español:</value>
+    <value>Título:</value>
   </data>
   <data name="TitlePlaceHolder" xml:space="preserve">
     <value>Título de la película a buscar...</value>

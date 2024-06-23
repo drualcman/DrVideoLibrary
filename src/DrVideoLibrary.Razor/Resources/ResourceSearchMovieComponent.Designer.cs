@@ -97,7 +97,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Título en español:.
+        ///   Looks up a localized string similar to Título:.
         /// </summary>
         internal static string TitleLabel {
             get {

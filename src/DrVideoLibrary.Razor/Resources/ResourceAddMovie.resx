@@ -139,7 +139,7 @@
     <value>Directores</value>
   </data>
   <data name="DurationLabel" xml:space="preserve">
-    <value>Duiración en minutos</value>
+    <value>Duración en minutos</value>
   </data>
   <data name="RatingLabel" xml:space="preserve">
     <value>Calificación del 1 al 10</value>

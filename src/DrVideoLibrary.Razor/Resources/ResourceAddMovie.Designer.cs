@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agregado manual.
+        ///   Looks up a localized string similar to Agregar nuevo.
         /// </summary>
         internal static string ButtonAddLabel {
             get {
@@ -124,7 +124,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duiración en minutos.
+        ///   Looks up a localized string similar to Duración en minutos.
         /// </summary>
         internal static string DurationLabel {
             get {
