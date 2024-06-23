@@ -32,9 +32,9 @@ public static class DependencyContainer
         services.AddScoped<IRegisterWatchingNowController, RegisterWatchingNowController>();
         services.AddScoped<IRegisterWatchingNowInputPort, RegisterWatchingNowInteractor>();
 
-        services.AddScoped<IGetWhatchingNowController, GetWhatchingNowController>();
-        services.AddScoped<IGetWhatchingNowInputPort, GetWhatchingNowInteractor>();
-        services.AddScoped<IGetWhatchingNowOutputPort, GetWhatchingNowPresenter>();  
+        services.AddScoped<IGetWatchingNowController, GetWatchingNowController>();
+        services.AddScoped<IGetWatchingNowInputPort, GetWatchingNowInteractor>();
+        services.AddScoped<IGetWatchingNowOutputPort, GetWatchingNowPresenter>();  
 
         services.AddScoped<IGetMovieByIdController, GetMovieByIdController>();
         services.AddScoped<IGetMovieByIdInputPort, GetMovieByIdInteractor>();

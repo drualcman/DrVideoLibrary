@@ -1,14 +1,14 @@
-using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWhatchingNow;
+using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWatchingNow;
 using DrVideoLibrary.Entities.Dtos;
 
 namespace DrVideoLibrary.Api
 {
     internal class WatchingEndpoints
     {
-        readonly IGetWhatchingNowController WatchingNowController;
+        readonly IGetWatchingNowController WatchingNowController;
         readonly IRegisterWatchingNowController RegisterController;
 
-        public WatchingEndpoints(IGetWhatchingNowController watchingNowController, IRegisterWatchingNowController registerController)
+        public WatchingEndpoints(IGetWatchingNowController watchingNowController, IRegisterWatchingNowController registerController)
         {
             WatchingNowController = watchingNowController;
             RegisterController = registerController;

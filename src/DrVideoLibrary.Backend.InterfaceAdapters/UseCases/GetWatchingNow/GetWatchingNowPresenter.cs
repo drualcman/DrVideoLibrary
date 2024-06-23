@@ -1,10 +1,10 @@
 ﻿
-namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetWhatchingNow;
-internal class GetWhatchingNowPresenter : IGetWhatchingNowOutputPort
+namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetWatchingNow;
+internal class GetWatchingNowPresenter : IGetWatchingNowOutputPort
 {
     readonly IFileContent FileContent;
 
-    public GetWhatchingNowPresenter(IFileContent fileContent, WatchingNow content)
+    public GetWatchingNowPresenter(IFileContent fileContent, WatchingNow content)
     {
         FileContent = fileContent;
         Content = content;

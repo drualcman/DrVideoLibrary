@@ -1,12 +1,12 @@
 ﻿using DrVideoLibrary.Entities.Dtos;
 
-namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetWhatchingNow;
-internal class GetWhatchingNowInteractor : IGetWhatchingNowInputPort
+namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetWatchingNow;
+internal class GetWatchingNowInteractor : IGetWatchingNowInputPort
 {
     readonly IMoviesRepository Repository;
-    readonly IGetWhatchingNowOutputPort Output;
+    readonly IGetWatchingNowOutputPort Output;
 
-    public GetWhatchingNowInteractor(IMoviesRepository repository, IGetWhatchingNowOutputPort output)
+    public GetWatchingNowInteractor(IMoviesRepository repository, IGetWatchingNowOutputPort output)
     {
         Repository = repository;
         Output = output;

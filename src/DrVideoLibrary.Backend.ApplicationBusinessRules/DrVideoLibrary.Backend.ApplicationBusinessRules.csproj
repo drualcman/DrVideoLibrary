@@ -14,4 +14,8 @@
 		<ProjectReference Include="..\DrVideoLibrary.Entities\DrVideoLibrary.Entities.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Interfaces\UseCases\GetWatchList\" />
+	</ItemGroup>
+
 </Project>
