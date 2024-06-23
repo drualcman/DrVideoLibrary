@@ -121,7 +121,7 @@
     <value>Actores</value>
   </data>
   <data name="ButtonAddLabel" xml:space="preserve">
-    <value>Agregado manual</value>
+    <value>Agregar nuevo</value>
   </data>
   <data name="ButtonSaveLabel" xml:space="preserve">
     <value>Agregar a la videoteca</value>
