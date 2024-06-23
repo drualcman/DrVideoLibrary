@@ -11,17 +11,28 @@ public class IndexViewModel : PaginatorViewModel<ListCard>
     public int TotalMovies { get; private set; }
     public bool IsReady { get; private set; }
 
-    public async ValueTask GetList()
+    public async Task GetList()
     {
-        List<ListCard> movies = new(await CacheService.GetList());
-        TotalMovies = movies.Count;
-        InitializePaginator(movies);
+        IEnumerable<ListCard> movies = await CacheService.GetList();
+        TotalMovies = movies.Count();
+        InitializePaginator(movies.ToList());
         IsReady = true;
-        await ValueTask.CompletedTask;
     }
 
     public async Task StartPlayMovie(string movieId)
     {
         await Client.RegisterWatchingNowAsync(movieId);
+    }
+
+    public async Task SeachMovie(string movie)
+    {
+        if (!string.IsNullOrEmpty(movie))
+        {
+            IEnumerable<ListCard> movies = await CacheService.GetList();
+            movies = movies.Where(x => x.Title.Contains(movie, StringComparison.InvariantCultureIgnoreCase));
+            TotalMovies = movies.Count();
+            InitializePaginator(movies.ToList());
+        }
+        else await GetList();
     }
 }

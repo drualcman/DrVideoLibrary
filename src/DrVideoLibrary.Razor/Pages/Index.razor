@@ -4,7 +4,11 @@
 
 @if (ViewModel.IsReady)
 {
-    <h1 class="title">@Localizer.GetString(nameof(ResourceIndex.PageTitle)) #@ViewModel.TotalMovies</h1>
+    <h1 class="title">
+        <SearchComponent OnSearch=ViewModel.SeachMovie OnReset=ViewModel.GetList />
+        <span>@Localizer.GetString(nameof(ResourceIndex.PageTitle))</span>
+        <span>#@ViewModel.TotalMovies</span>
+    </h1>
     <div class="pagination-container">
         <Paginator Handler=ViewModel.Paginator OnPageChange=ToPage />
     </div>

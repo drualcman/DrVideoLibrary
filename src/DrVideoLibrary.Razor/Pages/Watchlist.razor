@@ -2,20 +2,13 @@
 <PageTitle>@Localizer.GetString(nameof(ResourceWatchlist.TitleLabel))</PageTitle>
 
 <div class="columns">
-    <div class="column">
-        <h1 class="title">@Localizer.GetString(nameof(ResourceWatchlist.TitleLabel))</h1>
-    </div>
-    <div class="column">
-        <img src="_content/DrVideoLibrary.Razor/img/camara.png" alt="camara" />
-    </div>
-</div>
-<div class="columns">
     <div class="column list-wrapper">
         @if (ViewModel.IsReady)
         {
             <h2 class="subtitle">
-                <span>@Localizer.GetString(nameof(ResourceWatchlist.ListLabel))</span>
+                <SearchComponent OnSearch=ViewModel.SeachMovie OnReset=ViewModel.GetList />
                 <span>@ViewModel.TotalTime.ToString(TimeSpanLocalizer)</span>
+                <span>@Localizer.GetString(nameof(ResourceWatchlist.ListLabel))</span>
             </h2>
 
             <div class="pagination-container">

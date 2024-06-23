@@ -1,0 +1,35 @@
+﻿<span class="field has-addons">
+    <span class="control">
+        <button class="button" type="button" @onclick=ResetClick>
+            <span class="icon">
+                <i class="fa-solid fa-rotate-left"></i>
+            </span>
+        </button>
+    </span>
+    <span class="control">
+        <input class="input" @bind=Text placeholder="Star Wars" />
+    </span>
+    <span class="control">
+        <button class="button is-info" type="button" @onclick=SearchClick>
+            <span class="icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+        </button>
+    </span>
+</span>
+
+@code {
+    [Parameter] public EventCallback OnReset { get; set; }
+    [Parameter] public EventCallback<string> OnSearch { get; set; }
+    string Text;
+
+    async Task SearchClick()
+    {
+        await OnSearch.InvokeAsync(Text);
+    }  
+    async Task ResetClick()
+    {
+        Text = string.Empty;
+        await OnReset.InvokeAsync();
+    }
+}
