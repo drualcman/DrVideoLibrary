@@ -1,7 +1,9 @@
 ﻿<div class="relatives-section">
     @if (Relatives is null)
     {
-        <LoaderSpining />
+        <span class="relative-item">
+            <LoaderSpining />
+        </span>
     }
     else if (Relatives.Any())
     {
