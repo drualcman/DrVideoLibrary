@@ -5,6 +5,12 @@
     padding: 1rem;
 }
 
+@media (max-width: 767px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
 .title {
     margin: 1rem;
     display: flex;
