@@ -1,19 +1,18 @@
-using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWatchingNow;
-using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWatchList;
-using DrVideoLibrary.Entities.Dtos;
-
 namespace DrVideoLibrary.Api
 {
     internal class WatchingEndpoints
     {
         readonly IGetWatchingNowController WatchingNowController;
         readonly IRegisterWatchingNowController RegisterController;
+        readonly ILogger Log;
 
-        public WatchingEndpoints(IGetWatchingNowController watchingNowController, 
-            IRegisterWatchingNowController registerController)
+        public WatchingEndpoints(IGetWatchingNowController watchingNowController,
+            IRegisterWatchingNowController registerController,
+            ILogger log)
         {
             WatchingNowController = watchingNowController;
             RegisterController = registerController;
+            Log = log;
         }
 
         [FunctionName("GetWatching")]
@@ -22,6 +21,7 @@ namespace DrVideoLibrary.Api
             ILogger log)
         {
             log.LogInformation("Get actual movie watching");
+            Log.LogInformation("Get actual movie watching injected logger");
 
             try
             {
@@ -33,7 +33,7 @@ namespace DrVideoLibrary.Api
                 return new BadRequestObjectResult(ex.Message).ToProblemDetails();
             }
         }
-    
+
 
         [FunctionName("RegisterWatchingNow")]
         public async Task<IActionResult> RegisterWatchingNow(
