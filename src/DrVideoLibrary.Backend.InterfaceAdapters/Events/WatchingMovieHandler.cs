@@ -3,10 +3,10 @@ internal class WatchingMovieHandler : IEventHandler<SendNotificationSubscription
 {
     readonly INotificationService NotificationService;
     readonly IUrlProvider UrlProvider;
-    readonly ILogger Logger;
+    readonly ILogger<WatchingMovieHandler> Logger;
 
     public WatchingMovieHandler(INotificationService notificationService, 
-        IUrlProvider urlProvider, ILogger logger)
+        IUrlProvider urlProvider, ILogger<WatchingMovieHandler> logger)
     {
         NotificationService = notificationService;
         UrlProvider = urlProvider;

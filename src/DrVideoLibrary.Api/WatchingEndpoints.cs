@@ -4,11 +4,11 @@ namespace DrVideoLibrary.Api
     {
         readonly IGetWatchingNowController WatchingNowController;
         readonly IRegisterWatchingNowController RegisterController;
-        readonly ILogger Log;
+        readonly ILogger<WatchingEndpoints> Log;
 
         public WatchingEndpoints(IGetWatchingNowController watchingNowController,
             IRegisterWatchingNowController registerController,
-            ILogger log)
+            ILogger<WatchingEndpoints> log)
         {
             WatchingNowController = watchingNowController;
             RegisterController = registerController;

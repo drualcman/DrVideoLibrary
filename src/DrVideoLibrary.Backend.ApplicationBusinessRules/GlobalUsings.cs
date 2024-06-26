@@ -8,3 +8,4 @@ global using DrVideoLibrary.Backend.ApplicationBusinessRules.Services;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.ValueObjects;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces;
 global using Microsoft.Extensions.Options;
+global using Microsoft.Extensions.Logging;
