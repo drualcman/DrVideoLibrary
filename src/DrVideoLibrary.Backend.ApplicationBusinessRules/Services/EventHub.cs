@@ -10,11 +10,11 @@ internal class EventHub<TEvent> : IEventHub<TEvent> where TEvent : IEvent
         Logger = logger;
     }
 
-    public void Rise(TEvent data)
+    public async Task Rise(TEvent data)
     {
         Logger.LogInformation("EventHub.Rise Start");
-        Task.Run(async () =>
-        {
+        //Task.Run(async () =>
+        //{
             Logger.LogInformation("EventHub.Rise Task");
             try
             {
@@ -30,7 +30,7 @@ internal class EventHub<TEvent> : IEventHub<TEvent> where TEvent : IEvent
                 string e = ex.ToString();
                 throw;
             }
-        });
+        //});
         Logger.LogInformation("EventHub.Rise End");
     }
 }
