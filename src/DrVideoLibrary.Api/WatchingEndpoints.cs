@@ -4,7 +4,6 @@ namespace DrVideoLibrary.Api
     {
         readonly IGetWatchingNowController WatchingNowController;
         readonly IRegisterWatchingNowController RegisterController;
-        readonly ILogger<WatchingEndpoints> Log;
 
         public WatchingEndpoints(IGetWatchingNowController watchingNowController,
             IRegisterWatchingNowController registerController,
@@ -12,7 +11,6 @@ namespace DrVideoLibrary.Api
         {
             WatchingNowController = watchingNowController;
             RegisterController = registerController;
-            Log = log;
         }
 
         [FunctionName("GetWatching")]
@@ -39,7 +37,6 @@ namespace DrVideoLibrary.Api
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "watching")] HttpRequest req,
             ILogger log)
         {
-            Log.LogInformation("Register what movie is watching right now from constructor");
             log.LogInformation("Register what movie is watching right now");
 
             try

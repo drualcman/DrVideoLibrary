@@ -46,7 +46,7 @@ internal class NotificationService : INotificationService
         }
         catch(Exception ex)
         {
-            logger.LogError(ex, $"Can't send {message}");
+            logger.LogError(ex, $"Can't send push notification with message: '{message}'");
             await Repository.DeleteSubscription(subscription.UserId, subscription.Auth);
         }
     }
