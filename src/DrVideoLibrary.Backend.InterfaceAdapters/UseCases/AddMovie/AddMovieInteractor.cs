@@ -10,7 +10,7 @@ internal class AddMovieInteractor : IAddMovieInputPort
         EventHub = eventHub;
     }
 
-    public Task AddMovie(Movie data)
+    public Task AddMovie(Movie data, ILogger logger)
     {
         Task.Run(async () =>
         {
@@ -27,10 +27,10 @@ internal class AddMovieInteractor : IAddMovieInputPort
                 data.Cover = filename;
             }
             await moviesRepository.AddMovie(data);
-            EventHub.Rise(new SendNotificationSubscription(
+            await EventHub.Rise(new SendNotificationSubscription(
                 $"Tengo una peli nueva!",
                 data.Id,
-                ApplicationBusinessRules.ValueObjects.SendNotificationType.CATALOG));
+                ApplicationBusinessRules.ValueObjects.SendNotificationType.CATALOG), logger);
         });
         return Task.CompletedTask;
     }

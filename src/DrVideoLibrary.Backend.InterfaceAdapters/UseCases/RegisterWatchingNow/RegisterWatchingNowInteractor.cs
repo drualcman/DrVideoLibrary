@@ -14,13 +14,13 @@ internal class RegisterWatchingNowInteractor : IRegisterWatchingNowInputPort
         Logger = logger;
     }
 
-    public async Task Handle(WatchingNowDto data)
+    public async Task Handle(WatchingNowDto data, ILogger logger)
     {
         Logger.LogInformation($"RegisterWatchingNowInteractor.Handle #{data.MovieId}");
         await Repository.RegisterWatchingNow(data);
         await EventHub.Rise(new SendNotificationSubscription(
             $"Comence a las {data.Start} a ver una peli!", 
             data.MovieId, 
-            ApplicationBusinessRules.ValueObjects.SendNotificationType.WATCHING));
+            ApplicationBusinessRules.ValueObjects.SendNotificationType.WATCHING), logger);
     }
 }

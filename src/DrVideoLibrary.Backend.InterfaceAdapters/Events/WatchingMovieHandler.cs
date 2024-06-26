@@ -3,22 +3,20 @@ internal class WatchingMovieHandler : IEventHandler<SendNotificationSubscription
 {
     readonly INotificationService NotificationService;
     readonly IUrlProvider UrlProvider;
-    readonly ILogger<WatchingMovieHandler> Logger;
 
     public WatchingMovieHandler(INotificationService notificationService, 
-        IUrlProvider urlProvider, ILogger<WatchingMovieHandler> logger)
+        IUrlProvider urlProvider)
     {
         NotificationService = notificationService;
         UrlProvider = urlProvider;
-        Logger = logger;
     }
 
-    public async Task Handle(SendNotificationSubscription data)
+    public async Task Handle(SendNotificationSubscription data, ILogger logger)
     {
-        Logger.LogInformation($"WatchingMovieHandler Event Rise type {data.NotificationType}");
+        logger.LogInformation($"WatchingMovieHandler Event Rise type {data.NotificationType}");
         if (data.NotificationType == ApplicationBusinessRules.ValueObjects.SendNotificationType.WATCHING)
         {
-            Logger.LogInformation("WatchingMovieHandler Event Rise WATCHING");
+            logger.LogInformation("WatchingMovieHandler Event Rise WATCHING");
             await NotificationService.SendNotificationAsync(data.NotificationType, data.Message, UrlProvider.GetUrl("watching"));
         }
     }

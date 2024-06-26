@@ -45,7 +45,7 @@ namespace DrVideoLibrary.Api
             try
             {
                 WatchingNowDto data = await HttpRequestHelper.GetRequestedModel<WatchingNowDto>(req);
-                await RegisterController.RegisterWatchingNow(data);
+                await RegisterController.RegisterWatchingNow(data, log);
                 return new OkResult();
             }
             catch (Exception ex)

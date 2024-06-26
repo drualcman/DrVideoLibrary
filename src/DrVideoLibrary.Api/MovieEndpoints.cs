@@ -41,7 +41,7 @@ namespace DrVideoLibrary.Api
             try
             {
                 Movie data = await HttpRequestHelper.GetRequestedModel<Movie>(req);
-                await AddMovieController.AddMovie(data);
+                await AddMovieController.AddMovie(data, log);
                 return new OkResult();
             }
             catch (Exception ex)
