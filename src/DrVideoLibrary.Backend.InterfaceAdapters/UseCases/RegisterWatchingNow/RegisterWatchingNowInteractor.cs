@@ -3,16 +3,20 @@ internal class RegisterWatchingNowInteractor : IRegisterWatchingNowInputPort
 {
     readonly IMoviesRepository Repository;
     readonly IEventHub<SendNotificationSubscription> EventHub;
+    readonly ILogger<RegisterWatchingNowInteractor> Logger;
 
     public RegisterWatchingNowInteractor(IMoviesRepository repository,
-        IEventHub<SendNotificationSubscription> eventHub)
+        IEventHub<SendNotificationSubscription> eventHub,
+        ILogger<RegisterWatchingNowInteractor> logger)
     {
         Repository = repository;
         EventHub = eventHub;
+        Logger = logger;
     }
 
     public async Task Handle(WatchingNowDto data)
     {
+        Logger.LogInformation($"RegisterWatchingNowInteractor.Handle #{data.MovieId}")
         await Repository.RegisterWatchingNow(data);
         EventHub.Rise(new SendNotificationSubscription(
             $"Comence a las {data.Start} a ver una peli!", 

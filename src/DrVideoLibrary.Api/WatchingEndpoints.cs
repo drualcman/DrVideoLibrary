@@ -21,7 +21,6 @@ namespace DrVideoLibrary.Api
             ILogger log)
         {
             log.LogInformation("Get actual movie watching");
-            Log.LogInformation("Get actual movie watching injected logger");
 
             try
             {
@@ -40,6 +39,7 @@ namespace DrVideoLibrary.Api
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "watching")] HttpRequest req,
             ILogger log)
         {
+            Log.LogInformation("Register what movie is watching right now from constructor");
             log.LogInformation("Register what movie is watching right now");
 
             try
