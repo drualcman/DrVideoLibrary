@@ -1,4 +1,6 @@
-﻿namespace DrVideoLibrary.Backend.PushNotifications;
+﻿using Microsoft.Extensions.Logging;
+
+namespace DrVideoLibrary.Backend.PushNotifications;
 internal class NotificationService : INotificationService
 {
     readonly NotificationOptions Options;
@@ -10,22 +12,24 @@ internal class NotificationService : INotificationService
         Repository = repository;
     }
 
-    public async Task SendNotificationAsync(SendNotificationType type, string message, string link)
+    public async Task SendNotificationAsync(SendNotificationType type, string message, string link, ILogger logger)
     {
         IEnumerable<NotificationSubscription> subscriptions = await Repository.GetSubscriptions();
+        logger.LogInformation($"SendNotificationAsync to {subscriptions?.Count()}");
         if (subscriptions is not null && subscriptions.Any())
         {
             List<Task> tasks = new List<Task>();
             foreach (NotificationSubscription subscription in subscriptions)
             {
-                tasks.Add(SendNotification(subscription, type, message, link));
+                tasks.Add(SendNotification(subscription, type, message, link, logger));
             }
             await Task.WhenAll(tasks);
         }
     }
 
     private async Task SendNotification(
-        NotificationSubscription subscription, SendNotificationType type, string message, string link)
+        NotificationSubscription subscription, SendNotificationType type, string message, string link,
+        ILogger logger)
     {
         using WebPushClient client = new WebPushClient();
         VapidDetails vapidDetails = new VapidDetails($"mailto:{Options.NotificationsEmail}", Options.NotificationsPublicKey, Options.NotificationsPrivateKey);
@@ -40,8 +44,9 @@ internal class NotificationService : INotificationService
             });
             await client.SendNotificationAsync(pushSubscription, payLoad, vapidDetails);
         }
-        catch
+        catch(Exception ex)
         {
+            logger.LogError(ex, $"Can't send {message}");
             await Repository.DeleteSubscription(subscription.UserId, subscription.Auth);
         }
     }

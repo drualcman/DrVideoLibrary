@@ -27,7 +27,7 @@ internal class AddMovieInteractor : IAddMovieInputPort
                 data.Cover = filename;
             }
             await moviesRepository.AddMovie(data);
-            await EventHub.Rise(new SendNotificationSubscription(
+            EventHub.Rise(new SendNotificationSubscription(
                 $"Tengo una peli nueva!",
                 data.Id,
                 ApplicationBusinessRules.ValueObjects.SendNotificationType.CATALOG), logger);

@@ -17,7 +17,7 @@ internal class WatchingMovieHandler : IEventHandler<SendNotificationSubscription
         if (data.NotificationType == ApplicationBusinessRules.ValueObjects.SendNotificationType.WATCHING)
         {
             logger.LogInformation("WatchingMovieHandler Event Rise WATCHING");
-            await NotificationService.SendNotificationAsync(data.NotificationType, data.Message, UrlProvider.GetUrl("watching"));
+            await NotificationService.SendNotificationAsync(data.NotificationType, data.Message, UrlProvider.GetUrl("watching"), logger);
         }
     }
 }
