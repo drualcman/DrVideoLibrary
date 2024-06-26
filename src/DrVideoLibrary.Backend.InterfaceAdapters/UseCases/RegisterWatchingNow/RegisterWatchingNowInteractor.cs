@@ -1,11 +1,11 @@
-﻿
-namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.RegisterWatchingNow;
+﻿namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.RegisterWatchingNow;
 internal class RegisterWatchingNowInteractor : IRegisterWatchingNowInputPort
 {
     readonly IMoviesRepository Repository;
     readonly IEventHub<SendNotificationSubscription> EventHub;
 
-    public RegisterWatchingNowInteractor(IMoviesRepository repository, IEventHub<SendNotificationSubscription> eventHub)
+    public RegisterWatchingNowInteractor(IMoviesRepository repository,
+        IEventHub<SendNotificationSubscription> eventHub)
     {
         Repository = repository;
         EventHub = eventHub;
