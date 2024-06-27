@@ -14,6 +14,8 @@ internal class GetMovieByIdInteractor : IGetMovieByIdInputPort
     public async Task Handle(string id)
     {
         Movie data = await Repository.GetMovieById(id);
+        int totalViews = await Repository.GetTotalViews(id);
+        data.TotalViews = totalViews;
         await Output.Handle(data);  
     }
 }
