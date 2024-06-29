@@ -4,13 +4,23 @@
 
 @if (ViewModel.IsReady)
 {
-    <h1 class="title">
-        <span class="columns">
-            <span class="column"><SearchComponent OnSearch=ViewModel.SeachMovie OnReset=ViewModel.GetList /></span>
-            <span class="column has-text-centered"><span>@Localizer.GetString(nameof(ResourceIndex.PageTitle))</span></span>
-            <span class="column has-text-right"><span>#@ViewModel.TotalMovies</span></span>
-        </span>
-    </h1>
+    <div class="columns">
+        <div class="column is-one-fifth">
+            <div class="search">
+                <SearchComponent OnSearch=ViewModel.SeachMovie OnReset=ViewModel.GetList />
+            </div>
+        </div>
+        <div class="column">
+            <div class="title-wrapper">
+                <div class="columns">
+                    <div class="column has-text-centered">
+                        <h1 class="title">@Localizer.GetString(nameof(ResourceIndex.PageTitle))</h1>
+                    </div>
+                    <div class="column has-text-right"><h2 class="subtitle">#@ViewModel.TotalMovies</h2></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="pagination-container">
         <Paginator Handler=ViewModel.Paginator OnPageChange=ToPage />
     </div>
@@ -30,7 +40,7 @@
                     <div class="tags has-addons" @onclick="() => ViewModel.FilterbyCategory(category.Name)">
                         <span class="tag is-info">@category.Count</span>
                         <span class="tag @(ViewModel.IsSelectedCategory(category.Name) ? "is-success":"is-dark")">@category.Name</span>
-                    </div>             
+                    </div>
                 }
             </div>
         </div>
