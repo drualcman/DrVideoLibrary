@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Backend.Repo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Cosmos.DbContext", "src\DrVideoLibrary.Cosmos.DbContext\DrVideoLibrary.Cosmos.DbContext.csproj", "{61D25808-2C45-4668-A005-B2B127A1B85D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrVideoLibrary.Backend.PushNotifications", "src\DrVideoLibrary.Backend.PushNotifications\DrVideoLibrary.Backend.PushNotifications.csproj", "{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Backend.PushNotifications", "src\DrVideoLibrary.Backend.PushNotifications\DrVideoLibrary.Backend.PushNotifications.csproj", "{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,4 +9,7 @@ builder.Services.AddServices(
     pushNotificationOptions: builder.Configuration.GetSection(PushNotificationOptions.SectionKey).Bind);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
-await builder.Build().RunAsync();
+
+var host = builder.Build();
+await host.SetDefaultCulture();
+await host.RunAsync();

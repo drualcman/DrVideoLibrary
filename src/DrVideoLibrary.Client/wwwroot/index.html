@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="css/mago.css" />
     <link href="_content/DrVideoLibrary.Razor/css/app.css" rel="stylesheet" />
     <link href="DrVideoLibrary.Client.styles.css" rel="stylesheet" />
+    <script>
+        window.blazorCulture = {
+            get: () => window.localStorage['BlazorCulture'],
+            set: (value) => window.localStorage['BlazorCulture'] = value
+        };
+    </script>
 </head>
 
 <body>

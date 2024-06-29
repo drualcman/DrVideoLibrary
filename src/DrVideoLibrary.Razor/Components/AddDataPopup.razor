@@ -1,0 +1,28 @@
+﻿<button class="button" type="button" @onclick="() => IsShowing = true">
+    <span class="icon">
+        <i class="fa-solid fa-circle-plus"></i>
+    </span>
+</button>
+
+<div class="modal @(IsShowing ? "is-active":"")">
+    <div class="modal-background" @onclick=Cancel></div>
+    <div class="modal-card">
+        <section class="modal-card-body">
+            <div class="field">
+                <div class="control">
+                    <input @bind=ToAdd class="input" />
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <div class="buttons">
+                <button class="button is-success" type="button" @onclick=Add>
+                    <span class="icon"><i class="fa-solid fa-floppy-disk"></i></span>
+                </button>
+                <button class="button" type="button" @onclick=Cancel>
+                    <span class="icon"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>

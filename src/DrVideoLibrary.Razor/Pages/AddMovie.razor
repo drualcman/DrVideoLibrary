@@ -47,6 +47,7 @@
                 <div class="box">
                     <div class="field">
                         <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.CategoriesLabel))</label>
+                        <AddDataPopup OnAdd=Movie.Categories.Add />
                         <div class="control">
                             <div class="tags">
                                 @foreach (string category in Movie.Categories)
@@ -96,7 +97,8 @@
 
         <div class="box">
             <div class="field">
-                <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.ActorsLabel))</label>
+                <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.ActorsLabel))</label>    
+                <AddDataPopup OnAdd=Movie.Actors.Add />
                 <div class="control">
                     <div class="tags">
                         @foreach (string actor in Movie.Actors)
@@ -115,6 +117,7 @@
         <div class="box">
             <div class="field">
                 <label class="label">@Localizer.GetString(nameof(ResourceAddMovie.DirectorsLabel))</label>
+                <AddDataPopup OnAdd=Movie.Directors.Add />
                 <div class="control">
                     <div class="tags">
                         @foreach (string director in Movie.Directors)

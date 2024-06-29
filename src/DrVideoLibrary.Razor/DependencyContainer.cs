@@ -32,12 +32,27 @@ public static partial class DependencyContainer
         services.AddHttpClient<INotificationClient, NotificationsClient>();
         services.AddHttpClient<ISearchMovieService<SearchMovieSpanishService>, SearchMovieSpanishService>();
         services.AddHttpClient<ISearchMovieService<SearchMovieEnglishService>, SearchMovieEnglishService>();
-        services.AddLocalization();
         services.AddScoped<IndexViewModel>();
         services.AddScoped<WatchlistViewModel>();
-        CultureInfo culture = new CultureInfo("es");
+
+        services.AddLocalization();
+        return services;
+    }
+
+    public async static Task SetDefaultCulture(this WebAssemblyHost host)
+    {
+        const string defaultCulture = "es-ES";
+
+        IJSRuntime js = host.Services.GetRequiredService<IJSRuntime>();
+        string result = await js.InvokeAsync<string>("blazorCulture.get");
+        CultureInfo culture = CultureInfo.GetCultureInfo(defaultCulture);
+
+        if (result == null)
+            await js.InvokeVoidAsync("blazorCulture.set", defaultCulture);
+        else
+            culture = new CultureInfo(result);
+
         CultureInfo.DefaultThreadCurrentCulture = culture;
         CultureInfo.DefaultThreadCurrentUICulture = culture;
-        return services;
     }
 }
