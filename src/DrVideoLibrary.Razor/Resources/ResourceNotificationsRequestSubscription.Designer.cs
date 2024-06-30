@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recibir notificaciones.
+        ///   Looks up a localized string similar to Receive notifications.
         /// </summary>
         internal static string ButtonTitleText {
             get {

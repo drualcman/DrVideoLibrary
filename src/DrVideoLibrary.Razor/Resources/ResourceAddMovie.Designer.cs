@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actores.
+        ///   Looks up a localized string similar to Actors.
         /// </summary>
         internal static string ActorsLabel {
             get {
@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agregar nuevo.
+        ///   Looks up a localized string similar to Add new.
         /// </summary>
         internal static string ButtonAddLabel {
             get {
@@ -79,7 +79,16 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agregar a la videoteca.
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ButtonCancelLabel {
+            get {
+                return ResourceManager.GetString("ButtonCancelLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string ButtonSaveLabel {
             get {
@@ -88,7 +97,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Categorías.
+        ///   Looks up a localized string similar to Categories.
         /// </summary>
         internal static string CategoriesLabel {
             get {
@@ -97,7 +106,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Url orignal de la imágen.
+        ///   Looks up a localized string similar to Cover URL.
         /// </summary>
         internal static string CoverUrlLabel {
             get {
@@ -106,7 +115,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sinopsis de la película.
+        ///   Looks up a localized string similar to Sinopsys.
         /// </summary>
         internal static string DescriptionLabel {
             get {
@@ -115,7 +124,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Directores.
+        ///   Looks up a localized string similar to Directors.
         /// </summary>
         internal static string DirectorsLabel {
             get {
@@ -124,7 +133,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duración en minutos.
+        ///   Looks up a localized string similar to Duration in minutes.
         /// </summary>
         internal static string DurationLabel {
             get {
@@ -133,7 +142,16 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calificación del 1 al 10.
+        ///   Looks up a localized string similar to Add movie.
+        /// </summary>
+        internal static string PageTitle {
+            get {
+                return ResourceManager.GetString("PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate 1 to 10.
         /// </summary>
         internal static string RatingLabel {
             get {
@@ -142,7 +160,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Año de lanzamiento.
+        ///   Looks up a localized string similar to Year.
         /// </summary>
         internal static string ReleasedLabel {
             get {
@@ -151,16 +169,16 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Título en español.
+        ///   Looks up a localized string similar to Spanish title.
         /// </summary>
-        internal static string TitileLabel {
+        internal static string TitleLabel {
             get {
-                return ResourceManager.GetString("TitileLabel", resourceCulture);
+                return ResourceManager.GetString("TitleLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Título original.
+        ///   Looks up a localized string similar to Original title.
         /// </summary>
         internal static string TitleOriginal {
             get {

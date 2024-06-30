@@ -28,19 +28,19 @@
 		  <DependentUpon>ResourceAddMovie.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceApp.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ResourceApp.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceApp.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceCustomAuthorizationMessageHandler.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ResourceCustomAuthorizationMessageHandler.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceCustomAuthorizationMessageHandler.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceFooter.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ResourceFooter.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceFooter.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceIndex.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -48,9 +48,9 @@
 			<DependentUpon>ResourceIndex.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceListCard.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ResourceListCard.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceListCard.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceMovieDetailComponent.Designer.cs">
 		  <DesignTime>True</DesignTime>
@@ -73,23 +73,26 @@
 		  <DependentUpon>ResourceSearchMovieComponent.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceTimeSpanResult.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ResourceTimeSpanResult.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceTimeSpanResult.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceWatchedCardComponent.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ResourceWatchedCardComponent.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceWatchedCardComponent.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\ResourceWatchlist.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ResourceWatchlist.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceWatchlist.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Update="Resources\ResourceAddMovie.es.resx">
+		  <SubType>Designer</SubType>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceAddMovie.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ResourceAddMovie.Designer.cs</LastGenOutput>
@@ -99,7 +102,7 @@
 			<LastGenOutput>ResourceApp.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceCustomAuthorizationMessageHandler.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
+			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>ResourceCustomAuthorizationMessageHandler.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceFooter.resx">
@@ -126,12 +129,15 @@
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ResourceRelativeMoviesComponent.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceSearchMovieComponent.es.resx">
+		  <SubType>Designer</SubType>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceSearchMovieComponent.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ResourceSearchMovieComponent.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceTimeSpanResult.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
+			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>ResourceTimeSpanResult.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceWatchedCardComponent.resx">

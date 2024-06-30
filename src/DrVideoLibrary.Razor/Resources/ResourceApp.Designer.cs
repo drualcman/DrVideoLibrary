@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No autorizado..
+        ///   Looks up a localized string similar to Not authorize..
         /// </summary>
         internal static string Error401Message {
             get {
@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El contenido que buscas no se ha encontrado..
+        ///   Looks up a localized string similar to Content not found..
         /// </summary>
         internal static string Error404Message {
             get {

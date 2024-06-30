@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actores:.
+        ///   Looks up a localized string similar to Actors:.
         /// </summary>
         internal static string Actors {
             get {
@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Directores:.
+        ///   Looks up a localized string similar to Directors:.
         /// </summary>
         internal static string Directors {
             get {
@@ -79,7 +79,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Título original:.
+        ///   Looks up a localized string similar to Original Title:.
         /// </summary>
         internal static string OriginalTtileLabel {
             get {
@@ -88,7 +88,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Valoración.
+        ///   Looks up a localized string similar to Rate:.
         /// </summary>
         internal static string Rating {
             get {
@@ -97,7 +97,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Relacionadas.
+        ///   Looks up a localized string similar to Relations.
         /// </summary>
         internal static string Relatives {
             get {
@@ -106,7 +106,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lanzamiento.
+        ///   Looks up a localized string similar to Year.
         /// </summary>
         internal static string Released {
             get {
@@ -115,7 +115,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vista.
+        ///   Looks up a localized string similar to Views.
         /// </summary>
         internal static string TotalViews {
             get {

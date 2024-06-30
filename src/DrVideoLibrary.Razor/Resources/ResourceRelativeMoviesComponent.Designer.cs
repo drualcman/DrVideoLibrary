@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No se han encontrado películas relacionadas!.
+        ///   Looks up a localized string similar to Not found related movies..
         /// </summary>
         internal static string NotFound {
             get {
@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Buscar por:.
+        ///   Looks up a localized string similar to Search by:.
         /// </summary>
         internal static string SearchTitle {
             get {

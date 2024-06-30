@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Error401Message" xml:space="preserve">
-    <value>Not authorize.</value>
+  <data name="ListLabel" xml:space="preserve">
+    <value>Tiempo total visto</value>
   </data>
-  <data name="Error404Message" xml:space="preserve">
-    <value>Content not found.</value>
+  <data name="TitleLabel" xml:space="preserve">
+    <value>Explora las películas recientemente vistas</value>
+  </data>
+  <data name="TotalMinutesTemplateLabel" xml:space="preserve">
+    <value>{0:N} mins</value>
   </data>
 </root>

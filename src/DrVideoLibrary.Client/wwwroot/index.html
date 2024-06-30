@@ -16,6 +16,10 @@
             get: () => window.localStorage['BlazorCulture'],
             set: (value) => window.localStorage['BlazorCulture'] = value
         };
+        if (!window.blazorCulture.get()) {
+            const userCulture = navigator.language || navigator.userLanguage;
+            window.blazorCulture.set(userCulture);
+        }
     </script>
 </head>
 

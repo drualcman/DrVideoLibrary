@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agregar.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string AddMoview {
             get {
@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ver todo.
+        ///   Looks up a localized string similar to Movie list.
         /// </summary>
         internal static string AllMoviesLabel {
             get {
@@ -79,7 +79,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Viendo.
+        ///   Looks up a localized string similar to Watching.
         /// </summary>
         internal static string Watching {
             get {
@@ -88,7 +88,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Visto.
+        ///   Looks up a localized string similar to Watch list.
         /// </summary>
         internal static string Watchlist {
             get {

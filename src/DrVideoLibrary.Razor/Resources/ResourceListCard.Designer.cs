@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ver detalles.
+        ///   Looks up a localized string similar to Details.
         /// </summary>
         internal static string DetailsLabel {
             get {
@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lanzamiento:.
+        ///   Looks up a localized string similar to Year:.
         /// </summary>
         internal static string ReleaseYearLabel {
             get {

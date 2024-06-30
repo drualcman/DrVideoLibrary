@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ListLabel" xml:space="preserve">
-    <value>Tiempo total visto</value>
+    <value>Total time watched</value>
   </data>
   <data name="TitleLabel" xml:space="preserve">
-    <value>Explora las películas recientemente vistas</value>
+    <value>Have a look into all the movies I watched</value>
   </data>
   <data name="TotalMinutesTemplateLabel" xml:space="preserve">
     <value>{0:N} mins</value>

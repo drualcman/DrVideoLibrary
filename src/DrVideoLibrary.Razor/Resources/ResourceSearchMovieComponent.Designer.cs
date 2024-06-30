@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Buscar.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string ButtonLabel {
             get {
@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error al obtener los datos de la pelicula..
+        ///   Looks up a localized string similar to Exception. Please try again..
         /// </summary>
         internal static string OnMovieSelectErrorMessage {
             get {
@@ -79,7 +79,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No se encuentra nada. Prueba con el título original..
+        ///   Looks up a localized string similar to Movie not found. Try from original title..
         /// </summary>
         internal static string SearchMoviesErrorMessage {
             get {
@@ -88,7 +88,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ingresa un título por favor..
+        ///   Looks up a localized string similar to Title are required.
         /// </summary>
         internal static string SearchTitleErrorEmptyMessage {
             get {
@@ -97,7 +97,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Título:.
+        ///   Looks up a localized string similar to Title:.
         /// </summary>
         internal static string TitleLabel {
             get {
@@ -106,7 +106,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Título de la película a buscar....
+        ///   Looks up a localized string similar to Search by title....
         /// </summary>
         internal static string TitlePlaceHolder {
             get {

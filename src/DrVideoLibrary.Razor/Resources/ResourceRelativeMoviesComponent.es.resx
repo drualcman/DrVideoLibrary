@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Error401Message" xml:space="preserve">
-    <value>Not authorize.</value>
+  <data name="NotFound" xml:space="preserve">
+    <value>No se han encontrado películas relacionadas!</value>
   </data>
-  <data name="Error404Message" xml:space="preserve">
-    <value>Content not found.</value>
+  <data name="SearchTitle" xml:space="preserve">
+    <value>Buscar por:</value>
   </data>
 </root>

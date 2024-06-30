@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duración:.
+        ///   Looks up a localized string similar to Duration:.
         /// </summary>
         internal static string Duration {
             get {
@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Valoración:.
+        ///   Looks up a localized string similar to Rate:.
         /// </summary>
         internal static string Rate {
             get {
@@ -79,7 +79,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vista:.
+        ///   Looks up a localized string similar to Views:.
         /// </summary>
         internal static string Times {
             get {

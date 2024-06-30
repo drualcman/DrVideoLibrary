@@ -22,7 +22,7 @@ namespace DrVideoLibrary.Razor.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResourceTimeSpanResult {
+    public class ResourceTimeSpanResult {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DrVideoLibrary.Razor.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.ResourceTimeSpanResult", typeof(ResourceTimeSpanResult).Assembly);
@@ -51,7 +51,7 @@ namespace DrVideoLibrary.Razor.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,45 +61,45 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Dias.
+        ///   Looks up a localized string similar to {0} Days.
         /// </summary>
-        internal static string Days {
+        public static string Days {
             get {
                 return ResourceManager.GetString("Days", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Horas.
+        ///   Looks up a localized string similar to {0} Hours.
         /// </summary>
-        internal static string Hours {
+        public static string Hours {
             get {
                 return ResourceManager.GetString("Hours", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Minutos.
+        ///   Looks up a localized string similar to {0} Mins.
         /// </summary>
-        internal static string Minutes {
+        public static string Minutes {
             get {
                 return ResourceManager.GetString("Minutes", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Meses.
+        ///   Looks up a localized string similar to {0} Months.
         /// </summary>
-        internal static string Months {
+        public static string Months {
             get {
                 return ResourceManager.GetString("Months", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Años.
+        ///   Looks up a localized string similar to {0} Years.
         /// </summary>
-        internal static string Years {
+        public static string Years {
             get {
                 return ResourceManager.GetString("Years", resourceCulture);
             }

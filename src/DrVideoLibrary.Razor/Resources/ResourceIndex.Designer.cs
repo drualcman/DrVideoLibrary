@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total películas en mi colección.
+        ///   Looks up a localized string similar to My movie collection list.
         /// </summary>
         internal static string PageTitle {
             get {
