@@ -70,6 +70,33 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actors.
+        /// </summary>
+        internal static string RelativeTypeACTOR {
+            get {
+                return ResourceManager.GetString("RelativeTypeACTOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        internal static string RelativeTypeCATEGORY {
+            get {
+                return ResourceManager.GetString("RelativeTypeCATEGORY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directors.
+        /// </summary>
+        internal static string RelativeTypeDIRECTOR {
+            get {
+                return ResourceManager.GetString("RelativeTypeDIRECTOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search by:.
         /// </summary>
         internal static string SearchTitle {

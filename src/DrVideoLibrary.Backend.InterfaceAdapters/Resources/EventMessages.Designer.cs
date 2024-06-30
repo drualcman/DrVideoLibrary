@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Backend.InterfaceAdapters.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tengo una peli nueva! {0}.
+        ///   Looks up a localized string similar to I have a new movie! {0}.
         /// </summary>
         internal static string NewMovieTemplate {
             get {
@@ -70,7 +70,7 @@ namespace DrVideoLibrary.Backend.InterfaceAdapters.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comencé a las {0} a ver una peli!.
+        ///   Looks up a localized string similar to I start to watch at {0} a movie!.
         /// </summary>
         internal static string WatchingNowTemplate {
             get {

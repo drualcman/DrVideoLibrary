@@ -120,6 +120,15 @@
   <data name="NotFound" xml:space="preserve">
     <value>Not found related movies.</value>
   </data>
+  <data name="RelativeTypeACTOR" xml:space="preserve">
+    <value>Actors</value>
+  </data>
+  <data name="RelativeTypeCATEGORY" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="RelativeTypeDIRECTOR" xml:space="preserve">
+    <value>Directors</value>
+  </data>
   <data name="SearchTitle" xml:space="preserve">
     <value>Search by:</value>
   </data>

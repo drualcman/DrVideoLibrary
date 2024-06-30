@@ -120,6 +120,15 @@
   <data name="NotFound" xml:space="preserve">
     <value>No se han encontrado películas relacionadas!</value>
   </data>
+  <data name="RelativeTypeACTOR" xml:space="preserve">
+    <value>Actores</value>
+  </data>
+  <data name="RelativeTypeCATEGORY" xml:space="preserve">
+    <value>Categorias</value>
+  </data>
+  <data name="RelativeTypeDIRECTOR" xml:space="preserve">
+    <value>Directores</value>
+  </data>
   <data name="SearchTitle" xml:space="preserve">
     <value>Buscar por:</value>
   </data>

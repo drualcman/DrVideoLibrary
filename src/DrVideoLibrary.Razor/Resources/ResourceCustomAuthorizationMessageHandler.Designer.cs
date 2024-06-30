@@ -61,7 +61,7 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No está autorizado a acceder a este recurso..
+        ///   Looks up a localized string similar to Not authorized.
         /// </summary>
         public static string UnauthorizedAccessExceptionMessage {
             get {

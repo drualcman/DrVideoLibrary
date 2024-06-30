@@ -13,7 +13,7 @@
                 <img src="@relative.Cover" alt="@relative.Title" class="relative-image" />
                 <p class="relative-title">@relative.Title</p>
                 <div class="match-results">
-                    <h4>@relative.Data.RelativeOf</h4>
+                    <h4>@(Localizer.GetString($"RelativeType{relative.Data.RelativeOf.ToString().ToUpper()}"))</h4>
                     <div class="tags is-flex is-justify-content-center">
                         @foreach (string match in relative.Data.Data)
                         {
