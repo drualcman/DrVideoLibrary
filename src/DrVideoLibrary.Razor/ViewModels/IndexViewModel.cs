@@ -29,9 +29,9 @@ public class IndexViewModel : PaginatorViewModel<ListCard>
         IsReady = true;
     }
 
-    public async Task StartPlayMovie(string movieId)
+    public async Task StartPlayMovie(string movieId, string lang)
     {
-        await Client.RegisterWatchingNowAsync(movieId);
+        await Client.RegisterWatchingNowAsync(movieId, lang);
     }
 
     public async Task SeachMovie(string movie)

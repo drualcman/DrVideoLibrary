@@ -52,12 +52,13 @@ public class ApiClient
         return await response.Content.ReadFromJsonAsync<WatchingNow>();
     }
 
-    public async Task RegisterWatchingNowAsync(string id)
+    public async Task RegisterWatchingNowAsync(string id, string lang)
     {
         WatchingNowDto data = new WatchingNowDto
         {
             MovieId = id,
             Start = DateTime.UtcNow,
+            Lang = lang
         };
         using HttpResponseMessage response = await Client.PostAsJsonAsync($"{Options.Watching}", data);
         response.EnsureSuccessStatusCode();
