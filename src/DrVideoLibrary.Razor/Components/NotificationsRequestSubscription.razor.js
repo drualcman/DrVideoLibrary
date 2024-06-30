@@ -10,21 +10,16 @@
         const registration = await navigator.serviceWorker.register(adjustedPath, { scope: swScope });
         console.info('Notification Service worker registered successfully with scope:', swScope);
 
-        navigator.serviceWorker.ready.then(async () =>
-        {
-            console.info('Notification Service Worker is ready');
-            const permission = await Notification.requestPermission();
-            if (permission !== "granted") {
-                console.warn('Notification permission not granted');
-                return null;
-            }
+        await navigator.serviceWorker.ready;
+        console.info('Notification Service Worker is ready');
+        const permission = await Notification.requestPermission();
+        if (permission !== "granted") {
+            console.warn('Notification permission not granted');
+            return null;
+        }
 
-            const subscription = await requestSubscription(registration, applicationServerPublicKey);
-            return subscription;
-        }).error((e) =>
-        {
-            console.warn(e);
-        });
+        const subscription = await requestSubscription(registration, applicationServerPublicKey);
+        return subscription;
     } catch (e) {
         console.error('Error during SW registration or notification subscription:', e);
         return null;
@@ -52,8 +47,6 @@ function hasNotGrandNotifications() {
 }
 
 navigator.serviceWorker.addEventListener('message', function (event) {
-    console.log(11, event);
-    console.log(12, event.data);
     if (event.data.action === 'updateLocalStorage') {
         localStorage.setItem(event.data.key, event.data.value);
     }
