@@ -10,11 +10,13 @@ public class IndexViewModel : PaginatorViewModel<ListCard>
     }
     public int TotalMovies { get; private set; }
     public bool IsReady { get; private set; }
+    public bool IsFiltering { get; private set; }
     public IEnumerable<Category> Categories { get; private set; }
-    public string SelectedCategory {  get; private set; } 
+    public string SelectedCategory { get; private set; }
 
     public async Task GetList()
     {
+        IsFiltering = true;
         IEnumerable<ListCard> movies = await CacheService.GetList();
         TotalMovies = movies.Count();
         InitializePaginator(movies.ToList());
@@ -27,6 +29,7 @@ public class IndexViewModel : PaginatorViewModel<ListCard>
                 Count = grup.Count()
             });
         IsReady = true;
+        IsFiltering = false;
     }
 
     public async Task StartPlayMovie(string movieId, string lang)
@@ -38,10 +41,7 @@ public class IndexViewModel : PaginatorViewModel<ListCard>
     {
         if (!string.IsNullOrEmpty(movie))
         {
-            IEnumerable<ListCard> movies = await CacheService.GetList();
-            movies = movies.Where(x => x.Title.Contains(movie, StringComparison.InvariantCultureIgnoreCase));
-            TotalMovies = movies.Count();
-            InitializePaginator(movies.ToList());
+            await ExecuteFilter(x => x.Title.Contains(movie, StringComparison.InvariantCultureIgnoreCase));
         }
         else await GetList();
     }
@@ -54,11 +54,18 @@ public class IndexViewModel : PaginatorViewModel<ListCard>
         SelectedCategory = category;
         if (!string.IsNullOrEmpty(category))
         {
-            IEnumerable<ListCard> movies = await CacheService.GetList();
-            movies = movies.Where(x => x.Categories.Any(c => c.Equals(category, StringComparison.InvariantCultureIgnoreCase)));
-            TotalMovies = movies.Count();
-            InitializePaginator(movies.ToList());
+            await ExecuteFilter(x => x.Categories.Any(c => c.Equals(category, StringComparison.InvariantCultureIgnoreCase)));
         }
         else await GetList();
+    }
+
+    private async Task ExecuteFilter(Func<ListCard, bool> query)
+    {
+        IsFiltering = true;
+        IEnumerable<ListCard> movies = await CacheService.GetList();
+        movies = movies.Where(query);
+        TotalMovies = movies.Count();
+        InitializePaginator(movies.ToList());
+        IsFiltering = false;
     }
 }

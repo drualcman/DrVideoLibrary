@@ -13,12 +13,12 @@ public class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, IJ
         List<MovieCardModel> cached = await CacheContext.Movies.SelectAsync();
         if (await GetShouldUpdate())
         {
-            UpdateCache();
             cached = null;
         }
         if (cached == null || !cached.Any())
         {
             movies = await Client.GetMovies();
+            UpdateCache();
         }
         else
         {

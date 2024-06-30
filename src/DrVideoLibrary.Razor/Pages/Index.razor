@@ -39,7 +39,7 @@
                 {
                     <div class="tags has-addons" @onclick="() => ViewModel.FilterbyCategory(category.Name)">
                         <span class="tag is-info">@category.Count</span>
-                        <span class="tag @(ViewModel.IsSelectedCategory(category.Name) ? "is-success":"is-dark")">@category.Name</span>
+                        <span class="tag @(ViewModel.IsSelectedCategory(category.Name) ? ViewModel.IsFiltering ? "":"is-success":"is-dark")">@category.Name</span>
                     </div>
                 }
             </div>

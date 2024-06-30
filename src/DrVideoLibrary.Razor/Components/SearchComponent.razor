@@ -10,7 +10,7 @@
         <input class="input" @bind=Text placeholder="Star Wars" />
     </span>
     <span class="control">
-        <button class="button is-info" type="button" @onclick=SearchClick>
+        <button class="button @(IsSearching ? "is-loading":" is-info")" type="button" @onclick=SearchClick>
             <span class="icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </span>
@@ -22,14 +22,19 @@
     [Parameter] public EventCallback OnReset { get; set; }
     [Parameter] public EventCallback<string> OnSearch { get; set; }
     string Text;
+    bool IsSearching;
 
     async Task SearchClick()
     {
+        IsSearching = true;
         await OnSearch.InvokeAsync(Text);
+        IsSearching = false;
     }  
     async Task ResetClick()
     {
+        IsSearching = true;
         Text = string.Empty;
         await OnReset.InvokeAsync();
+        IsSearching = false;
     }
 }
