@@ -28,6 +28,7 @@ public class WatchlistViewModel : PaginatorViewModel<WatchedCard>
 
     public async Task SeachMovie(string movie)
     {
+        IsReady = false;
         if (!string.IsNullOrEmpty(movie))
         {
             await GetWatchList();
@@ -35,6 +36,7 @@ public class WatchlistViewModel : PaginatorViewModel<WatchedCard>
             int totalMinutes = movies.Sum(m => m.Duration);
             TotalTime = TimeSpanResult.FromMinutes(totalMinutes);
             InitializePaginator(movies.ToList());
+            IsReady = true;
         }
         else await GetList();
     }

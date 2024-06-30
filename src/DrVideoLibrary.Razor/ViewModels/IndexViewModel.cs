@@ -39,6 +39,7 @@ public class IndexViewModel : PaginatorViewModel<ListCard>
 
     public async Task SeachMovie(string movie)
     {
+        SelectedCategory = string.Empty;
         if (!string.IsNullOrEmpty(movie))
         {
             await ExecuteFilter(x => x.Title.Contains(movie, StringComparison.InvariantCultureIgnoreCase));
