@@ -1,6 +1,12 @@
 ﻿namespace DrVideoLibrary.Razor.Cache.Services;
 public class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, IJSRuntime JsRuntime)
 {
+    public async Task ResetCache()
+    {
+        await CacheContext.DropDatabaseAsync();
+        await CacheContext.Init();
+    }
+
     public async ValueTask<IEnumerable<ListCard>> GetList()
     {
         IEnumerable<ListCard> movies = [];

@@ -1,42 +1,76 @@
 ﻿@inject IStringLocalizer<ResourceApp> Localizer
+@inject MoviesCacheService CacheService
 <CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(App).Assembly">
-        <Found Context="routeData">
-            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
-                <NotAuthorized>
-                    <div class="container">
-                        @if (context.User.Identity?.IsAuthenticated != true)
-                        {
-                            <RedirectToLogin />
-                        }
-                        else
-                        {
-                            <section class="hero is-fullheight is-warning">
-                                <div class="hero-body">
-                                    <div class="container">
-                                        <h1 class="title is-1">401</h1>
-                                        <h2 class="subtitle is-3">@Localizer.GetString(nameof(ResourceApp.Error401Message))</h2>
-                                    </div>
+    <ErrorBoundary @ref=ErrorWrapper>
+        <ChildContent>
+            <Router AppAssembly="@typeof(App).Assembly">
+                <Found Context="routeData">
+                    <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+                        <NotAuthorized>
+                            <div class="container">
+                                @if (context.User.Identity?.IsAuthenticated != true)
+                                {
+                                    <RedirectToLogin />
+                                }
+                                else
+                                {
+                                    <section class="hero is-fullheight is-warning">
+                                        <div class="hero-body">
+                                            <div class="container">
+                                                <h1 class="title is-1">401</h1>
+                                                <h2 class="subtitle is-3">@Localizer.GetString(nameof(ResourceApp.Error401Message))</h2>
+                                            </div>
+                                        </div>
+                                    </section>
+                                }
+                            </div>
+                        </NotAuthorized>
+                    </AuthorizeRouteView>
+                    <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+                </Found>
+                <NotFound>
+                    <PageTitle>Not found</PageTitle>
+                    <LayoutView Layout="@typeof(MainLayout)">
+                        <section class="hero is-fullheight is-danger">
+                            <div class="hero-body">
+                                <div class="container">
+                                    <h1 class="title is-1">404</h1>
+                                    <h2 class="subtitle is-3">@Localizer.GetString(nameof(ResourceApp.Error404Message))</h2>
                                 </div>
-                            </section>
-                        }
-                    </div>
-                </NotAuthorized>
-            </AuthorizeRouteView>
-            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-        </Found>
-        <NotFound>
-            <PageTitle>Not found</PageTitle>
-            <LayoutView Layout="@typeof(MainLayout)">
+                            </div>
+                        </section>
+                    </LayoutView>
+                </NotFound>
+            </Router>
+        </ChildContent>
+        <ErrorContent>
+            <div class="container">
                 <section class="hero is-fullheight is-danger">
                     <div class="hero-body">
                         <div class="container">
-                            <h1 class="title is-1">404</h1>
-                            <h2 class="subtitle is-3">@Localizer.GetString(nameof(ResourceApp.Error404Message))</h2>
+                            <h1 class="title is-1">500</h1>
+                            <h2 class="subtitle is-3">Error: @context.Message</h2>
+                            <p>Details: @context.InnerException?.Message</p>                                    
+                            <div class="buttons">
+                                <button class="button is-info" type="button" 
+                                @onclick=Restore>
+                                    @Localizer.GetString(nameof(ResourceApp.ButtonRestoreLabel))
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </section>
-            </LayoutView>
-        </NotFound>
-    </Router>
+            </div>
+        </ErrorContent>
+    </ErrorBoundary>
 </CascadingAuthenticationState>
+
+@code{
+    ErrorBoundary ErrorWrapper;
+
+    async Task Restore()
+    {
+        await CacheService.ResetCache();
+        ErrorWrapper.Recover();
+    }
+}

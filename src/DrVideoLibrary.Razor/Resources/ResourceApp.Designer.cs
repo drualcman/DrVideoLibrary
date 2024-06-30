@@ -61,6 +61,15 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restore.
+        /// </summary>
+        internal static string ButtonRestoreLabel {
+            get {
+                return ResourceManager.GetString("ButtonRestoreLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not authorize..
         /// </summary>
         internal static string Error401Message {
