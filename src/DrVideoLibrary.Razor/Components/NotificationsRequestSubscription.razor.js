@@ -46,11 +46,15 @@ function hasNotGrandNotifications() {
     return Notification.permission !== "granted";
 }
 
-navigator.serviceWorker.addEventListener('message', function (event) {
-    if (event.data.action === 'updateLocalStorage') {
-        localStorage.setItem(event.data.key, event.data.value);
-    }
-});
+try {
+    navigator.serviceWorker.addEventListener('message', function (event) {
+        if (event.data.action === 'updateLocalStorage') {
+            localStorage.setItem(event.data.key, event.data.value);
+        }
+    });
+} catch (e) {
+    console.warn(e);
+}
 
 export { setupAndSubscribe, getFingerPrint, hasNotGrandNotifications }
 
