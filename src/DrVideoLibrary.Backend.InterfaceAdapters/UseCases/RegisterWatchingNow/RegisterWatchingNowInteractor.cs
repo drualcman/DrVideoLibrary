@@ -1,21 +1,36 @@
-﻿namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.RegisterWatchingNow;
+﻿using System.Globalization;
+
+namespace DrVideoLibrary.Backend.InterfaceAdapters.UseCases.RegisterWatchingNow;
 internal class RegisterWatchingNowInteractor : IRegisterWatchingNowInputPort
 {
     readonly IMoviesRepository Repository;
     readonly IEventHub<SendNotificationSubscription> EventHub;
+    readonly IStringLocalizer<EventMessages> Localizer;
 
     public RegisterWatchingNowInteractor(IMoviesRepository repository,
-        IEventHub<SendNotificationSubscription> eventHub)
+        IEventHub<SendNotificationSubscription> eventHub,
+        IStringLocalizer<EventMessages> localizer)
     {
         Repository = repository;
         EventHub = eventHub;
+        Localizer = localizer;
     }
 
     public async Task Handle(WatchingNowDto data, ILogger logger)
     {
         await Repository.RegisterWatchingNow(data);
+        if (!string.IsNullOrEmpty(data.Lang))
+        {
+            CultureInfo.CurrentCulture = new CultureInfo(data.Lang);
+            CultureInfo.CurrentUICulture = new CultureInfo(data.Lang);
+        }
+        else
+        {
+            CultureInfo.CurrentCulture = new CultureInfo(ResourcesOptions.DefaultLang);
+            CultureInfo.CurrentUICulture = new CultureInfo(ResourcesOptions.DefaultLang);
+        }
         EventHub.Rise(new SendNotificationSubscription(
-            $"Comencé a las {data.Start} a ver una peli!", 
+            string.Format(Localizer[nameof(EventMessages.WatchingNowTemplate)], data.Start), 
             data.MovieId, 
             ApplicationBusinessRules.ValueObjects.SendNotificationType.WATCHING), logger);
     }

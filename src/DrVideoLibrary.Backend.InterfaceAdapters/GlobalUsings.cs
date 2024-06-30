@@ -25,3 +25,5 @@ global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.NotificationSubscribe;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.Events;
 global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetWatchList;global using Microsoft.Extensions.Logging;
+global using DrVideoLibrary.Backend.InterfaceAdapters.Resources;
+global using Microsoft.Extensions.Localization;

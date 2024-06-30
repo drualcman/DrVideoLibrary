@@ -4,6 +4,7 @@ public partial class Index
     [Inject] IndexViewModel ViewModel { get; set; }
     [Inject] NavigationManager Navigation { get; set; }
     [Inject] IStringLocalizer<ResourceIndex> Localizer { get; set; }
+    [Inject] IJSRuntime JSRuntime { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -16,8 +17,9 @@ public partial class Index
     }
 
     public async Task StartPlayMovie(string movieId)
-    {                       
-        await ViewModel.StartPlayMovie(movieId);
+    {
+        string lang = await JSRuntime.InvokeAsync<string>("blazorCulture.get");
+        await ViewModel.StartPlayMovie(movieId, lang);
         Navigation.NavigateTo("watching");
     }
 }

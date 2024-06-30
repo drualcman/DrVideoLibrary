@@ -3,11 +3,14 @@ internal class AddMovieInteractor : IAddMovieInputPort
 {
     readonly IServiceScopeFactory ScopeFactory;
     readonly IEventHub<SendNotificationSubscription> EventHub;
+    readonly IStringLocalizer<EventMessages> Localizer;
 
-    public AddMovieInteractor(IServiceScopeFactory scopeFactory, IEventHub<SendNotificationSubscription> eventHub)
+    public AddMovieInteractor(IServiceScopeFactory scopeFactory, IEventHub<SendNotificationSubscription> eventHub,
+        IStringLocalizer<EventMessages> localizer)
     {
         ScopeFactory = scopeFactory;
         EventHub = eventHub;
+        Localizer = localizer;
     }
 
     public Task AddMovie(Movie data, ILogger logger)
@@ -28,7 +31,7 @@ internal class AddMovieInteractor : IAddMovieInputPort
             }
             await moviesRepository.AddMovie(data);
             EventHub.Rise(new SendNotificationSubscription(
-                $"Tengo una peli nueva!",
+                string.Format(Localizer[nameof(EventMessages.NewMovieTemplate)], data.Title),
                 data.Id,
                 ApplicationBusinessRules.ValueObjects.SendNotificationType.CATALOG), logger);
         });

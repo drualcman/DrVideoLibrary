@@ -9,6 +9,8 @@ public static class DependencyContainer
 {
     public static IServiceCollection AddUseCases(this IServiceCollection services)
     {
+        services.AddLocalization();
+
         services.AddScoped<IEventHandler<SendNotificationSubscription>, AddMovieHandler>();
         services.AddScoped<IEventHandler<SendNotificationSubscription>, CollectionChangeHandler>();
         services.AddScoped<IEventHandler<SendNotificationSubscription>, WatchingMovieHandler>();

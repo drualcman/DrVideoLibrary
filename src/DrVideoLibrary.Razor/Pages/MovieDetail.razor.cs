@@ -3,6 +3,7 @@ public partial class MovieDetail
 {
     [Inject] ApiClient Client { get; set; }
     [Inject] NavigationManager Navigation { get; set; }
+    [Inject] IJSRuntime JSRuntime { get; set; }
     [Parameter] public string Id { get; set; }
     Movie Movie;
 
@@ -18,7 +19,8 @@ public partial class MovieDetail
 
     public async Task StartPlayMovie()
     {
-        await Client.RegisterWatchingNowAsync(Id);
+        string lang =  await JSRuntime.InvokeAsync<string>("blazorCulture.get");
+        await Client.RegisterWatchingNowAsync(Id, lang);
         Navigation.NavigateTo("watching");
     }
 
