@@ -30,3 +30,16 @@
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 1rem;
     }
+
+    .list-wrapper .title-wrapper .columns {
+        margin: 1rem;
+        display: flex;
+        justify-content: space-between;
+    }
+    .list-wrapper .title-wrapper .subtitle {
+        margin: 0;
+    }
+
+    .list-wrapper .search {
+        padding: 1rem;
+    }

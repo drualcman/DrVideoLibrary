@@ -5,12 +5,25 @@
     <div class="column list-wrapper">
         @if (ViewModel.IsReady)
         {
-            <h2 class="subtitle">
-                <SearchComponent OnSearch=ViewModel.SeachMovie OnReset=ViewModel.GetList />
-                <span>@ViewModel.TotalTime.ToString(TimeSpanLocalizer)</span>
-                <span>@Localizer.GetString(nameof(ResourceWatchlist.ListLabel))</span>
-            </h2>
-
+            <div class="columns">
+                <div class="column is-one-fifth">
+                    <div class="search">
+                        <SearchComponent OnSearch=ViewModel.SeachMovie OnReset=ViewModel.GetList />
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="title-wrapper">
+                        <div class="columns">
+                            <div class="column has-text-centered">
+                                <h1 class="title">@Localizer.GetString(nameof(ResourceWatchlist.ListLabel))</h1>
+                            </div>
+                            <div class="column has-text-right">
+                                <h2 class="subtitle">@ViewModel.TotalTime.ToString(TimeSpanLocalizer)</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="pagination-container">
                 <Paginator Handler=ViewModel.Paginator OnPageChange=ToPage />
             </div>
