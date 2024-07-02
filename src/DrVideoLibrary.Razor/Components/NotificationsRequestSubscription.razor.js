@@ -21,7 +21,7 @@
 
             const subscription = await requestSubscription(registration, applicationServerPublicKey);
             return subscription;
-        }).error((e) =>
+        }).catch((e) =>
         {
             console.warn(e);
             return null;
