@@ -18,22 +18,22 @@
             return null;
         }
 
-        try {
-            navigator.serviceWorker.addEventListener('message', function (event) {
-                if (event.data.action === 'updateLocalStorage') {
-                    localStorage.setItem(event.data.key, event.data.value);
-                }
-            });
-        } catch (e) {
-            console.warn(e);
-        }
-
         const subscription = await requestSubscription(registration, applicationServerPublicKey);
         return subscription;
     } catch (e) {
         console.error('Error during SW registration or notification subscription:', e);
         return null;
     }
+}
+
+try {
+    navigator.serviceWorker.addEventListener('message', function (event) {
+        if (event.data.action === 'updateLocalStorage') {
+            localStorage.setItem(event.data.key, event.data.value);
+        }
+    });
+} catch (e) {
+    console.warn(e);
 }
 
 function getFingerPrint() {
@@ -53,7 +53,12 @@ function getFingerPrint() {
 }
 
 function hasNotGrandNotifications() {
-    return Notification.permission !== "granted";
+    try {
+        return Notification.permission !== "granted";
+    } catch (e) {
+        console.warn(e);
+        return false;
+    }
 }
 
 
