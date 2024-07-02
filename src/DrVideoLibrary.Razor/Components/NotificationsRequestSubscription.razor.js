@@ -10,20 +10,17 @@
         const registration = await navigator.serviceWorker.register(adjustedPath, { scope: swScope });
         console.info('Notification Service worker registered successfully with scope:', swScope);
 
-        await navigator.serviceWorker.ready;
+        //await navigator.serviceWorker.ready;
 
-        setTimeout(() =>
-        {
-            console.info('Notification Service Worker is ready');
-            const permission = await Notification.requestPermission();
-            if (permission !== "granted") {
-                console.warn('Notification permission not granted');
-                return null;
-            }
+        console.info('Notification Service Worker is ready');
+        const permission = await Notification.requestPermission();
+        if (permission !== "granted") {
+            console.warn('Notification permission not granted');
+            return null;
+        }
 
-            const subscription = await requestSubscription(registration, applicationServerPublicKey);
-            return subscription;
-        }, 1000)
+        const subscription = await requestSubscription(registration, applicationServerPublicKey);
+        return subscription;
 
 
     } catch (e) {
