@@ -10,7 +10,7 @@
         const registration = await navigator.serviceWorker.register(adjustedPath, { scope: swScope });
         console.info('Notification Service worker registered successfully with scope:', swScope);
 
-        await navigator.serviceWorker.ready.then(async () =>
+        navigator.serviceWorker.ready.then(async () =>
         {
             console.info('Notification Service Worker is ready');
             const permission = await Notification.requestPermission();
