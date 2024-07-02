@@ -5,12 +5,14 @@
     }
 
     try {
-        const swPath = `${swScope}${file}`; 
-        const adjustedPath = swPath.startsWith('/') ? swPath.substring(1) : swPath; 
+        const swPath = `${swScope}${file}`;
+        const adjustedPath = swPath.startsWith('/') ? swPath.substring(1) : swPath;
         const registration = await navigator.serviceWorker.register(adjustedPath, { scope: swScope });
         console.info('Notification Service worker registered successfully with scope:', swScope);
 
-        navigator.serviceWorker.ready.then(async () =>
+        await navigator.serviceWorker.ready;
+
+        setTimeout(() =>
         {
             console.info('Notification Service Worker is ready');
             const permission = await Notification.requestPermission();
@@ -21,11 +23,9 @@
 
             const subscription = await requestSubscription(registration, applicationServerPublicKey);
             return subscription;
-        }).catch((e) =>
-        {
-            console.warn(e);
-            return null;
-        });
+        }, 1000)
+
+
     } catch (e) {
         console.error('Error during SW registration or notification subscription:', e);
         return null;
