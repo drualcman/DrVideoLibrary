@@ -60,7 +60,7 @@ function hasNotGrandNotifications() {
         return Notification.permission !== "granted";
     } catch (e) {
         console.warn(e);
-        return false;
+        return true;
     }
 }
 
