@@ -22,7 +22,7 @@ public partial class SelectLangComponent
     {
         new CultureInfo("en-US"),
         new CultureInfo("es-ES"),
-        new CultureInfo("es-CA"),
+        new CultureInfo("ca-ES"),
         new CultureInfo("de-DE"),
     };
 
