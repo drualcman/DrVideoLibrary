@@ -1,0 +1,22 @@
+﻿<div class="select-container">
+    <div class="custom-select" @onclick="ToggleOptions">
+        <img src="@selectedFlag" alt="Selected Flag">
+    </div>
+</div>
+@if (showOptions)
+{
+    <div class="modal is-active">
+        <div class="modal-background" @onclick="() => showOptions = false"></div>
+        <div class="modal-content">
+            <div class="custom-options">
+                @foreach (var option in options)
+                {
+                    <div @onclick="() => SelectOption(option.Key, option.Value.Flag, option.Value.Language)">
+                        <img src="@option.Value.Flag" alt="@option.Value.Language Flag">
+                        <span>@option.Value.Language</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>         
+}

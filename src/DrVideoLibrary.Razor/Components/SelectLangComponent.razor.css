@@ -1,0 +1,56 @@
+﻿.modal{
+    z-index: 9999;
+}
+.select-container {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar la imagen vertical y horizontalmente */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+    width: 30px; /* Ancho suficiente para la bandera */
+    height: 30px; /* Alto suficiente para la bandera */
+}
+
+    .custom-select img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ajustar la imagen a la caja sin distorsionar */
+        border-radius: 4px;
+    }
+
+.modal-content{
+    display: flex;
+    justify-content: center
+}
+
+.custom-options {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    width: 50%;
+}
+
+    .custom-options div {
+        display: flex;
+        padding: 10px;
+        cursor: pointer;
+        justify-content: space-between;
+        
+    }
+
+        .custom-options div:hover {
+            background: #f0f0f0;
+        }
+
+    .custom-options img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }

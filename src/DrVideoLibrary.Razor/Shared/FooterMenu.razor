@@ -1,6 +1,4 @@
 ﻿@inject IStringLocalizer<ResourceFooter> Localizer
-@inject IJSRuntime JS
-@inject NavigationManager Navigation
 <div class="menu">
     <ul class="menu-list custom-menu">
         <li>
@@ -32,52 +30,10 @@
             </Authorized>
         </AuthorizeView>
         <li>
-            <div class="select">
-                <select @bind="@selectedCulture" @bind:after="ApplySelectedCultureAsync">
-                    @foreach (var culture in supportedCultures)
-                    {
-                        <option value="@culture">@cultureDict[culture.Name]</option>
-                    }
-                </select>
+            <div class="custom-nav-link">
+                <SelectLangComponent />
             </div>
         </li>
     </ul>
 </div>
 
-@code
-{
-    private string? greeting;
-
-    private DateTime dt = DateTime.Now;
-    private double number = 1999.69;
-
-    private Dictionary<string, string> cultureDict =
-        new()
-                {
-            { "en-US", "English (United States)" },
-            { "es-ES", "Spanish (España)" }
-                };
-
-    private CultureInfo[] supportedCultures = new[]
-    {
-        new CultureInfo("en-US"),
-        new CultureInfo("es-ES"),
-    };
-
-    private CultureInfo? selectedCulture;
-
-    protected override void OnInitialized()
-    {
-        selectedCulture = CultureInfo.CurrentCulture;
-    }
-
-    private async Task ApplySelectedCultureAsync()
-    {
-        if (CultureInfo.CurrentCulture != selectedCulture)
-        {
-            await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture!.Name);
-
-            Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
-        }
-    }
-}
