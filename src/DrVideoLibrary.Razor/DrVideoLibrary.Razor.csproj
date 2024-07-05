@@ -90,6 +90,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Update="Resources\ResourceAddMovie.ca-ES.resx">
+		  <SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceAddMovie.de.resx">
+		  <SubType>Designer</SubType>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceAddMovie.es.resx">
 		  <SubType>Designer</SubType>
 		</EmbeddedResource>
@@ -128,6 +134,9 @@
 		<EmbeddedResource Update="Resources\ResourceRelativeMoviesComponent.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ResourceRelativeMoviesComponent.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceSearchMovieComponent.ca-ES.resx">
+		  <SubType>Designer</SubType>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceSearchMovieComponent.es.resx">
 		  <SubType>Designer</SubType>
