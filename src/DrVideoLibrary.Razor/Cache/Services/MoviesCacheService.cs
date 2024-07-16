@@ -40,17 +40,20 @@ public class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, IJ
 
     private async ValueTask<bool> GetShouldUpdate()
     {
-        bool result = await GetShouldDayUpdate(); 
+        bool result = await GetShouldDayUpdate();
         try
         {
             if (!result)
-                result = await JsRuntime.InvokeAsync<bool>("localStorage.getItem", "CATALOG");
+            {
+                string data = await JsRuntime.InvokeAsync<string>("localStorage.getItem", "CATALOG");
+                result = Convert.ToBoolean( data );
+                await JsRuntime.InvokeAsync<string>("localStorage.setItem", "CATALOG", false);
+            }
         }
         catch
         {
             result = await GetShouldDayUpdate();
         }
-        Console.WriteLine($"GetShouldUpdate {result}");
         return result;
     }
 
