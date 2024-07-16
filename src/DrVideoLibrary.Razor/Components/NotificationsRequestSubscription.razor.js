@@ -1,4 +1,28 @@
-﻿async function setupAndSubscribe(applicationServerPublicKey, swScope = '/', file) {
+﻿async function registerServiceWorker(swPath, swScope) {
+    try {
+        const registration = await navigator.serviceWorker.register(swPath, { scope: swScope });
+        console.info('Service worker registered with scope:', swScope);
+        return registration;
+    } catch (e) {
+        console.error('Error registering service worker:', e);
+        return null;
+    }
+}
+async function requestNotificationPermission() {
+    try {
+        const permission = await Notification.requestPermission();
+        if (permission !== "granted") {
+            console.warn('Notification permission not granted');
+            return null;
+        }
+        return permission;
+    } catch (e) {
+        console.error('Error requesting notification permission:', e);
+        return null;
+    }
+}
+
+async function setupAndSubscribe(applicationServerPublicKey, swScope = '/', file) {
     if (!('serviceWorker' in navigator)) {
         console.warn('Service workers are not supported by this browser.');
         return null;
@@ -9,31 +33,12 @@
         return null;
     }
 
-    let registration;
-    try {
-        const swPath = `${swScope}${file}`;
-        const adjustedPath = swPath.startsWith('/') ? swPath.substring(1) : swPath;
-        registration = await navigator.serviceWorker.register(adjustedPath, { scope: swScope });
-        console.info('Notification Service worker registered successfully with scope:', swScope);
-    } catch (e) {
-        console.error('Error registering service worker:', e);
-        return null;
-    }
+    const swPath = `${swScope}${file}`;
+    const registration = await registerServiceWorker(swPath, swScope);
+    if (!registration) return null;
 
-    console.info('Notification Service Worker is ready');
-
-    let permission;
-    try {
-        permission = await Notification.requestPermission();
-    } catch (e) {
-        console.error('Error requesting notification permission:', e);
-        return null;
-    }
-
-    if (permission !== "granted") {
-        console.warn('Notification permission not granted');
-        return null;
-    }
+    const permission = await requestNotificationPermission();
+    if (!permission) return null;
 
     try {
         const subscription = await requestSubscription(registration, applicationServerPublicKey);
@@ -47,8 +52,9 @@
 try {
     navigator.serviceWorker.addEventListener('message', function (event) {
         try {
-            if (event.data.action === 'updateLocalStorage') {
-                localStorage.setItem(event.data.key, event.data.value);
+            if (event.data.type === 'CATALOG') {
+                console.log('CATALOG', event.data.update);
+                localStorage.setItem(event.data.type, event.data.update);
             }
         } catch (e) {
             console.warn('Error processing service worker message:', e);

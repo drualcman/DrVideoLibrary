@@ -45,12 +45,16 @@
         </ChildContent>
         <ErrorContent>
             <div class="container">
-                <section class="hero is-fullheight is-danger">
+                <section class="hero is-medium is-danger">
                     <div class="hero-body">
                         <div class="container">
                             <h1 class="title is-1">500</h1>
-                            <h2 class="subtitle is-3">Error: @context.Message</h2>
-                            <p>Details: @context.InnerException?.Message</p>                                    
+                            <h2 class="subtitle is-3">@context.Message</h2> 
+                            @if (!string.IsNullOrEmpty(context.InnerException?.Message))
+                            {
+                                <p>Details: @context.InnerException?.Message</p>
+                            }
+                            <hr/>
                             <div class="buttons">
                                 <button class="button is-info" type="button" 
                                 @onclick=Restore>

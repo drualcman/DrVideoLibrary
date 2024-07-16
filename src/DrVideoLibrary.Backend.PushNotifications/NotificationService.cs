@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Data;
 
 namespace DrVideoLibrary.Backend.PushNotifications;
 internal class NotificationService : INotificationService
@@ -12,7 +13,7 @@ internal class NotificationService : INotificationService
         Repository = repository;
     }
 
-    public async Task SendNotificationAsync(SendNotificationType type, string message, string link, ILogger logger)
+    public async Task SendNotificationAsync(SendNotificationType type, string message, string link, ILogger logger, bool isNew)
     {
         IEnumerable<NotificationSubscription> subscriptions = await Repository.GetSubscriptions();
         logger.LogInformation($"SendNotificationAsync to {subscriptions?.Count()}");
@@ -21,7 +22,7 @@ internal class NotificationService : INotificationService
             List<Task> tasks = new List<Task>();
             foreach (NotificationSubscription subscription in subscriptions)
             {
-                tasks.Add(SendNotification(subscription, type, message, link, logger));
+                tasks.Add(SendNotification(subscription, type, message, link, logger, isNew));
             }
             await Task.WhenAll(tasks);
         }
@@ -29,7 +30,7 @@ internal class NotificationService : INotificationService
 
     private async Task SendNotification(
         NotificationSubscription subscription, SendNotificationType type, string message, string link,
-        ILogger logger)
+        ILogger logger, bool isNew)
     {
         using WebPushClient client = new WebPushClient();
         VapidDetails vapidDetails = new VapidDetails($"mailto:{Options.NotificationsEmail}", Options.NotificationsPublicKey, Options.NotificationsPrivateKey);
@@ -40,7 +41,8 @@ internal class NotificationService : INotificationService
             {
                 message,
                 type = type.ToString(),
-                url = link
+                url = link,
+                update = isNew
             });
             await client.SendNotificationAsync(pushSubscription, payLoad, vapidDetails);
         }

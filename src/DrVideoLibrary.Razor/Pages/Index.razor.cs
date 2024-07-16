@@ -6,9 +6,13 @@ public partial class Index
     [Inject] IStringLocalizer<ResourceIndex> Localizer { get; set; }
     [Inject] IJSRuntime JSRuntime { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await ViewModel.GetList();
+        if (firstRender)
+        {
+            await ViewModel.GetList();
+            await InvokeAsync(StateHasChanged);
+        }
     }
 
     async Task ToPage(int page)

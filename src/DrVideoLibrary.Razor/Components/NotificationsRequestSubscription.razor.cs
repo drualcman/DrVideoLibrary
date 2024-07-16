@@ -34,12 +34,13 @@ public partial class NotificationsRequestSubscription : ComponentBase, IAsyncDis
                 Options.SubscriptionKey, Options.RelativePath, Options.FileName);
             if (subscription is not null)
             {
-                subscription.UserId = await GetFingerPrint(PageScripts);
+                subscription.UserId = await GetFingerPrint();
                 await Notification.SubscribeToNotification(subscription);
                 HasNotGrandNotifications = false;
             }
             else
                 HasNotGrandNotifications = await PageScripts.InvokeAsync<bool>("hasNotGrandNotifications");
+            await InvokeAsync(StateHasChanged);
         }
         catch (Exception ex)
         {
@@ -47,9 +48,9 @@ public partial class NotificationsRequestSubscription : ComponentBase, IAsyncDis
         }
     }
 
-    public async ValueTask<string> GetFingerPrint(IJSObjectReference module)
+    public async ValueTask<string> GetFingerPrint()
     {
-        string data = await module.InvokeAsync<string>("getFingerPrint");
+        string data = await PageScripts.InvokeAsync<string>("getFingerPrint");
         using System.Security.Cryptography.SHA256 sha256 = System.Security.Cryptography.SHA256.Create();
         byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(data));
         StringBuilder builder = new StringBuilder();
@@ -61,7 +62,10 @@ public partial class NotificationsRequestSubscription : ComponentBase, IAsyncDis
     }
 
     public async ValueTask DisposeAsync()
-    {
-        await PageScripts.DisposeAsync();
+    {                                    
+        if (PageScripts is not null)
+        {
+            await PageScripts.DisposeAsync();
+        }
     }
 }

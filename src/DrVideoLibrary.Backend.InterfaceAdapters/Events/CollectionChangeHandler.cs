@@ -14,7 +14,7 @@ internal class CollectionChangeHandler : IEventHandler<SendNotificationSubscript
     {
         if (data.NotificationType == ApplicationBusinessRules.ValueObjects.SendNotificationType.CATALOG)
         {
-            await NotificationService.SendNotificationAsync(data.NotificationType, data.Message, UrlProvider.GetUrl(""), logger);
+            await NotificationService.SendNotificationAsync(data.NotificationType, data.Message, UrlProvider.GetUrl(""), logger, false);
         }
     }
 }
