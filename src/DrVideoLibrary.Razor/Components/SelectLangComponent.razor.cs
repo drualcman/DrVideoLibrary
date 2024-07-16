@@ -9,8 +9,8 @@ public partial class SelectLangComponent
     {
         { "es-ES", ("https://flagcdn.com/es.svg", "Español (España)") },
         { "en-GB", ("https://flagcdn.com/gb.svg", "English (United Kingdom)") },
-        { "de-DE", ("https://flagcdn.com/de.svg", "Deutsch (Deutschland)") },
-        { "ca-ES", ("https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Catalonia.svg/1200px-Flag_of_Catalonia.svg.png", "Català (Catalunya)") }
+        //{ "de-DE", ("https://flagcdn.com/de.svg", "Deutsch (Deutschland)") },
+        //{ "ca-ES", ("https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Catalonia.svg/1200px-Flag_of_Catalonia.svg.png", "Català (Catalunya)") }
     };
 
     private bool showOptions = false;
@@ -22,8 +22,8 @@ public partial class SelectLangComponent
     {
         new CultureInfo("en-US"),
         new CultureInfo("es-ES"),
-        new CultureInfo("ca-ES"),
-        new CultureInfo("de-DE"),
+        //new CultureInfo("de-DE"),
+        //new CultureInfo("ca-ES"),
     };
 
     protected override void OnInitialized()

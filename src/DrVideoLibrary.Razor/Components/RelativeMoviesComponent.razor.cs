@@ -1,5 +1,3 @@
-using System.Text.RegularExpressions;
-
 namespace DrVideoLibrary.Razor.Components;
 public partial class RelativeMoviesComponent
 {
@@ -9,7 +7,7 @@ public partial class RelativeMoviesComponent
     [Parameter] public RelativesDto Data { get; set; }
     [Parameter] public EventCallback<RelativeType> OnChangeRelative { get; set; }
 
-    IEnumerable<RelativeMovie> Relatives;    
+    IEnumerable<RelativeMovie> Relatives;
     bool ShouldRequest = true;
 
     protected override void OnParametersSet()
@@ -25,10 +23,10 @@ public partial class RelativeMoviesComponent
     async Task SearchRelatives()
     {
         List<RelativeMovie> relatives = new(await ApiClient.GetRelativesAsync(Data));
-        if (!string.IsNullOrEmpty(MovieId)) 
+        if (!string.IsNullOrEmpty(MovieId))
         {
             RelativeMovie except = relatives.FirstOrDefault(m => m.Id.Equals(MovieId, StringComparison.InvariantCultureIgnoreCase));
-            if(except != null) 
+            if (except != null)
                 relatives.Remove(except);
         }
         Relatives = relatives;

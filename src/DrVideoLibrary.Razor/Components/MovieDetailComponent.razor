@@ -38,13 +38,15 @@
         }
     </div>
     <div class="additional-info">
-        <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Actors))</strong> @string.Join(", ", Movie.Actors)</p>
         <p>@Movie.Description</p>
+        <hr/>
+        <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Actors))</strong> @string.Join(", ", Movie.Actors)</p>
         <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Directors))</strong> @string.Join(", ", Movie.Directors)</p>
         @if (string.IsNullOrEmpty(Movie.OriginalTitle) == false)
         {
             <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.OriginalTtileLabel))</strong> @Movie.OriginalTitle</p>
         }
+        <hr/>
     </div>
     <div class="info-section">
         <div class="info-item">
