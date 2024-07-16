@@ -52,8 +52,9 @@ async function setupAndSubscribe(applicationServerPublicKey, swScope = '/', file
 try {
     navigator.serviceWorker.addEventListener('message', function (event) {
         try {
-            if (event.data.type === 'CATALOG') {
-                console.log('CATALOG', event.data.update);
+            console.log('CATALOG 1', event.data.update);
+            if (event.data.type === 'CATALOG' && event.data.update === true) {
+                console.log('CATALOG 2', event.data.update);
                 localStorage.setItem(event.data.type, event.data.update);
             }
         } catch (e) {
