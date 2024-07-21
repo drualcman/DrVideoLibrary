@@ -11,8 +11,13 @@
     object-fit: cover;
 }
 
+.navbar-item ::deep .image-container {
+    height: 75px;
+    width: 75px;
+}
+
 .navbar-burger {
-    margin-left: auto; 
+    margin-left: auto;
 }
 
 .navbar-end {

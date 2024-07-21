@@ -117,28 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actors" xml:space="preserve">
-    <value>Actores:</value>
-  </data>
-  <data name="Directors" xml:space="preserve">
-    <value>Directores:</value>
-  </data>
-  <data name="OriginalTtileLabel" xml:space="preserve">
-    <value>Título original:</value>
-  </data>
-  <data name="Rating" xml:space="preserve">
-    <value>Valoración</value>
-  </data>
-  <data name="Relatives" xml:space="preserve">
-    <value>Relacionadas</value>
-  </data>
-  <data name="Released" xml:space="preserve">
-    <value>Lanzamiento</value>
-  </data>
   <data name="TotalTimeLabel" xml:space="preserve">
-    <value>Durada de la pel·lícula</value>
-  </data>
-  <data name="TotalViews" xml:space="preserve">
-    <value>Vista</value>
+    <value>minutos</value>
   </data>
 </root>

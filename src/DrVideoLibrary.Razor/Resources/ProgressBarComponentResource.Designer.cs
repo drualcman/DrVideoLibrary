@@ -22,14 +22,14 @@ namespace DrVideoLibrary.Razor.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResourceMovieDetailComponent {
+    internal class ProgressBarComponentResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourceMovieDetailComponent() {
+        internal ProgressBarComponentResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DrVideoLibrary.Razor.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.ResourceMovieDetailComponent", typeof(ResourceMovieDetailComponent).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DrVideoLibrary.Razor.Resources.ProgressBarComponentResource", typeof(ProgressBarComponentResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,11 @@ namespace DrVideoLibrary.Razor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actors:.
-        /// </summary>
-        internal static string Actors {
-            get {
-                return ResourceManager.GetString("Actors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Directors:.
-        /// </summary>
-        internal static string Directors {
-            get {
-                return ResourceManager.GetString("Directors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Original Title:.
-        /// </summary>
-        internal static string OriginalTtileLabel {
-            get {
-                return ResourceManager.GetString("OriginalTtileLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rate:.
-        /// </summary>
-        internal static string Rating {
-            get {
-                return ResourceManager.GetString("Rating", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Relations.
-        /// </summary>
-        internal static string Relatives {
-            get {
-                return ResourceManager.GetString("Relatives", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Year.
-        /// </summary>
-        internal static string Released {
-            get {
-                return ResourceManager.GetString("Released", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Runtime.
+        ///   Looks up a localized string similar to minutes.
         /// </summary>
         internal static string TotalTimeLabel {
             get {
                 return ResourceManager.GetString("TotalTimeLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Views.
-        /// </summary>
-        internal static string TotalViews {
-            get {
-                return ResourceManager.GetString("TotalViews", resourceCulture);
             }
         }
     }

@@ -39,15 +39,15 @@
         display: flex;
     }
 
-.relative-image {
-    width: 100px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 0.25rem;
-}
+    .relative-item ::deep .relative-image {
+        width: 100px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 0.25rem;
+    }
 
-.relative-title {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: #4a4a4a;
-}
+    .relative-item .relative-title {
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        color: #4a4a4a;
+    }

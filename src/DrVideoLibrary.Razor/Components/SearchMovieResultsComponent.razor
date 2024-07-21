@@ -8,7 +8,7 @@
                     <div class="movie-option" @onclick="() => OnMovieSelect(result)">
                         @if (string.IsNullOrEmpty(result.Cover) == false)
                         {
-                            <img src="@result.Cover" alt="Cover" class="movie-cover">
+                            <ImageProtector Src="@result.Cover" class="movie-cover" />
                         }
                         <div class="movie-info">
                             <p class="movie-title">@result.Title (@result.OriginalTitle)</p>

@@ -135,6 +135,9 @@
   <data name="Released" xml:space="preserve">
     <value>Lanzamiento</value>
   </data>
+  <data name="TotalTimeLabel" xml:space="preserve">
+    <value>Duración</value>
+  </data>
   <data name="TotalViews" xml:space="preserve">
     <value>Vista</value>
   </data>

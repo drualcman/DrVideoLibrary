@@ -8,7 +8,6 @@ public partial class RelativeMoviesComponent
     [Parameter] public EventCallback<RelativeType> OnChangeRelative { get; set; }
 
     IEnumerable<RelativeMovie> Relatives;
-    bool ShouldRequest = true;
 
     protected override void OnParametersSet()
     {

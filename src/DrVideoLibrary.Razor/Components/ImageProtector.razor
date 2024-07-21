@@ -1,0 +1,23 @@
+﻿<div class="@WrapperCss" @attributes="Attributes">
+    <div class="image-content" style="background-image: url('@Src');"></div>
+</div>
+
+
+@code {
+    [Parameter] public string Src { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> Attributes { get; set; }
+
+    string WrapperCss = "image-container ";
+
+    protected override void OnParametersSet()
+    {
+        if (Attributes is not null && Attributes.TryGetValue("class", out object css))
+        {
+            WrapperCss += css;
+            Attributes.Remove("class");
+        }
+
+    }
+}

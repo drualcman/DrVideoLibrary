@@ -10,7 +10,7 @@
         @foreach (RelativeMovie relative in Relatives)
         {
             <a href="movie/@relative.Id" class="relative-item">
-                <img src="@relative.Cover" alt="@relative.Title" class="relative-image" />
+                <ImageProtector Src="@relative.Cover" class="relative-image" />
                 <p class="relative-title">@relative.Title</p>
                 <div class="match-results">
                     <h4>@(Localizer.GetString($"RelativeType{relative.Data.RelativeOf.ToString().ToUpper()}"))</h4>

@@ -1,6 +1,6 @@
 ﻿<div class="select-container">
     <div class="custom-select" @onclick="ToggleOptions">
-        <img src="@selectedFlag" alt="Selected Flag">
+        <ImageProtector Src="@selectedFlag" />
     </div>
 </div>
 @if (showOptions)
@@ -12,7 +12,7 @@
                 @foreach (var option in options)
                 {
                     <div @onclick="() => SelectOption(option.Key, option.Value.Flag, option.Value.Language)">
-                        <img src="@option.Value.Flag" alt="@option.Value.Language Flag">
+                        <ImageProtector Src="@option.Value.Flag" />
                         <span>@option.Value.Language</span>
                     </div>
                 }

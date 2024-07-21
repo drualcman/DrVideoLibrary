@@ -4,9 +4,9 @@
     margin-bottom: 2rem;
 }
 
-.header-image {
+::deep .header-image {
     width: 100%;
-    height: auto;
+    height: 500px;
     border-radius: 0.5rem;
 }
 

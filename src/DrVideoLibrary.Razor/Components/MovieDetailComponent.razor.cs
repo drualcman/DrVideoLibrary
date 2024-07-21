@@ -14,8 +14,8 @@ public partial class MovieDetailComponent
         {
             RelativesData = new RelativesDto
             {
-                RelativeOf = RelativeType.CATEGORY,
-                Data = Movie.Categories.ToArray()
+                RelativeOf = RelativeType.ACTOR,
+                Data = Movie.Actors.ToArray()
             };
         }
     }

@@ -22,6 +22,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Resources\ProgressBarComponentResource.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ProgressBarComponentResource.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Resources\ResourceAddMovie.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -90,6 +95,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Update="Resources\ProgressBarComponentResource.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ProgressBarComponentResource.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceAddMovie.ca-ES.resx">
 		  <SubType>Designer</SubType>
 		</EmbeddedResource>

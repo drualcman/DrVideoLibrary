@@ -32,7 +32,7 @@
                 @if (!string.IsNullOrEmpty(Movie.Cover))
                 {
                     <figure class="image is-128x128">
-                        <img src="@Movie.Cover" alt="Cover">
+                        <ImageProtector Src="@Movie.Cover" />
                     </figure>
                 }
             </div>

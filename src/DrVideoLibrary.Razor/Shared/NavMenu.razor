@@ -2,7 +2,7 @@
 <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="">
-            <img src="_content/DrVideoLibrary.Razor/img/logo.png" >
+            <ImageProtector Src="_content/DrVideoLibrary.Razor/img/logo.png" />
         </a>
 
         <button type="button" @onclick="() => IsActive = !IsActive" role="button" class="navbar-burger @BurgerActive" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -18,7 +18,7 @@
                 <AuthorizeView>
                     <Authorized>
                         <span class="navbar-item @Active">
-                            <img src="https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg" alt="User avatar" class="user-avatar" />
+                            <ImageProtector Src="https://books.community-mall.com/images/file070825676587736583778817187786848566707281006846872787106475657384.jpg" class="user-avatar" />
                         </span>
                         <div class="buttons">
                             <button class="button is-danger is-small" @onclick="BeginLogOut">Log out</button>

@@ -16,6 +16,7 @@ public partial class SelectLangComponent
     private bool showOptions = false;
     private string selectedFlag = "https://flagcdn.com/es.svg";
     private string selectedLanguage = "Español (España)";
+#nullable enable
     private CultureInfo? selectedCulture;
 
     private CultureInfo[] supportedCultures = new[]

@@ -1,7 +1,7 @@
 ﻿@if (Movie is not null)
 {
     <div class="header">
-        <img src="@Movie.Cover" class="header-image" alt="Movie Image" />
+        <ImageProtector Src="@Movie.Cover" class="header-image"/>
         <h1 class="title header-title">@Movie.Title</h1>
     </div>
     <div class="info-section">
@@ -13,6 +13,10 @@
             <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Released))</p>
             <p class="title is-5">@Movie.Year</p>
         </div>
+        <div class="info-item">
+            <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.TotalTimeLabel))</p>
+            <p class="title is-5">@Movie.Duration</p>
+        </div>  
         <div class="info-item">
             <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.TotalViews))</p>
             <p class="title is-5">@Movie.TotalViews</p>
@@ -50,7 +54,7 @@
     </div>
     <div class="info-section">
         <div class="info-item">
-            <p class="title is-5">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Relatives))</p>
+            <p class="title is-5">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Relatives)) (@RelativesData.RelativeOf)</p>
         </div>
     </div>
     <RelativeMoviesComponent Data=RelativesData OnChangeRelative="ChangeRelative" MovieId="@Movie.Id" />
