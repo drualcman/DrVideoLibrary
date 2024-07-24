@@ -26,9 +26,9 @@
     }
 
 /* Imagen de la portada */
-.movie-cover {
+::deep .movie-cover {
     width: 100%;
-    height: auto;
+    height: 200px;
     border-radius: 4px; /* Esquinas redondeadas para la imagen */
 }
 
