@@ -3,5 +3,6 @@ public class StorageOptions
 {
     public const string SectionKey = nameof(StorageOptions);
     public string ImagesContainer { get; set; }
+    public int MinutesLiveTime { get; set; }
 
 }

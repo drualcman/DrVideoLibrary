@@ -50,7 +50,7 @@ public class StorageImageService : IFileContent
         if (!string.IsNullOrEmpty(filename))
         {
             BlobClient imageClient = GetImageClient(filename);
-            uri = imageClient.GenerateSasUri(BlobSasPermissions.Read, DateTime.UtcNow.AddMinutes(1));
+            uri = imageClient.GenerateSasUri(BlobSasPermissions.Read, DateTime.UtcNow.AddMinutes(Options.MinutesLiveTime));
         }
         return Task.FromResult(uri);
     }
