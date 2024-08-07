@@ -22,6 +22,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Update="Resources\EventMessages.cs-ES.resx">
+	    <Generator></Generator>
+	  </EmbeddedResource>
 	  <EmbeddedResource Update="Resources\EventMessages.es.resx">
 	    <Generator></Generator>
 	  </EmbeddedResource>

@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Days" xml:space="preserve">
-    <value>{0} Dias</value>
+    <value>{0} Dies</value>
   </data>
   <data name="Hours" xml:space="preserve">
-    <value>{0} Horas</value>
+    <value>{0} Hores</value>
   </data>
   <data name="Minutes" xml:space="preserve">
-    <value>{0} Minutos</value>
+    <value>{0} Minuts</value>
   </data>
   <data name="Months" xml:space="preserve">
-    <value>{0} Meses</value>
+    <value>{0} Mesos</value>
   </data>
   <data name="Years" xml:space="preserve">
-    <value>{0} Años</value>
+    <value>{0} Anys</value>
   </data>
 </root>

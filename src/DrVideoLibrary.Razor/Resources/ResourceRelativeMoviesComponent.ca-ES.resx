@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NotFound" xml:space="preserve">
-    <value>No se han encontrado películas relacionadas!</value>
+    <value>No s'han trobat pel·lícules relacionades!</value>
   </data>
   <data name="RelativeTypeACTOR" xml:space="preserve">
-    <value>Actores</value>
+    <value>Actors</value>
   </data>
   <data name="RelativeTypeCATEGORY" xml:space="preserve">
-    <value>Categorias</value>
+    <value>Categories</value>
   </data>
   <data name="RelativeTypeDIRECTOR" xml:space="preserve">
-    <value>Directores</value>
+    <value>Directors</value>
   </data>
   <data name="SearchTitle" xml:space="preserve">
-    <value>Buscar por:</value>
+    <value>Cercar per:</value>
   </data>
 </root>

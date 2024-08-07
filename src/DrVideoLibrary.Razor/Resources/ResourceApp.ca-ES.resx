@@ -121,9 +121,9 @@
     <value>Restaurar</value>
   </data>
   <data name="Error401Message" xml:space="preserve">
-    <value>No autorizado.</value>
+    <value>No autoritzat.</value>
   </data>
   <data name="Error404Message" xml:space="preserve">
-    <value>El contenido que buscas no se ha encontrado.</value>
+    <value>El contingut que cerqueu no s'ha trobat.</value>
   </data>
 </root>

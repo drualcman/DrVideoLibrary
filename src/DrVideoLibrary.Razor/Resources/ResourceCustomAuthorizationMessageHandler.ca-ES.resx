@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="UnauthorizedAccessExceptionMessage" xml:space="preserve">
-    <value>No está autorizado a acceder a este recurso.</value>
+    <value>No està autoritzat a accedir a aquest recurs.</value>
   </data>
 </root>
