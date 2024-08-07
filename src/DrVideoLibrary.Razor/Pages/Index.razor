@@ -27,14 +27,17 @@
     <div class="columns">
         <div class="column is-1">
             <div class="tags">
-                <div class="tags has-addons" @onclick="() => ViewModel.FilterbyCategory(string.Empty)">
-                    <span class="tag is-info">X</span>
-                    <span class="tag is-dark">
-                        <span class="icon">
-                            <i class="fa-solid fa-eraser"></i>
+                @if (ViewModel.IsFiltering)
+                {
+                    <div class="tags has-addons" @onclick="() => ViewModel.FilterbyCategory(string.Empty)">
+                        <span class="tag is-info">X</span>
+                        <span class="tag is-dark">
+                            <span class="icon">
+                                <i class="fa-solid fa-eraser"></i>
+                            </span>
                         </span>
-                    </span>
-                </div>
+                    </div>
+                }
                 @foreach (Category category in ViewModel.Categories)
                 {
                     <div class="tags has-addons" @onclick="() => ViewModel.FilterbyCategory(category.Name)">
