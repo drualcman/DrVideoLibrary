@@ -13,7 +13,7 @@
                 {
                     <div @onclick="() => SelectOption(option.Key, option.Value.Flag, option.Value.Language)">
                         <ImageProtector Src="@option.Value.Flag" />
-                        <span>@option.Value.Language</span>
+                        <span>@(new MarkupString(option.Value.Language))</span>
                     </div>
                 }
             </div>
