@@ -10,6 +10,7 @@ public partial class Index
     {
         if (firstRender)
         {
+            ViewModel.ProcessRelatives();
             await ViewModel.GetList();
             await InvokeAsync(StateHasChanged);
         }

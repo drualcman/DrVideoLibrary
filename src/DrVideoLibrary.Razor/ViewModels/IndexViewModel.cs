@@ -14,6 +14,8 @@ internal class IndexViewModel : PaginatorViewModel<ListCard>
     public IEnumerable<Category> Categories { get; private set; }
     public string SelectedCategory { get; private set; }
 
+    public void ProcessRelatives() => _ = CacheService.ProcessRelatives();
+
     public async Task GetList()
     {
         IsFiltering = true;

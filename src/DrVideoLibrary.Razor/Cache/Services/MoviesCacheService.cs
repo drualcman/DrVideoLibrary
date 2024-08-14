@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
+using System.IO;
 
 namespace DrVideoLibrary.Razor.Cache.Services;
 internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, IJSRuntime JsRuntime)
 {
+    MoviesRelations RelativeMovies;
     public async Task ResetCache()
     {
         await CacheContext.DropDatabaseAsync();
@@ -11,8 +13,14 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
 
     public async ValueTask<IEnumerable<ListCard>> GetList()
     {
+        Stopwatch stopwatch = new();
+        stopwatch.Start();
         IEnumerable<ListCard> movies = [];
         List<MovieCardModel> cached = await CacheContext.Movies.SelectAsync();
+        stopwatch.Stop();
+        Console.WriteLine($"GetList 1 elapset {stopwatch.Elapsed}");
+        stopwatch.Reset();
+        stopwatch.Start();
         if (cached is null || !cached.Any())
         {
             Console.WriteLine($"GetList not cached");
@@ -20,35 +28,48 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
         }
         else
             movies = cached.Select(MovieCardModel.ToListCard);
+        stopwatch.Stop();
+        Console.WriteLine($"GetList 2 elapset {stopwatch.Elapsed}");
+        stopwatch.Reset();
         Console.WriteLine($"GetList movies count = {movies.Count()}");
+        stopwatch.Start();
         UpdateCache();
+        stopwatch.Stop();
+        Console.WriteLine($"GetList 3 elapset {stopwatch.Elapsed}");
         return movies.OrderBy(m => m.Title).ThenBy(m => m.Year);
+    }
+
+    public async Task ProcessRelatives()
+    {
+        Stopwatch stopwatch = new();
+        stopwatch.Start();
+        if (RelativeMovies is null)
+        {
+            RelativeMovies = await GetRelations();
+        }
+        stopwatch.Stop();
+        Console.WriteLine($"ProcessRelatives 1 elapset {stopwatch.Elapsed}");
     }
 
     public async Task<IEnumerable<RelativeMovie>> GetRelativesAsync(RelativesDto data)
     {
         Stopwatch stopwatch = new();
-        stopwatch.Start();
-        MoviesRelations movies = await GetRelations();
-        stopwatch.Stop();
-        Console.WriteLine($"GetRelativesAsync 1 elapset {stopwatch.Elapsed}");
-        stopwatch.Reset();
         List<RelativeMovie> relativeMovies = new List<RelativeMovie>();
         stopwatch.Start();
         switch (data.RelativeOf)
         {
             case RelativeType.ACTOR:
-                relativeMovies = await GetMoviesByRelation(movies.Actors, data);
+                relativeMovies = await GetMoviesByRelation(RelativeMovies.Actors, data);
                 break;
             case RelativeType.DIRECTOR:
-                relativeMovies = await GetMoviesByRelation(movies.Directors, data);
+                relativeMovies = await GetMoviesByRelation(RelativeMovies.Directors, data);
                 break;
             case RelativeType.CATEGORY:
-                relativeMovies = await GetMoviesByRelation(movies.Categories, data);
+                relativeMovies = await GetMoviesByRelation(RelativeMovies.Categories, data);
                 break;
         }
         stopwatch.Stop();
-        Console.WriteLine($"GetRelativesAsync 2 elapset {stopwatch.Elapsed}");
+        Console.WriteLine($"GetRelativesAsync elapset {stopwatch.Elapsed}");
 
         return relativeMovies;
     }
@@ -56,16 +77,16 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
     private async Task<List<RelativeMovie>> GetMoviesByRelation(MovieCounter[] relations, RelativesDto data)
     {
         ConcurrentDictionary<string, RelativeMovie> moviesDict = new();
-        List<Task> moviesTask = new();
+        List<Task> tasks = new();
 
         foreach (string name in data.Data)
         {
-            moviesTask.Add(Task.Run(async () =>
+            tasks.Add(Task.Run(() =>
             {
                 MovieCounter relation = relations.FirstOrDefault(r => r.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
                 if (relation != null)
                 {
-                    List<Task> relationTasks = relation.Movies.Select(movie => Task.Run(() =>
+                    foreach (var movie in relation.Movies)
                     {
                         moviesDict.TryAdd(movie.Id, new RelativeMovie
                         {
@@ -78,45 +99,91 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
                                 Data = data.Data
                             }
                         });
-                    })).ToList();
-
-                    await Task.WhenAll(relationTasks);
+                    }
                 }
             }));
         }
 
-        await Task.WhenAll(moviesTask);
+        await Task.WhenAll(tasks);
         return moviesDict.Values.ToList();
     }
 
-    public async ValueTask<MoviesRelations> GetRelations()
+    private async ValueTask<MoviesRelations> GetRelations()
     {
-        MoviesRelations relations = new MoviesRelations();
+        List<Task> task = new();
+
+        Stopwatch stopwatch = new();
+        stopwatch.Start();
+
+        MoviesRelations relations = new();
         IEnumerable<ListCard> cards = await GetList();
-        relations.Categories = cards
+
+        stopwatch.Stop();
+        Console.WriteLine($"GetRelations 1 elapset {stopwatch.Elapsed}");
+
+        stopwatch.Reset();
+        stopwatch.Start();
+
+        task.Add(Task.Run(() =>
+        {
+            Stopwatch stopwatch = new();
+            stopwatch.Start();
+            relations.Categories = cards
             .SelectMany(c => c.Categories, (movie, category) => new { movie, category })
             .GroupBy(c => c.category)
             .Select(g => new MovieCounter
             {
                 Name = g.Key,
                 Movies = g.Select(m => new MovieBasic(m.movie.Id, m.movie.Cover, m.movie.Title)).ToArray()
-            })
-            .ToArray();
-        List<ActorRelationModel> actors = await CacheContext.Actors.SelectAsync();
-        if (actors is not null && actors.Any())
-            relations.Actors = actors.Select(a => new MovieCounter
-            {
-                Name = a.Name,
-                Movies = a.Movies.Select(m => new MovieBasic(m.MovieId, m.Cover, m.Title)).ToArray()
             }).ToArray();
-        List<DirectorRelationModel> directos = await CacheContext.Directors.SelectAsync();
-        if (directos is not null && directos.Any())
-            relations.Directors = directos.Select(a => new MovieCounter
-            {
-                Name = a.Name,
-                Movies = a.Movies.Select(m => new MovieBasic(m.MovieId, m.Cover, m.Title)).ToArray()
-            }).ToArray();
+            stopwatch.Stop();
 
+            Console.WriteLine($"GetRelations 2 Categories elapset {stopwatch.Elapsed}");
+        }));
+        task.Add(Task.Run(async () =>
+        {
+            Stopwatch stopwatch = new();
+            stopwatch.Start();
+            List<ActorRelationModel> actors = await CacheContext.Actors.SelectAsync();
+
+            stopwatch.Stop();
+            Console.WriteLine($"GetRelations 3 Actors 1 elapset {stopwatch.Elapsed}");
+            stopwatch.Reset();
+            stopwatch.Start();
+            if (actors is not null && actors.Any())
+            {
+                relations.Actors = actors.Select(a => new MovieCounter
+                {
+                    Name = a.Name,
+                    Movies = a.Movies.Select(m => new MovieBasic(m.MovieId, m.Cover, m.Title)).ToArray()
+                }).ToArray();
+            }
+
+            stopwatch.Stop();
+            Console.WriteLine($"GetRelations 3 Actors 2 elapset {stopwatch.Elapsed}");
+
+        }));
+        task.Add(Task.Run(async () =>
+        {
+            Stopwatch stopwatch = new();
+            stopwatch.Start();
+            List<DirectorRelationModel> directors = await CacheContext.Directors.SelectAsync();
+            if (directors is not null && directors.Any())
+            {
+                relations.Directors = directors.Select(d => new MovieCounter
+                {
+                    Name = d.Name,
+                    Movies = d.Movies.Select(m => new MovieBasic(m.MovieId, m.Cover, m.Title)).ToArray()
+                }).ToArray();
+            }
+            stopwatch.Stop();
+
+            Console.WriteLine($"GetRelations 4 Directors elapset {stopwatch.Elapsed}");
+
+        }));
+        await Task.WhenAll(task);
+
+        Console.WriteLine($"GetRelations 2 elapset {stopwatch.Elapsed}");
         return relations;
     }
 
