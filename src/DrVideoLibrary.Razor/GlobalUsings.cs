@@ -33,3 +33,5 @@ global using System.Resources;
 global using System.Security.Claims;
 global using System.Text;
 global using System.Text.Json;
+global using System.Collections.Concurrent;
+global using BlazorIndexedDb.Attributes;

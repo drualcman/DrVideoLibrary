@@ -1,5 +1,5 @@
 ﻿namespace DrVideoLibrary.Razor.ViewModels;
-public class IndexViewModel : PaginatorViewModel<ListCard>
+internal class IndexViewModel : PaginatorViewModel<ListCard>
 {
     readonly MoviesCacheService CacheService;
     readonly ApiClient Client;

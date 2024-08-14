@@ -3,9 +3,6 @@ public interface IMoviesContext
 {
     Task AddMovie(MovieModel data);
     Task<IEnumerable<MovieModel>> GetMoviesAll();
-    Task<IEnumerable<MovieModel>> GetMoviesAllByActors(string[] actors);
-    Task<IEnumerable<MovieModel>> GetMoviesAllByDirectors(string[] directors);
-    Task<IEnumerable<MovieModel>> GetMoviesAllByCategories(string[] categories);
     Task RegisterWatchingNow(RegisterView data);
     Task<RegisterView> GetWatchingNow();
     Task<IEnumerable<RegisterView>> GetTotalViews(string movieId);

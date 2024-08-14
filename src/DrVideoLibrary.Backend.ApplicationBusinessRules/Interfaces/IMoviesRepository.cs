@@ -3,9 +3,6 @@ public interface IMoviesRepository
 {
     Task AddMovie(Movie data);
     Task<IEnumerable<Movie>> GetAll();
-    Task<IEnumerable<Movie>> GetAllByActors(string[] actors);
-    Task<IEnumerable<Movie>> GetAllByDirectors(string[] directors);
-    Task<IEnumerable<Movie>> GetAllByCategories(string[] categories);
     Task<IEnumerable<WatchedCard>> GetWatchList();
     Task<Movie> GetMovieById(string id);
     Task RegisterWatchingNow(WatchingNowDto data);

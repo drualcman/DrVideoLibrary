@@ -1,5 +1,3 @@
-using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.GetMovieById;
-
 namespace DrVideoLibrary.Api
 {
     internal class MovieEndpoints

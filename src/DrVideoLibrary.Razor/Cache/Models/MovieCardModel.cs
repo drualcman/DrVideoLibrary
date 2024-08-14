@@ -1,5 +1,5 @@
 ﻿namespace DrVideoLibrary.Razor.Cache.Models;
-public class MovieCardModel
+internal class MovieCardModel
 {
     public string Id { get; set; }
     public string Title { get; set; }

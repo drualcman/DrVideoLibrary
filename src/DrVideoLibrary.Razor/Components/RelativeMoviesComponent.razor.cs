@@ -1,7 +1,7 @@
 namespace DrVideoLibrary.Razor.Components;
 public partial class RelativeMoviesComponent
 {
-    [Inject] ApiClient ApiClient { get; set; }
+    [Inject] MoviesCacheService CacheService { get; set; }
     [Inject] IStringLocalizer<ResourceRelativeMoviesComponent> Localizer { get; set; }
     [Parameter] public string MovieId { get; set; }
     [Parameter] public RelativesDto Data { get; set; }
@@ -21,7 +21,7 @@ public partial class RelativeMoviesComponent
 
     async Task SearchRelatives()
     {
-        List<RelativeMovie> relatives = new(await ApiClient.GetRelativesAsync(Data));
+        List<RelativeMovie> relatives = new(await CacheService.GetRelativesAsync(Data));
         if (!string.IsNullOrEmpty(MovieId))
         {
             RelativeMovie except = relatives.FirstOrDefault(m => m.Id.Equals(MovieId, StringComparison.InvariantCultureIgnoreCase));

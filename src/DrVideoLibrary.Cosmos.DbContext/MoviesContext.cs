@@ -24,44 +24,6 @@ internal class MoviesContext : IMoviesContext
         return await GetCollection<MovieModel>(new QueryDefinition(queryString));
     }
 
-    public async Task<IEnumerable<MovieModel>> GetMoviesAllByActors(string[] actors)
-    {
-        List<string> conditions = new List<string>();
-
-        if (actors != null && actors.Length > 0)
-        {
-            string actorCondition = string.Join(" OR ", actors.Select((actor, index) => $"ARRAY_CONTAINS(c.actors, @value{index})"));
-            conditions.Add($"({actorCondition})");
-        }
-        actors = actors.Select(actor => actor.Replace("'", "''")).ToArray();
-        return await GetAllBy(conditions, actors);
-    }
-
-    public async Task<IEnumerable<MovieModel>> GetMoviesAllByDirectors(string[] directors)
-    {
-        List<string> conditions = new List<string>();
-
-        if (directors != null && directors.Length > 0)
-        {
-            string directorCondition = string.Join(" OR ", directors.Select((director, index) => $"ARRAY_CONTAINS(c.directors, @value{index})"));
-            conditions.Add($"({directorCondition})");
-        }
-        directors = directors.Select(director => director.Replace("'", "''")).ToArray();
-        return await GetAllBy(conditions, directors);
-    }
-
-    public async Task<IEnumerable<MovieModel>> GetMoviesAllByCategories(string[] categories)
-    {
-        List<string> conditions = new List<string>();
-        if (categories != null && categories.Length > 0)
-        {
-            string categoryCondition = string.Join(" OR ", categories.Select((category, index) => $"ARRAY_CONTAINS(c.categories, @value{index})"));
-            conditions.Add($"({categoryCondition})");
-        }
-        categories = categories.Select(category => category.Replace("'", "''")).ToArray();
-        return await GetAllBy(conditions, categories);
-    }
-
     private async Task<IEnumerable<MovieModel>> GetAllBy(IEnumerable<string> conditions, string[] values)
     {
         string conditionsString = string.Join(" AND ", conditions);
