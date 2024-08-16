@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Cosmos.DbCon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrVideoLibrary.Backend.PushNotifications", "src\DrVideoLibrary.Backend.PushNotifications\DrVideoLibrary.Backend.PushNotifications.csproj", "{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorIndexedDb", "C:\drualcman\BlasorIndexedDb\BlasorIndexedDb\BlazorIndexedDb.csproj", "{800EC4B6-8A62-4636-8A54-95EDD659D8E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6758FD98-4A05-4D0C-9C9D-B4743AED7B88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{800EC4B6-8A62-4636-8A54-95EDD659D8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{800EC4B6-8A62-4636-8A54-95EDD659D8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{800EC4B6-8A62-4636-8A54-95EDD659D8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{800EC4B6-8A62-4636-8A54-95EDD659D8E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
