@@ -1,0 +1,81 @@
+﻿.container {
+    padding: 1rem;
+}
+
+.relatives-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    position: relative;
+}
+
+    .relatives-section .relative-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 120px; /* Ancho fijo */
+        height: 250px; /* Alto total fijo para el contenedor del ítem */
+        text-align: center;
+        position: relative;
+        border: 1px solid #ccc; /* Borde del contenedor */
+        border-radius: 0.25rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra alrededor del contenedor */
+        background-color: #f5fdf5; /* Color de fondo verde clarito */
+        overflow: hidden; /* Asegura que no haya desbordamiento */
+    }
+
+    .relatives-section ::deep .image-container {
+        height: 175px;
+    }
+
+    .relatives-section .relative-item ::deep .image-content {
+        background-position: top;
+    }
+
+    .relatives-section .relative-title {
+        font-size: 0.875rem;
+        color: #4a4a4a;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; /* Limitar a 3 líneas */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Mostrar "..." si es necesario */
+        max-width: 100%;
+        height: 3rem; /* Espacio fijo para el texto, ajustado para 3 líneas */
+        background-color: #f5fdf5; /* Color de fondo verde clarito para el texto */
+        padding: 0.25rem; /* Añadir padding al texto */
+        margin-top: 0.5rem; /* Espacio entre la imagen y el texto */
+        flex-grow: 1; /* Ocupa todo el espacio disponible, alineando el texto correctamente */
+    }
+
+.field.is-grouped {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/*
+::deep ul.pagination-list {
+    margin: unset;
+}
+
+    ::deep ul.pagination-list li button {
+        font-size: small;
+    }*/
+.top-menu, .bottom-menu {
+    width: 100%;
+    background: white;
+    padding-bottom: 0.2rem;
+}
+.top-menu {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.bottom-menu {
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+}

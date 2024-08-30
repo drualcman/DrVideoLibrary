@@ -44,13 +44,13 @@ public class StorageImageService : IFileContent
         return filename;
     }
 
-    public Task<Uri> GetUri(string filename)
+    public Task<Uri> GetUri(string filename, int days = 0)
     {
         Uri uri = null;
         if (!string.IsNullOrEmpty(filename))
         {
             BlobClient imageClient = GetImageClient(filename);
-            uri = imageClient.GenerateSasUri(BlobSasPermissions.Read, DateTime.UtcNow.AddDays(Options.DaysLive));
+            uri = imageClient.GenerateSasUri(BlobSasPermissions.Read, DateTime.UtcNow.AddDays(days > 0 ? days : Options.DaysLive));
         }
         return Task.FromResult(uri);
     }

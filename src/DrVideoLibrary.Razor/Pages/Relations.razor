@@ -1,0 +1,53 @@
+﻿@page "/relations"
+
+<div class="container">
+    <div class="top-menu">
+        <div class="tabs is-centered">
+            <ul>
+                <li class="@(RelativeTo == RelativeType.ACTOR ? "is-active":"")" @onclick="() => RelativeTo = RelativeType.ACTOR"><a>@Localizer[nameof(ResourceRelations.Actors)]</a></li>
+                <li class="@(RelativeTo == RelativeType.DIRECTOR ? "is-active":"")" @onclick="() => RelativeTo = RelativeType.DIRECTOR"><a>@Localizer[nameof(ResourceRelations.Directors)]</a></li>
+                <li class="@(RelativeTo == RelativeType.CATEGORY ? "is-active":"")" @onclick="() => RelativeTo = RelativeType.CATEGORY"> <a>@Localizer[nameof(ResourceRelations.Categories)]</a></li>
+                @* <li></li> *@
+            </ul>
+        </div>
+        @if (MoviesRelations is null)
+        {
+            <WaitingLoader />
+        }
+        else
+        {
+
+            <div class="field is-grouped is-grouped-multiline is-centered">
+                @foreach (MovieCounter category in Paginator.Items)
+                {
+                    <div class="control" @onclick="() => Selection = category">
+                        <div class="tags has-addons">
+                            <span class="tag is-info">@category.Count</span>
+                            <span class="tag @(Selection == category ? "is-success":"is-dark")">@category.Name</span>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        }
+
+        <Paginator Handler=Paginator OnPageChange=ToPage />
+    </div>
+
+    @if (Selection is not null)
+    {
+        <div class="relatives-section">
+            @foreach (MovieBasic movie in Selection.Movies)
+            {
+                <a href="movie/@movie.Id" class="relative-item">
+                    <ImageProtector Src="@movie.Cover" />
+                    <p class="relative-title">@movie.Title</p>
+                </a>
+            }
+        </div>
+
+    }
+    <div class="bottom-menu">
+        <Paginator Handler=Paginator OnPageChange=ToPage />
+    </div>
+</div>

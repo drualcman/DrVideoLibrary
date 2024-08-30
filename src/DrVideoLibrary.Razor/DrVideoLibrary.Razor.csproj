@@ -67,6 +67,16 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>ResourceNotificationsRequestSubscription.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Resources\ResourceRelations.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceRelations.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ResourceRelations.ca-ES.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceRelations.ca-ES.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Resources\ResourceRelativeMoviesComponent.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -139,6 +149,18 @@
 		<EmbeddedResource Update="Resources\ResourceNotificationsRequestSubscription.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ResourceNotificationsRequestSubscription.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceRelations.ca-ES.resx">
+		  <LastGenOutput>ResourceRelations.ca-ES.Designer.cs</LastGenOutput>
+		  <Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceRelations.es.resx">
+		  <LastGenOutput>ResourceRelations.es.Designer.cs</LastGenOutput>
+		  <Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ResourceRelations.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ResourceRelations.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\ResourceRelativeMoviesComponent.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>

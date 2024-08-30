@@ -129,4 +129,7 @@
   <data name="Watchlist" xml:space="preserve">
     <value>Watch list</value>
   </data>
+  <data name="Relations" xml:space="preserve">
+    <value>Retations</value>
+  </data>
 </root>
