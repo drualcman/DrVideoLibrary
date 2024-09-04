@@ -1,6 +1,6 @@
 ﻿@if (!string.IsNullOrEmpty(ActorName))
 {
-   <div class="modal is-active">
+    <div class="modal is-active">
         <div class="modal-background" @onclick="ClosePopup"></div>
         <div class="modal-card">
             <section class="modal-card-body">
@@ -15,44 +15,46 @@
                 else
                 {
                     <div class="columns">
-                        <div class="column is-one-third">
-                            <figure class="image">
-                                <img src="@ActorResult.Cover" alt="@ActorResult.Name" />
-                            </figure>
-                        </div>
                         <div class="column">
-                            <p class="title">@ActorName</p>
-                            @if (!string.IsNullOrEmpty(ActorResult.PlaceOfBirth))
-                            {
-                                <p>
-                                    <span class="icon">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </span>
-                                    @ActorResult.PlaceOfBirth
-                                </p>
-                            }
-                            @if (!string.IsNullOrEmpty(ActorResult.Birthday))
-                            {
-                                <p>
-                                    <span class="icon">
-                                        <i class="fas fa-birthday-cake"></i>
-                                    </span>
-                                    @ActorResult.Birthday
-                                </p>
-                            }
-                            @if (!string.IsNullOrEmpty(ActorResult.WebSite))
-                            {
-                                <p>
-                                    <span class="icon">
-                                        <i class="fas fa-globe"></i>
-                                    </span>
-                                    <a href="@ActorResult.WebSite" target="_blank">@ActorResult.WebSite</a>
-                                </p>
-                            }
+                            <div class="biography-text">
+                                <div class="info-and-image">
+                                    <figure class="image">
+                                        <img src="@ActorResult.Cover" alt="@ActorResult.Name" class="actor-image" />
+                                    </figure>
+                                </div>
+                                <div class="info">
+                                    <p class="title">@ActorName</p>
+                                    @if (!string.IsNullOrEmpty(ActorResult.PlaceOfBirth))
+                                    {
+                                        <p>
+                                            <span class="icon">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </span>
+                                            @ActorResult.PlaceOfBirth
+                                        </p>
+                                    }
+                                    @if (!string.IsNullOrEmpty(ActorResult.Birthday))
+                                    {
+                                        <p>
+                                            <span class="icon">
+                                                <i class="fas fa-birthday-cake"></i>
+                                            </span>
+                                            @ActorResult.Birthday
+                                        </p>
+                                    }
+                                    @if (!string.IsNullOrEmpty(ActorResult.WebSite))
+                                    {
+                                        <p>
+                                            <span class="icon">
+                                                <i class="fas fa-globe"></i>
+                                            </span>
+                                            <a href="@ActorResult.WebSite" target="_blank">@ActorResult.WebSite</a>
+                                        </p>
+                                    }
+                                </div>
+                                @ActorResult.Biography
+                            </div>
                         </div>
-                    </div>
-                    <div class="content mt-4">
-                        <p>@ActorResult.Biography</p>
                     </div>
                 }
             </section>

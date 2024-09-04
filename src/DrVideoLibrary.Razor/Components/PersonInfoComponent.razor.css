@@ -1,4 +1,32 @@
-﻿.modal.is-active .modal-card {
+﻿.modal-card {
     z-index: 50;
-    max-height: 70vh; 
+    max-height: 70vh;
 }
+
+.biography-text {
+    line-height: 1.5;
+    text-align: justify;
+}
+
+    .biography-text .info-and-image {
+        float: left;
+        overflow: hidden;
+        margin-right: 1rem;
+    }
+
+        .biography-text .info-and-image .image {
+            margin: 0;
+        }
+
+        .biography-text .info-and-image .actor-image {
+            width: 150px; /* Puedes ajustar el ancho según sea necesario */
+            height: auto; /* Mantiene la proporción de la imagen */
+        }
+
+    .biography-text .info {
+        margin-bottom: 1rem;
+    }
+
+        .biography-text .info .title, .biography-text p {
+            margin-bottom: 0.25rem;
+        }
