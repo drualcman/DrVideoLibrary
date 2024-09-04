@@ -7,7 +7,6 @@
                 <li class="@(RelativeTo == RelativeType.ACTOR ? "is-active":"")" @onclick="() => RelativeTo = RelativeType.ACTOR"><a>@Localizer[nameof(ResourceRelations.Actors)]</a></li>
                 <li class="@(RelativeTo == RelativeType.DIRECTOR ? "is-active":"")" @onclick="() => RelativeTo = RelativeType.DIRECTOR"><a>@Localizer[nameof(ResourceRelations.Directors)]</a></li>
                 <li class="@(RelativeTo == RelativeType.CATEGORY ? "is-active":"")" @onclick="() => RelativeTo = RelativeType.CATEGORY"> <a>@Localizer[nameof(ResourceRelations.Categories)]</a></li>
-                @* <li></li> *@
             </ul>
         </div>
         @if (MoviesRelations is null)
@@ -20,10 +19,18 @@
             <div class="field is-grouped is-grouped-multiline is-centered">
                 @foreach (MovieCounter category in Paginator.Items)
                 {
-                    <div class="control" @onclick="() => Selection = category">
+                    <div class="control">
                         <div class="tags has-addons">
                             <span class="tag is-info">@category.Count</span>
-                            <span class="tag @(Selection == category ? "is-success":"is-dark")">@category.Name</span>
+                            <span class="tag @(Selection == category ? "is-success":"is-dark")" @onclick="() => Selection = category">@category.Name</span>
+                            @if (RelativeTo == RelativeType.ACTOR || RelativeTo == RelativeType.DIRECTOR)
+                            {
+                                <span class="tag is-info" @onclick="() => Actor = category.Name">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-binoculars"></i>
+                                    </span>
+                                </span>
+                            }
                         </div>
                     </div>
                 }
@@ -51,3 +58,5 @@
         <Paginator Handler=Paginator OnPageChange=ToPage />
     </div>
 </div>
+
+<PersonInfoComponent ActorName=@Actor OnClose="() => Actor = string.Empty" />

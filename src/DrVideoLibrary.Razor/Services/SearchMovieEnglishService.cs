@@ -18,15 +18,23 @@ internal class SearchMovieEnglishService : ISearchMovieService<SearchMovieEnglis
 
     public async Task<Movie> GetMovieDetails(string id)
     {
-        HttpResponseMessage response = await Client.GetAsync($"{id}?l={Options.Language}");
+        using HttpResponseMessage response = await Client.GetAsync($"{id}?l={Options.Language}");
         response.EnsureSuccessStatusCode();
         Movie result = await response.Content.ReadFromJsonAsync<Movie>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });        
         return result;
     }
 
+    public async Task<SearchPersonResult> SearchActor(string text)
+    {
+        using HttpResponseMessage response = await Client.GetAsync($"actor?s={text}");
+        response.EnsureSuccessStatusCode();
+        SearchPersonResult result = await response.Content.ReadFromJsonAsync<SearchPersonResult>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        return result;
+    }
+
     public async Task<IEnumerable<SearchMovieResult>> SearchMovies(string text)
     {
-        HttpResponseMessage response = await Client.GetAsync($"?s={text}&l={Options.Language}");
+        using HttpResponseMessage response = await Client.GetAsync($"?s={text}&l={Options.Language}");
         response.EnsureSuccessStatusCode();
         IEnumerable<SearchMovieResult> result = await response.Content.ReadFromJsonAsync<IEnumerable<SearchMovieResult>>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });        
         return result;

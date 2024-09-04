@@ -13,7 +13,7 @@ internal class SearchMovieSpanishService : ISearchMovieService<SearchMovieInSpan
 
     public async Task<Movie> GetMovieDetails(string id)
     {
-        HttpResponseMessage response = await Client.GetAsync($"movie/{id}?api_key={Options.SearchSpanishApiKey}&language=es-ES&append_to_response=credits");
+        using HttpResponseMessage response = await Client.GetAsync($"movie/{id}?api_key={Options.SearchSpanishApiKey}&language=es-ES&append_to_response=credits");
         response.EnsureSuccessStatusCode();
         TMDbMovieMovieDetail data = await response.Content.ReadFromJsonAsync<TMDbMovieMovieDetail>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         Movie result = null;
@@ -37,9 +37,12 @@ internal class SearchMovieSpanishService : ISearchMovieService<SearchMovieInSpan
         return result;
     }
 
+    private static byte GetRating(decimal rate) =>
+        Convert.ToByte(Math.Round(rate), CultureInfo.InvariantCulture);
+
     public async Task<IEnumerable<SearchMovieResult>> SearchMovies(string text)
     {
-        HttpResponseMessage response = await Client.GetAsync($"search/movie?api_key={Options.SearchSpanishApiKey}&query={text}&language=es-ES");
+        using HttpResponseMessage response = await Client.GetAsync($"search/movie?api_key={Options.SearchSpanishApiKey}&query={Uri.EscapeDataString(text)}&language=es-ES");
         response.EnsureSuccessStatusCode();
         TMDbSearchResult data = await response.Content.ReadFromJsonAsync<TMDbSearchResult>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         IEnumerable<SearchMovieResult> result = null;
@@ -57,8 +60,57 @@ internal class SearchMovieSpanishService : ISearchMovieService<SearchMovieInSpan
         return result;
     }
 
-    private static byte GetRating(decimal rate) =>
-        Convert.ToByte(Math.Round(rate), CultureInfo.InvariantCulture);
+    public async Task<SearchPersonResult> SearchActor(string text)
+    {
+        HttpResponseMessage response = await Client.GetAsync($"search/person?api_key={Options.SearchSpanishApiKey}&query={Uri.EscapeDataString(text)}&language=es-ES");
+        response.EnsureSuccessStatusCode();
+        TMDbSearchActor data = await response.Content.ReadFromJsonAsync<TMDbSearchActor>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        SearchPersonResult result = new SearchPersonResult
+        {
+            Name = text
+        };
+        if (data is not null && data.Results != null && data.Results.Any())
+        {
+            try
+            {
+                TMDbSearchActorResult match = GetMatchActor(data.Results, text);
+                if (match is not null)
+                {
+                    response = await Client.GetAsync($"person/{match.Id}?api_key={Options.SearchSpanishApiKey}");
+                    response.EnsureSuccessStatusCode();
+                    TMDbActor actor = await response.Content.ReadFromJsonAsync<TMDbActor>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    result.Name = match.Name;
+                    result.Cover = $"https://image.tmdb.org/t/p/w500{actor.Profile}";
+                    result.Biography = actor.Biography;
+                    result.Birthday = actor.Birthday;
+                    result.PlaceOfBirth = actor.PlaceOfBirth;
+                    result.WebSite = actor.Homepage;
+                }
+            }
+            catch (Exception ex)
+            {
+                result = new SearchPersonResult
+                {
+                    Name = text,
+                    Biography = ex.Message
+                };
+            }
+        }
+        response.Dispose();
+        return result;
+    }
+
+    private TMDbSearchActorResult GetMatchActor(IEnumerable<TMDbSearchActorResult> searchResults, string actorName)
+    {
+        var matchingResults = searchResults
+            .Where(r => string.Equals(r.Name, actorName, StringComparison.OrdinalIgnoreCase) ||
+                        string.Equals(r.OriginalName, actorName, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(r => r.Popularity)
+            .FirstOrDefault();
+
+        return matchingResults;
+    }
+
 
     class TMDbSearchResult
     {
@@ -117,5 +169,31 @@ internal class SearchMovieSpanishService : ISearchMovieService<SearchMovieInSpan
     {
         public string Name { get; set; }
         public string Job { get; set; }
+    }
+
+    class TMDbSearchActor
+    {
+        public TMDbSearchActorResult[] Results { get; set; }
+    }
+    class TMDbSearchActorResult
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        [JsonPropertyName("original_name")]
+        public string OriginalName { get; set; }
+        public double Popularity { get; set; }
+    } 
+
+    class TMDbActor
+    {
+        public string Biography { get; set; }
+        public string Birthday { get; set; }
+        public string Homepage { get; set; }
+        public string Name { get; set; }
+
+        [JsonPropertyName("place_of_birth")]
+        public string PlaceOfBirth { get; set; }
+        [JsonPropertyName("profile_path")]
+        public string Profile { get; set; }
     }
 }

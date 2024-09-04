@@ -7,9 +7,9 @@ public partial class Relations
 
     MovieCounter[] MoviesRelations;
     MovieCounter Selection;
+    string Actor = string.Empty;
     private RelativeType RelativeToBF;
-    PaginationObjectHandler<MovieCounter> Paginator;
-
+    PaginationObjectHandler<MovieCounter> Paginator;    
 
     public RelativeType RelativeTo
 	{
@@ -39,6 +39,7 @@ public partial class Relations
     async Task ToPage(int page)
     {
         Selection = null;
+        Actor = string.Empty;
         await InvokeAsync(StateHasChanged);
     }
 }

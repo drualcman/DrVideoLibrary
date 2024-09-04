@@ -3,13 +3,16 @@ namespace DrVideoLibrary.Api
     internal class SearchingEndpoints
     {
         readonly ISeachMoviesController SearchMoviesService;
-        readonly ISearchMoveDetailController SearchMovieDetailService;
+        readonly ISearchMoveDetailController SearchMoveDetailController;
+        readonly ISearchActorInfoController SearchActorInfoController;
         public SearchingEndpoints(
             ISeachMoviesController searchMoviesService,
-            ISearchMoveDetailController searchMovieDetailService)
+            ISearchMoveDetailController searchMoveDetailController,
+            ISearchActorInfoController searchActorInfoController)
         {
             SearchMoviesService = searchMoviesService;
-            SearchMovieDetailService = searchMovieDetailService;
+            SearchMoveDetailController = searchMoveDetailController;
+            SearchActorInfoController = searchActorInfoController;
         }
 
         [FunctionName("GetMoviesFromTitle")]
@@ -42,8 +45,27 @@ namespace DrVideoLibrary.Api
             try
             {
                 string lang = req.Query["l"];
-                Movie movie = await SearchMovieDetailService.SearchMoveDetail(id, lang);
+                Movie movie = await SearchMoveDetailController.SearchMoveDetail(id, lang);
                 return new OkObjectResult(movie);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message).ToProblemDetails();
+            }
+        } 
+
+        [FunctionName("GetActor")]
+        public async Task<IActionResult> GetActor(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "search/actor")] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation("Actor details from name");
+
+            try
+            {
+                string text = req.Query["s"];
+                SearchPersonResult actor = await SearchActorInfoController.SearchActor(text);
+                return new OkObjectResult(actor);
             }
             catch (Exception ex)
             {

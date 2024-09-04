@@ -15,7 +15,7 @@ internal class SearchMovieEnglishService : ISearchMovieService<SearchMovieInEngl
 
     public async Task<Movie> GetMovieDetails(string id)
     {
-        HttpResponseMessage response = await Client.GetAsync($"?i={id}&apikey={Options.SearchEnglishApiKey}");
+        using HttpResponseMessage response = await Client.GetAsync($"?i={id}&apikey={Options.SearchEnglishApiKey}");
         response.EnsureSuccessStatusCode();
         OmdbMovieDetail data = await response.Content.ReadFromJsonAsync<OmdbMovieDetail>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         Movie result = null;
@@ -40,9 +40,11 @@ internal class SearchMovieEnglishService : ISearchMovieService<SearchMovieInEngl
         return result;
     }
 
+    public Task<SearchPersonResult> SearchActor(string text) => Task.FromResult(new SearchPersonResult { Name = text });
+ 
     public async Task<IEnumerable<SearchMovieResult>> SearchMovies(string text)
     {
-        HttpResponseMessage response = await Client.GetAsync($"?s={text}&apikey={Options.SearchEnglishApiKey}");
+        using HttpResponseMessage response = await Client.GetAsync($"?s={Uri.EscapeDataString(text)}&apikey={Options.SearchEnglishApiKey}");
         response.EnsureSuccessStatusCode();
         OmdbSearchResult data = await response.Content.ReadFromJsonAsync<OmdbSearchResult>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         IEnumerable<SearchMovieResult> result = null;
@@ -73,7 +75,6 @@ internal class SearchMovieEnglishService : ISearchMovieService<SearchMovieInEngl
         }
         return 0;
     }
-
 
     class OmdbSearchResult
     {

@@ -1,10 +1,4 @@
-﻿using DrVideoLibrary.Backend.ApplicationBusinessRules.ValueObjects;
-using DrVideoLibrary.Backend.InterfaceAdapters.Events;
-using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetMovieById;
-using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.GetWatchList;
-using DrVideoLibrary.Backend.InterfaceAdapters.UseCases.NotificationSubscribe;
-
-namespace Microsoft.Extensions.DependencyInjection;
+﻿namespace Microsoft.Extensions.DependencyInjection;
 public static class DependencyContainer
 {
     public static IServiceCollection AddUseCases(this IServiceCollection services)
@@ -47,9 +41,11 @@ public static class DependencyContainer
         services.AddScoped<INotificationSubscribeInputPort, NotificationSubscribeInteractor>(); 
 
         services.AddScoped<IGetWatchListController, GetWatchListController>();
-        services.AddScoped<IGetWatchListInputPort, GetWatchListInteractor>();
+        services.AddScoped<IGetWatchListInputPort, GetWatchListInteractor>(); 
         services.AddScoped<IGetWatchListOutputPort, GetWatchListPresenter>();
 
+        services.AddScoped<ISearchActorInfoController, SearchActorInfoController>();
+        services.AddScoped<ISearchActorInfoInputPort, SearchActorInfoInputPort>();
         return services;
     }
 

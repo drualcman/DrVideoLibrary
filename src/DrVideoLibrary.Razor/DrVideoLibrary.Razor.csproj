@@ -19,7 +19,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\DrVideoLibrary.Entities\DrVideoLibrary.Entities.csproj" />
-		<ProjectReference Include="C:\drualcman\BlasorIndexedDb\BlasorIndexedDb\BlazorIndexedDb.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
