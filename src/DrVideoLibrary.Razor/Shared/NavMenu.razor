@@ -22,14 +22,18 @@
                         </span>
                         <div class="buttons">
                             <button class="button is-danger is-small" @onclick="BeginLogOut">Log out</button>
+                            <NavLink href="setup" class="button is-light" ActiveClass="@Active">
+                                <span class="icon"><i class="fa-solid fa-gear"></i></span>
+                            </NavLink>
                         </div>
                     </Authorized>
                     <NotAuthorized>
                         <div class="buttons">
                             <NavLink href="authentication/login" class="button is-light" ActiveClass="@Active">
-                                <span class="icon">
-                                    <i class="fa-solid fa-user-lock"></i>
-                                </span>
+                                <span class="icon"><i class="fa-solid fa-user-lock"></i></span>
+                            </NavLink>                                                  
+                            <NavLink href="setup" class="button is-light" ActiveClass="@Active">
+                                <span class="icon"><i class="fa-solid fa-gear"></i></span>
                             </NavLink> 
                         </div>
                     </NotAuthorized>

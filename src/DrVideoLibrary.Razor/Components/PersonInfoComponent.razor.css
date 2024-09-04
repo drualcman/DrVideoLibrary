@@ -19,8 +19,8 @@
         }
 
         .biography-text .info-and-image .actor-image {
-            width: 150px; /* Puedes ajustar el ancho según sea necesario */
-            height: auto; /* Mantiene la proporción de la imagen */
+            width: 150px;
+            height: auto;
         }
 
     .biography-text .info {

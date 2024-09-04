@@ -1,0 +1,61 @@
+﻿@page "/setup"
+@inject MoviesCacheService CacheService
+@inject IJSRuntime JsRuntime
+
+<PageTitle>Profile</PageTitle>
+
+<section class="hero is-warning">
+    <div class="hero-body">
+        <div class="field has-addons">
+            <p class="control">
+                <span class="button is-static">
+                    <i class="fa-solid fa-database"></i>
+                </span>
+            </p>
+            <div class="control">
+                <button type="button" @onclick=Restore
+                    class="button @(IsWorking ? "is-loading":"is-danger")">
+                    <span class="icon"><i class="fa-solid fa-recycle"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="columns">
+        <div class="column">
+            @if (IsWorking)
+            {
+                <WaitingLoader />                
+            }
+            @if (!string.IsNullOrEmpty(Message))
+            {
+                <article class="message is-success">
+                    <div class="message-body">
+                       @Message
+                </div>
+            </article>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    bool IsWorking;
+    string Message;
+    async Task Restore()
+    {
+        Message = string.Empty;
+        IsWorking = true;
+        await CacheService.ResetCache();
+        await JsRuntime.InvokeVoidAsync("localStorage.removeItem", "last-update");
+        await JsRuntime.InvokeVoidAsync("localStorage.removeItem", "last-relations-update");
+        await CacheService.GetList();
+        CacheService.ProcessRelatives();
+        Message = "Done!";
+        IsWorking = false;
+        await InvokeAsync(StateHasChanged);
+        await Task.Delay(5000);
+        Message = string.Empty;
+    }
+}

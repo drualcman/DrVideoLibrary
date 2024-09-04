@@ -10,7 +10,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DrUalcman-BlazorIndexedDb" Version="1.6.44" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.8" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.8" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
@@ -19,6 +18,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\DrVideoLibrary.Entities\DrVideoLibrary.Entities.csproj" />
+		<ProjectReference Include="C:\drualcman\BlasorIndexedDb\BlasorIndexedDb\BlazorIndexedDb.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
