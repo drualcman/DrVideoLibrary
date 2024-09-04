@@ -6,22 +6,26 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
     MoviesRelations RelativeMovies;
     public async Task ResetCache()
     {
+        UpdateCacheOnGoing = false;
         await CacheContext.DropDatabaseAsync();
         await CacheContext.Init();
     }
 
-    public async ValueTask<IEnumerable<ListCard>> GetList()
+    public async Task<IEnumerable<ListCard>> GetList()
     {
         IEnumerable<ListCard> movies = [];
+        IEnumerable<ListCard> firstData = null;
         List<MovieCardModel> cached = await CacheContext.Movies.SelectAsync();
-        if (cached is null || !cached.Any())
+        if (cached is not null && cached.Any())
         {
-            Console.WriteLine($"GetList not cached");
-            movies = await Client.GetMovies();
+            movies = cached.Select(MovieCardModel.ToListCard);
         }
         else
-            movies = cached.Select(MovieCardModel.ToListCard);
-        UpdateCache();
+        {
+            movies = await Client.GetMovies();
+            firstData = movies;
+        }
+        await UpdateCache(firstData);
         return movies.OrderBy(m => m.Title).ThenBy(m => m.Year);
     }
 
@@ -42,13 +46,13 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
         switch (type)
         {
             case RelativeType.ACTOR:
-                relativeMovies = RelativeMovies?.Actors;
+                relativeMovies = RelativeMovies?.Actors ?? [];
                 break;
             case RelativeType.DIRECTOR:
-                relativeMovies = RelativeMovies?.Directors;
+                relativeMovies = RelativeMovies?.Directors ?? [];
                 break;
             case RelativeType.CATEGORY:
-                relativeMovies = RelativeMovies.Categories;
+                relativeMovies = RelativeMovies?.Categories ?? [];
                 break;
         }
         return relativeMovies;
@@ -110,7 +114,6 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
                     }
                 }));
             }
-
             await Task.WhenAll(tasks);
         }
         return moviesDict.Values.OrderBy(m => m.Title).ToList();
@@ -119,7 +122,6 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
     private async Task<MoviesRelations> GetRelations()
     {
         List<Task> task = new();
-
         MoviesRelations relations = new();
         IEnumerable<ListCard> cards = await GetList();
 
@@ -136,12 +138,7 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
         }));
         task.Add(Task.Run(async () =>
         {
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            stopwatch.Start();
             List<ActorRelationModel> actors = await CacheContext.Actors.SelectAsync();
-            stopwatch.Stop();
-            Console.WriteLine($"tiempo 1 {stopwatch.Elapsed}");
-            stopwatch.Restart();
             if (actors is not null && actors.Any())
             {
                 relations.Actors = actors.Select(a => new MovieCounter
@@ -150,8 +147,6 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
                     Movies = a.Movies.Select(m => new MovieBasic(m.MovieId, m.Cover, m.Title)).ToArray()
                 }).OrderByDescending(o => o.Count).ThenBy(n => n.Name).ToArray();
             }
-            stopwatch.Stop();
-            Console.WriteLine($"tiempo 2 {stopwatch.Elapsed}");
 
         }));
         task.Add(Task.Run(async () =>
@@ -167,84 +162,90 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
             }
         }));
         await Task.WhenAll(task);
-
         return relations;
     }
 
-    private void UpdateCache()
+    bool UpdateCacheOnGoing;
+    private async Task UpdateCache(IEnumerable<ListCard> firstData)
     {
-        Task.Run(async () =>
+        if (!UpdateCacheOnGoing)
         {
-            bool needUpdate = await GetShouldUpdate();
-            if (needUpdate)
+            UpdateCacheOnGoing = true;
+            List<Task> tasks = [];
+            tasks.Add(Task.Run(async () =>
             {
-                IEnumerable<ListCard> toUpdate = await Client.GetMovies();
-                await CacheContext.Movies.CleanAsync();
-                await CacheContext.Movies.AddAsync(toUpdate.Select(MovieCardModel.FromListCard).ToList());
-                await JsRuntime.InvokeAsync<DateTime?>("localStorage.setItem", "last-update", DateTime.UtcNow);
-            }
-        });
-        Task.Run(async () =>
-        {
-            DateTime actual = DateTime.Today;
-            DateTime last = actual.AddYears(-1);
-            try
+                bool needUpdate = await GetShouldUpdate();
+                if (needUpdate)
+                {
+                    IEnumerable<ListCard> toUpdate = firstData ?? await Client.GetMovies();
+                    await CacheContext.Movies.CleanAsync();
+                    await CacheContext.Movies.AddAsync(toUpdate.Select(MovieCardModel.FromListCard).ToList());
+                    await JsRuntime.InvokeVoidAsync("localStorage.setItem", "last-update", DateTime.UtcNow);
+                }
+            }));
+            tasks.Add(Task.Run(async () =>
             {
-                DateTime? lastUpdate = await JsRuntime.InvokeAsync<DateTime?>("localStorage.getItem", "last-relations-update");
-                if (lastUpdate.HasValue)
-                    last = lastUpdate.Value;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+                DateTime actual = DateTime.Today;
+                DateTime last = actual.AddYears(-1);
+                try
+                {
+                    DateTime? lastUpdate = await JsRuntime.InvokeAsync<DateTime?>("localStorage.getItem", "last-relations-update");
+                    if (lastUpdate.HasValue)
+                        last = lastUpdate.Value;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
-            TimeSpan difference = actual.Subtract(last);
-            int daysPassed = (int)difference.TotalDays;
-            bool needUpdate = daysPassed > 30;
-            if (needUpdate)
-            {
-                Console.WriteLine("entre");
-                IEnumerable<MovieRelationDto> toUpdate = await Client.GetRelativesAsync();
+                TimeSpan difference = actual.Subtract(last);
+                int daysPassed = (int)difference.TotalDays;
+                bool needUpdate = daysPassed > 30;
+                if (needUpdate)
+                {
+                    IEnumerable<MovieRelationDto> toUpdate = await Client.GetRelativesAsync();
 
-                MoviesRelations relations = await CreateMoviesRelations(toUpdate);
-                List<Task> tasks = 
-                [
-                    Task.Run(async () => 
-                    {
-                        await CacheContext.Actors.CleanAsync();
-                        await CacheContext.Actors.AddAsync(relations.Actors.Select(d => new ActorRelationModel
+                    MoviesRelations relations = await CreateMoviesRelations(toUpdate);
+                    List<Task> updatedbTask =
+                    [
+                        Task.Run(async () =>
                         {
-                            Count = d.Count,
-                            Movies = d.Movies.Select(m => new MovieBasicModel
+                            await CacheContext.Actors.CleanAsync();
+                            await CacheContext.Actors.AddAsync(relations.Actors.Select(d => new ActorRelationModel
                             {
-                                Cover = m.Cover,
-                                Title = m.Title,
-                                MovieId = m.Id
-                            }).ToList(),
-                            Name = d.Name
-                        }).ToList());
-                    }),
-                    Task.Run(async () =>
-                    {
-                        await CacheContext.Directors.CleanAsync();
-                        await CacheContext.Directors.AddAsync(relations.Directors.Select(d => new DirectorRelationModel
+                                Count = d.Count,
+                                Movies = d.Movies.Select(m => new MovieBasicModel
+                                {
+                                    Cover = m.Cover,
+                                    Title = m.Title,
+                                    MovieId = m.Id
+                                }).ToList(),
+                                Name = d.Name
+                            }).ToList());
+                        }),
+                        Task.Run(async () =>
                         {
-                            Count = d.Count,
-                            Movies = d.Movies.Select(m => new MovieBasicModel
+                            await CacheContext.Directors.CleanAsync();
+                            await CacheContext.Directors.AddAsync(relations.Directors.Select(d => new DirectorRelationModel
                             {
-                                Cover = m.Cover,
-                                Title = m.Title,
-                                MovieId = m.Id
-                            }).ToList(),
-                            Name = d.Name
-                        }).ToList());
-                    })
-                ];
-                await Task.WhenAll(tasks);
-                await JsRuntime.InvokeAsync<DateTime?>("localStorage.setItem", "last-relations-update", DateTime.UtcNow);
-            }
-        });
+                                Count = d.Count,
+                                Movies = d.Movies.Select(m => new MovieBasicModel
+                                {
+                                    Cover = m.Cover,
+                                    Title = m.Title,
+                                    MovieId = m.Id
+                                }).ToList(),
+                                Name = d.Name
+                            }).ToList());
+                        })
+                    ];
+                    await Task.WhenAll(updatedbTask);
+                    await JsRuntime.InvokeVoidAsync("localStorage.setItem", "last-relations-update", DateTime.UtcNow);
+                }
+            }));
+            await Task.WhenAll(tasks);
+            UpdateCacheOnGoing = false;
+        }
     }
 
     private async Task<MoviesRelations> CreateMoviesRelations(IEnumerable<MovieRelationDto> moviesDetails)
@@ -327,7 +328,5 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
             result = true;
         }
         return result;
-
     }
-
 }
