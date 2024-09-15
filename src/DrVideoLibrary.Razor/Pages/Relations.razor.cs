@@ -9,7 +9,37 @@ public partial class Relations
     MovieCounter Selection;
     string Actor = string.Empty;
     private RelativeType RelativeToBF;
-    PaginationObjectHandler<MovieCounter> Paginator;    
+    PaginationObjectHandler<MovieCounter> Paginator;
+    private string SearchBK;
+
+    public string Search
+    {
+        get { return SearchBK; }
+        set 
+        { 
+            SearchBK = value;
+            try
+            {
+                MoviesRelations = CacheService.GetRelatives(RelativeToBF);
+                if (MoviesRelations is not null)
+                {
+                    if (!string.IsNullOrEmpty(SearchBK))
+                    {
+                        MoviesRelations = MoviesRelations
+                            .Where(x => x.Name.Contains(SearchBK, StringComparison.InvariantCultureIgnoreCase))
+                            .ToArray();
+                    }
+                    Paginator = new PaginationObjectHandler<MovieCounter>(MoviesRelations, 10);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                MoviesRelations = [];
+            }
+        }
+    }
+
 
     public RelativeType RelativeTo
 	{
@@ -17,10 +47,12 @@ public partial class Relations
 		set 
 		{ 
 			RelativeToBF = value;
+            Selection = null;
+            SearchBK = string.Empty;
             try
             {
                 MoviesRelations = CacheService.GetRelatives(RelativeToBF);
-                if(MoviesRelations is not null)
+                if (MoviesRelations is not null)
                     Paginator = new PaginationObjectHandler<MovieCounter>(MoviesRelations, 10);
             }
             catch (Exception ex)
