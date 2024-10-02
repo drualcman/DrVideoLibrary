@@ -1,13 +1,13 @@
 {
-  "name": "Packing V.5 Cloud",
-  "short_name": "Packing Cloud",
-  "start_url": "/packingv5/",
+  "name": "Movies Sergi Ortiz Gomez",
+  "short_name": "Movies Sergi",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#03173d",
+  "background_color": "#f5f5f5",
+  "theme_color": "#00796b",
   "icons": [
     {
-      "src": "/packingv5/img/PackingIcon.png",
+      "src": "/img/Logo512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

@@ -1,5 +1,6 @@
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
+
 builder.Services.AddServices(
     apiOptions: builder.Configuration.GetSection(ApiClientOptions.SectionKey).Bind,
     paginatorOptions: builder.Configuration.GetSection(PaginatorOptions.SectionKey).Bind,

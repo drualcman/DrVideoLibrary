@@ -19,6 +19,10 @@
 		<ProjectReference Include="..\DrVideoLibrary.Razor\DrVideoLibrary.Razor.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="wwwroot\img\" />
+	</ItemGroup>
+
 	<PropertyGroup>
 		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 		<UserSecretsId>5959dff2-ff82-40ce-9fff-a4e32168cffa</UserSecretsId>
