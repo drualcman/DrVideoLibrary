@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "DrVideoLibrary.Functions": {
+      "commandName": "Project",
+      "commandLineArgs": "host start --useHttps --port 44769 --cors * --cert \"D:\\Repos\\DrVideoLibrary\\localhost.pfx\" --password \"password\"",
+      "launchBrowser": false
+    }
+  }
+}

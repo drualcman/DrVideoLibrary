@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+	  <UserSecretsId>7c1139fd-eea7-4295-b35e-498303913ca2</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.5.0" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DrVideoLibrary.Backend.InterfaceAdapters\DrVideoLibrary.Backend.InterfaceAdapters.csproj" />
+		<ProjectReference Include="..\DrVideoLibrary.Backend.PushNotifications\DrVideoLibrary.Backend.PushNotifications.csproj" />
+		<ProjectReference Include="..\DrVideoLibrary.Backend.Repositories\DrVideoLibrary.Backend.Repositories.csproj" />
+		<ProjectReference Include="..\DrVideoLibrary.Backend.Storage\DrVideoLibrary.Backend.Storage.csproj" />
+		<ProjectReference Include="..\DrVideoLibrary.Cosmos.DbContext\DrVideoLibrary.Cosmos.DbContext.csproj" />
+	</ItemGroup>
+  <ItemGroup>
+    <None Update="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+</Project>
