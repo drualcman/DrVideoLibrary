@@ -1,15 +1,28 @@
 {
   "name": "Movies Sergi Ortiz Gomez",
-  "short_name": "Movies Sergi",
+  "short_name": "Movies DrUalcman",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f5f5f5",
   "theme_color": "#00796b",
   "icons": [
     {
-      "src": "/img/Logo512.png",
+      "src": "img/Logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "img/DrVideoLibrary_desktop.png",
+      "type": "image/png",
+      "sizes": "1280x720",
+      "form_factor": "wide"
+    },
+    {
+      "src": "img/DrVideoLibrary_mobile.png",
+      "type": "image/png",
+      "sizes": "720x1280"
     }
   ]
 }
