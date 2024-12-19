@@ -10,8 +10,8 @@ internal class AddMovieHandler : IEventHandler<SendNotificationSubscription>
         UrlProvider = urlProvider;
     }
 
-    public async Task Handle(SendNotificationSubscription data, ILogger logger)
+    public async Task Handle(SendNotificationSubscription data)
     {
-        await NotificationService.SendNotificationAsync(data.NotificationType, data.Message, UrlProvider.GetUrl($"movie/{data.MovieId}"), logger, true);
+        await NotificationService.SendNotificationAsync(data.NotificationType, data.Message, UrlProvider.GetUrl($"movie/{data.MovieId}"), true);
     }
 }

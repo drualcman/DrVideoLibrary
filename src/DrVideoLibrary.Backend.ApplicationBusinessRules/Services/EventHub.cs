@@ -8,7 +8,7 @@ internal class EventHub<TEvent> : IEventHub<TEvent> where TEvent : IEvent
         ServiceProvider = serviceProvider;
     }
 
-    public void Rise(TEvent data, ILogger logger)
+    public void Rise(TEvent data)
     {
         Task.Run(async () =>
         {
@@ -16,14 +16,11 @@ internal class EventHub<TEvent> : IEventHub<TEvent> where TEvent : IEvent
             {
                 using AsyncServiceScope scope = ServiceProvider.CreateAsyncScope();
                 IEnumerable<IEventHandler<TEvent>> events = scope.ServiceProvider.GetServices<IEventHandler<TEvent>>();
-                IEnumerable<Task> tasks = events.Select(e => e.Handle(data, logger)).ToList();
-                logger.LogInformation($"EventHub.Rise Fired #{tasks?.Count()} tasks");
+                IEnumerable<Task> tasks = events.Select(e => e.Handle(data)).ToList();
                 await Task.WhenAll(tasks);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "EventHub.Rise exception");
-                string e = ex.ToString();
                 throw;
             }
         });

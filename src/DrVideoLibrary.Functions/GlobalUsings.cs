@@ -12,14 +12,11 @@ global using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases
 global using DrVideoLibrary.Entities.Dtos;
 global using DrVideoLibrary.Entities.Models;
 global using DrVideoLibrary.Entities.ValueObjects;
-global using DrVideoLibrary.Functions;
 global using DrVideoLibrary.Functions.Extensions;
 global using DrVideoLibrary.Functions.Helpers;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Mvc;
-global using Microsoft.Azure.Functions.Extensions.DependencyInjection;
-global using Microsoft.Azure.WebJobs;
-global using Microsoft.Azure.WebJobs.Extensions.Http;
+global using Microsoft.Azure.Functions.Worker;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;

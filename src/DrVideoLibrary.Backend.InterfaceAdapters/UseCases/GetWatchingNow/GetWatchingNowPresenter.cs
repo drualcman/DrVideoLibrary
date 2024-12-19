@@ -4,13 +4,12 @@ internal class GetWatchingNowPresenter : IGetWatchingNowOutputPort
 {
     readonly IFileContent FileContent;
 
-    public GetWatchingNowPresenter(IFileContent fileContent, WatchingNow content)
+    public GetWatchingNowPresenter(IFileContent fileContent)
     {
         FileContent = fileContent;
-        Content = content;
     }
 
-    public WatchingNow Content { get; private set; }    
+    public WatchingNow Content { get; private set; }
 
     public async Task Handle(Movie movie, DateTime started)
     {

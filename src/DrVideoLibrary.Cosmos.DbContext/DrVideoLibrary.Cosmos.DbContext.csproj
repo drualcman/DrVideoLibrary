@@ -1,16 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
-	
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Azure.Cosmos" Version="3.45.0" />
+		<PackageReference Include="Microsoft.Azure.Cosmos" Version="3.46.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DrVideoLibrary.Backend.Repositories\DrVideoLibrary.Backend.Repositories.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DrVideoLibrary.Backend.Repositories\DrVideoLibrary.Backend.Repositories.csproj" />
+	</ItemGroup>
 
 </Project>

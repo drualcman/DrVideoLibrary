@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Data;
-
-namespace DrVideoLibrary.Backend.PushNotifications;
+﻿namespace DrVideoLibrary.Backend.PushNotifications;
 internal class NotificationService : INotificationService
 {
     readonly NotificationOptions Options;
@@ -13,24 +10,22 @@ internal class NotificationService : INotificationService
         Repository = repository;
     }
 
-    public async Task SendNotificationAsync(SendNotificationType type, string message, string link, ILogger logger, bool isNew)
+    public async Task SendNotificationAsync(SendNotificationType type, string message, string link, bool isNew)
     {
         IEnumerable<NotificationSubscription> subscriptions = await Repository.GetSubscriptions();
-        logger.LogInformation($"SendNotificationAsync to {subscriptions?.Count()}");
         if (subscriptions is not null && subscriptions.Any())
         {
             List<Task> tasks = new List<Task>();
             foreach (NotificationSubscription subscription in subscriptions)
             {
-                tasks.Add(SendNotification(subscription, type, message, link, logger, isNew));
+                tasks.Add(SendNotification(subscription, type, message, link, isNew));
             }
             await Task.WhenAll(tasks);
         }
     }
 
     private async Task SendNotification(
-        NotificationSubscription subscription, SendNotificationType type, string message, string link,
-        ILogger logger, bool isNew)
+        NotificationSubscription subscription, SendNotificationType type, string message, string link, bool isNew)
     {
         using WebPushClient client = new WebPushClient();
         VapidDetails vapidDetails = new VapidDetails($"mailto:{Options.NotificationsEmail}", Options.NotificationsPublicKey, Options.NotificationsPrivateKey);
@@ -46,9 +41,8 @@ internal class NotificationService : INotificationService
             });
             await client.SendNotificationAsync(pushSubscription, payLoad, vapidDetails);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            logger.LogError(ex, $"Can't send push notification with message: '{message}'");
             await Repository.DeleteSubscription(subscription.UserId, subscription.Auth);
         }
     }

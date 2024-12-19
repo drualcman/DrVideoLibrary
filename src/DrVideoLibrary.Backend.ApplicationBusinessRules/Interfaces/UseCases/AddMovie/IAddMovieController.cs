@@ -1,5 +1,5 @@
 ﻿namespace DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.AddMovie;
 public interface IAddMovieController
 {
-    Task AddMovie(Movie data, ILogger logger);
+    Task AddMovie(Movie data);
 }

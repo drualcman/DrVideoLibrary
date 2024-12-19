@@ -10,11 +10,8 @@ namespace DrVideoLibrary.Api
 
         [FunctionName("Subscribe")]
         public async Task<IActionResult> Subscribe(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "notification")] HttpRequest req,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "notification")] HttpRequest req)
         {
-            log.LogInformation("Subscribe for notification");
-
             try
             {
                 NotificationSubscription result = await HttpRequestHelper.GetRequestedModel<NotificationSubscription>(req);

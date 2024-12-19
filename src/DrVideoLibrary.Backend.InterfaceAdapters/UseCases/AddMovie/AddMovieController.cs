@@ -8,6 +8,6 @@ internal class AddMovieController : IAddMovieController
         Input = input;
     }
 
-    public Task AddMovie(Movie data, ILogger logger) =>
-        Input.AddMovie(data, logger);
+    public Task AddMovie(Movie data) =>
+        Input.AddMovie(data);
 }

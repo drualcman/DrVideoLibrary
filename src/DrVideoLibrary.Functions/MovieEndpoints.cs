@@ -11,12 +11,10 @@ namespace DrVideoLibrary.Functions
             GetMovieByIdController = getMovieByIdController;
         }
 
-        [FunctionName("GetMovieById")]
+        [Function("GetMovieById")]
         public async Task<IActionResult> GetMovieById(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "movie/{id}")] HttpRequest req,
-            ILogger log, string id)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "movie/{id}")] HttpRequest req, string id)
         {
-            log.LogInformation("Get movie details");
 
             try
             {
@@ -29,17 +27,14 @@ namespace DrVideoLibrary.Functions
             }
         }
 
-        [FunctionName("AddMovie")]
+        [Function("AddMovie")]
         public async Task<IActionResult> AddMovie(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "movie")] HttpRequest req,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "movie")] HttpRequest req)
         {
-            log.LogInformation("Add new movie");
-
             try
             {
                 Movie data = await HttpRequestHelper.GetRequestedModel<Movie>(req);
-                await AddMovieController.AddMovie(data, log);
+                await AddMovieController.AddMovie(data);
                 return new OkResult();
             }
             catch (Exception ex)

@@ -15,13 +15,10 @@ namespace DrVideoLibrary.Functions
             SearchActorInfoController = searchActorInfoController;
         }
 
-        [FunctionName("GetMoviesFromTitle")]
+        [Function("GetMoviesFromTitle")]
         public async Task<IActionResult> GetMoviesFromTitle(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "search")] HttpRequest req,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "search")] HttpRequest req)
         {
-            log.LogInformation("Get movie list from title");
-
             try
             {
                 string text = req.Query["s"];
@@ -35,13 +32,10 @@ namespace DrVideoLibrary.Functions
             }
         }
 
-        [FunctionName("GetMovieDetail")]
+        [Function("GetMovieDetail")]
         public async Task<IActionResult> GetMovieDetail(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "search/{id}")] HttpRequest req,
-            ILogger log, string id)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "search/{id}")] HttpRequest req, string id)
         {
-            log.LogInformation("Movie details from id");
-
             try
             {
                 string lang = req.Query["l"];
@@ -54,13 +48,10 @@ namespace DrVideoLibrary.Functions
             }
         }
 
-        [FunctionName("GetActor")]
+        [Function("GetActor")]
         public async Task<IActionResult> GetActor(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "search/actor")] HttpRequest req,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "search/actor")] HttpRequest req)
         {
-            log.LogInformation("Actor details from name");
-
             try
             {
                 string text = req.Query["s"];

@@ -10,13 +10,10 @@ namespace DrVideoLibrary.Functions
             WatchListController = watchListController;
         }
 
-        [FunctionName("GetMovies")]
+        [Function("GetMovies")]
         public async Task<IActionResult> GetMovies(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "lists/all")] HttpRequest req,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "lists/all")] HttpRequest req)
         {
-            log.LogInformation("Get movie list");
-
             try
             {
                 IEnumerable<ListCard> movies = await GetAllController.GetAll();
@@ -28,13 +25,10 @@ namespace DrVideoLibrary.Functions
             }
         }
 
-        [FunctionName("GetWatchedList")]
+        [Function("GetWatchedList")]
         public async Task<IActionResult> GetWatchedList(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "lists/watched")] HttpRequest req,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "lists/watched")] HttpRequest req)
         {
-            log.LogInformation("Get watched list");
-
             try
             {
                 IEnumerable<WatchedCard> watcheds = await WatchListController.GetWatchList();

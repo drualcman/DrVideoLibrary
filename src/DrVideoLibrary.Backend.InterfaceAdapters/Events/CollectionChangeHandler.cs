@@ -10,11 +10,11 @@ internal class CollectionChangeHandler : IEventHandler<SendNotificationSubscript
         UrlProvider = urlProvider;
     }
 
-    public async Task Handle(SendNotificationSubscription data, ILogger logger)
+    public async Task Handle(SendNotificationSubscription data)
     {
-        if (data.NotificationType == ApplicationBusinessRules.ValueObjects.SendNotificationType.CATALOG)
+        if (data.NotificationType == SendNotificationType.CATALOG)
         {
-            await NotificationService.SendNotificationAsync(data.NotificationType, data.Message, UrlProvider.GetUrl(""), logger, false);
+            await NotificationService.SendNotificationAsync(data.NotificationType, data.Message, UrlProvider.GetUrl(""), false);
         }
     }
 }

@@ -16,7 +16,7 @@ internal class RegisterWatchingNowInteractor : IRegisterWatchingNowInputPort
         Localizer = localizer;
     }
 
-    public async Task Handle(WatchingNowDto data, ILogger logger)
+    public async Task Handle(WatchingNowDto data)
     {
         await Repository.RegisterWatchingNow(data);
         if (!string.IsNullOrEmpty(data.Lang))
@@ -30,8 +30,8 @@ internal class RegisterWatchingNowInteractor : IRegisterWatchingNowInputPort
             CultureInfo.CurrentUICulture = new CultureInfo(ResourcesOptions.DefaultLang);
         }
         EventHub.Rise(new SendNotificationSubscription(
-            string.Format(Localizer[nameof(EventMessages.WatchingNowTemplate)], data.Start), 
-            data.MovieId, 
-            ApplicationBusinessRules.ValueObjects.SendNotificationType.WATCHING), logger);
+            string.Format(Localizer[nameof(EventMessages.WatchingNowTemplate)], data.Start),
+            data.MovieId,
+            SendNotificationType.WATCHING));
     }
 }

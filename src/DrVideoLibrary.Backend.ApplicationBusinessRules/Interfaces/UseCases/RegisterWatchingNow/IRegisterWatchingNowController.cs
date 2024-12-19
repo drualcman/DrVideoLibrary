@@ -1,5 +1,5 @@
 ﻿namespace DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces.UseCases.RegisterWatchingNow;
 public interface IRegisterWatchingNowController
 {
-    Task RegisterWatchingNow(WatchingNowDto data, ILogger logger);
+    Task RegisterWatchingNow(WatchingNowDto data);
 }

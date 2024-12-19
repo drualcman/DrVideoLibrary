@@ -6,20 +6,16 @@ namespace DrVideoLibrary.Functions
         readonly IRegisterWatchingNowController RegisterController;
 
         public WatchingEndpoints(IGetWatchingNowController watchingNowController,
-            IRegisterWatchingNowController registerController,
-            ILogger<WatchingEndpoints> log)
+            IRegisterWatchingNowController registerController)
         {
             WatchingNowController = watchingNowController;
             RegisterController = registerController;
         }
 
-        [FunctionName("GetWatching")]
+        [Function("GetWatching")]
         public async Task<IActionResult> GetWatching(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "watching")] HttpRequest req,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "watching")] HttpRequest req)
         {
-            log.LogInformation("Get actual movie watching");
-
             try
             {
                 WatchingNow result = await WatchingNowController.GetWatchingNow();
@@ -32,17 +28,14 @@ namespace DrVideoLibrary.Functions
         }
 
 
-        [FunctionName("RegisterWatchingNow")]
+        [Function("RegisterWatchingNow")]
         public async Task<IActionResult> RegisterWatchingNow(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "watching")] HttpRequest req,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "watching")] HttpRequest req)
         {
-            log.LogInformation("Register what movie is watching right now");
-
             try
             {
                 WatchingNowDto data = await HttpRequestHelper.GetRequestedModel<WatchingNowDto>(req);
-                await RegisterController.RegisterWatchingNow(data, log);
+                await RegisterController.RegisterWatchingNow(data);
                 return new OkResult();
             }
             catch (Exception ex)

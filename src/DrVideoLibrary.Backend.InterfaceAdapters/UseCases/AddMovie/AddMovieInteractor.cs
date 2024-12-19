@@ -13,7 +13,7 @@ internal class AddMovieInteractor : IAddMovieInputPort
         Localizer = localizer;
     }
 
-    public Task AddMovie(Movie data, ILogger logger)
+    public Task AddMovie(Movie data)
     {
         Task.Run(async () =>
         {
@@ -33,7 +33,7 @@ internal class AddMovieInteractor : IAddMovieInputPort
             EventHub.Rise(new SendNotificationSubscription(
                 string.Format(Localizer[nameof(EventMessages.NewMovieTemplate)], data.Title),
                 data.Id,
-                ApplicationBusinessRules.ValueObjects.SendNotificationType.CATALOG), logger);
+                SendNotificationType.CATALOG));
         });
         return Task.CompletedTask;
     }
