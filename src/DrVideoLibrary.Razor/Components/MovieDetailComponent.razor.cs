@@ -7,25 +7,42 @@ public partial class MovieDetailComponent
     [Parameter] public EventCallback OnPlayClick { get; set; }
 
     RelativesDto RelativesData;
+    string Actor = string.Empty;
 
-    protected override void OnParametersSet()
+    protected override void OnAfterRender(bool firstRender)
     {
-        if (Movie is not null)
+        if (firstRender)
         {
-            RelativesData = new RelativesDto
+            if (Movie is not null)
             {
-                RelativeOf = RelativeType.ACTOR,
-                Data = Movie.Actors.ToArray()
-            };
+                Task.Run(async () =>
+                {
+                    RelativesData = new RelativesDto
+                    {
+                        RelativeOf = RelativeType.ACTOR,
+                        Data = Movie.Actors.ToArray()
+                    };
+                    await InvokeAsync(StateHasChanged);
+                });
+            }
         }
     }
 
+    //protected override void OnParametersSet()
+    //{
+    //    if (Movie is not null)
+    //    {
+    //        RelativesData = new RelativesDto
+    //        {
+    //            RelativeOf = RelativeType.ACTOR,
+    //            Data = Movie.Actors.ToArray()
+    //        };
+    //    }
+    //}
+
     Task ChangeRelative(RelativeType relativeType)
     {
-        RelativesData = new RelativesDto
-        {
-            RelativeOf = relativeType
-        };
+        RelativesData.RelativeOf = relativeType;
         switch (relativeType)
         {
             case RelativeType.ACTOR:
@@ -41,5 +58,4 @@ public partial class MovieDetailComponent
         }
         return Task.CompletedTask;
     }
-
 }
