@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace DrVideoLibrary.Razor.Cache.Services;
+﻿namespace DrVideoLibrary.Razor.Cache.Services;
 internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, IJSRuntime JsRuntime)
 {
     MoviesRelations RelativeMovies;
@@ -314,12 +312,14 @@ internal class MoviesCacheService(MoviesContext CacheContext, ApiClient Client, 
         bool result;
         try
         {
-            DateTime? lastUpdate = await JsRuntime.InvokeAsync<DateTime?>("localStorage.getItem", "last-update");
-            if (lastUpdate.HasValue)
+            string lastUpdateStr = await JsRuntime.InvokeAsync<string>("localStorage.getItem", "last-update");
+
+            if (!string.IsNullOrEmpty(lastUpdateStr) && DateTime.TryParse(lastUpdateStr, out DateTime lastUpdate))
             {
-                DateOnly last = DateOnly.FromDateTime(lastUpdate.Value);
-                DateOnly actual = DateOnly.FromDateTime(DateTime.Today);
-                result = last != actual;
+                DateOnly last = DateOnly.FromDateTime(lastUpdate);
+                DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+
+                result = last != today;
             }
             else result = true;
         }
