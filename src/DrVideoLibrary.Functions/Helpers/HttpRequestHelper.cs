@@ -14,9 +14,10 @@ public static class HttpRequestHelper
 
     private static async Task<string> ReadAsStringAsync(HttpRequest request)
     {
+        request.EnableBuffering();
         using StreamReader reader = new StreamReader(request.Body, Encoding.UTF8, detectEncodingFromByteOrderMarks: true, 1024, leaveOpen: true);
         string result = await reader.ReadToEndAsync();
-        request.Body.Seek(0L, SeekOrigin.Begin);
+        request.Body.Seek(0L, SeekOrigin.Begin); 
         return result;
     }
 }
