@@ -8,6 +8,7 @@ public partial class MovieDetailComponent
 
     RelativesDto RelativesData;
     string Actor = string.Empty;
+    bool IsWorking;
 
     protected override void OnAfterRender(bool firstRender)
     {
@@ -28,18 +29,6 @@ public partial class MovieDetailComponent
         }
     }
 
-    //protected override void OnParametersSet()
-    //{
-    //    if (Movie is not null)
-    //    {
-    //        RelativesData = new RelativesDto
-    //        {
-    //            RelativeOf = RelativeType.ACTOR,
-    //            Data = Movie.Actors.ToArray()
-    //        };
-    //    }
-    //}
-
     Task ChangeRelative(RelativeType relativeType)
     {
         RelativesData.RelativeOf = relativeType;
@@ -57,5 +46,13 @@ public partial class MovieDetailComponent
                 break;
         }
         return Task.CompletedTask;
+    }
+
+    async Task PlayMovie()
+    {
+        IsWorking = true;
+        if (OnPlayClick.HasDelegate)
+            await OnPlayClick.InvokeAsync();
+        IsWorking = false;
     }
 }

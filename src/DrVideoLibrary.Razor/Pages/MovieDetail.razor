@@ -3,5 +3,12 @@
 <PageTitle>@Movie?.Title</PageTitle>
 
 <div class="container">
-    <MovieDetailComponent Movie=Movie OnPlayClick=StartPlayMovie />
+    @if (Movie is null)
+    {
+        <WaitingLoader />
+    }
+    else
+    {
+        <MovieDetailComponent Movie=Movie OnPlayClick=StartPlayMovie />
+    }
 </div>

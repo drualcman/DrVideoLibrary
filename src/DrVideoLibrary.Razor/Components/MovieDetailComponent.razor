@@ -1,104 +1,98 @@
-﻿@if (Movie is not null)
-{
-    <div class="header">
-        <ImageProtector Src="@Movie.Cover" class="header-image" />
-        <h1 class="title header-title">@Movie.Title</h1>
+﻿<div class="header">
+    <ImageProtector Src="@Movie.Cover" class="header-image" />
+    <h1 class="title header-title">@Movie.Title</h1>
+</div>
+<div class="info-section">
+    <div class="info-item">
+        <p class="subtitle is-6"><RateStarComponent Rate=Movie.Rate /></p>
+        <p class="title is-5">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Rating))</p>
     </div>
+    <div class="info-item">
+        <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Released))</p>
+        <p class="title is-5">@Movie.Year</p>
+    </div>
+    <div class="info-item">
+        <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.TotalTimeLabel))</p>
+        <p class="title is-5">@Movie.Duration</p>
+    </div>
+    <div class="info-item">
+        <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.TotalViews))</p>
+        <p class="title is-5">@Movie.TotalViews</p>
+    </div>
+    @if (OnPlayClick.HasDelegate)
+    {
+        <AuthorizeView>
+            <Authorized>
+                <button type="button" class="button is-success @(IsWorking ? "is-loading":"")" @onclick=PlayMovie>
+                    <span class="icon">
+                        <i class="fa-solid fa-play"></i>
+                    </span>
+                </button>
+            </Authorized>
+        </AuthorizeView>
+    }
+</div>
+@ChildContent
+<div class="tags-section">
+    @foreach (string category in Movie.Categories)
+    {
+        <span class="tag is-success">@category</span>
+    }
+</div>
+<div class="additional-info">
+    <p>@Movie.Description</p>
+    <hr />
+    <div>
+        <strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Actors))</strong>
+        <div class="field is-grouped is-grouped-multiline is-centered">
+            @foreach (string actor in Movie.Actors)
+            {
+                <div class="control">
+                    <div class="tags has-addons" @onclick="() => Actor = actor">
+                        <span class="tag">@actor</span>
+                        <span class="tag is-info">
+                            <span class="icon">
+                                <i class="fa-solid fa-info"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Directors))</strong>
+        <div class="field is-grouped is-grouped-multiline is-centered">
+            @foreach (string director in Movie.Directors)
+            {
+                <div class="control">
+                    <div class="tags has-addons" @onclick="() => Actor = director">
+                        <span class="tag">@director</span>
+                        <span class="tag is-info">
+                            <span class="icon">
+                                <i class="fa-solid fa-info"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    @if (string.IsNullOrEmpty(Movie.OriginalTitle) == false)
+    {
+        <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.OriginalTtileLabel))</strong> @Movie.OriginalTitle</p>
+    }
+    <hr />
+</div>
+@if (RelativesData is not null && RelativesData.Data is not null && RelativesData.Data.Any())
+{
     <div class="info-section">
         <div class="info-item">
-            <p class="subtitle is-6"><RateStarComponent Rate=Movie.Rate /></p>
-            <p class="title is-5">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Rating))</p>
+            <p class="title is-5">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Relatives)) (@RelativesData.RelativeOf)</p>
         </div>
-        <div class="info-item">
-            <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Released))</p>
-            <p class="title is-5">@Movie.Year</p>
-        </div>
-        <div class="info-item">
-            <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.TotalTimeLabel))</p>
-            <p class="title is-5">@Movie.Duration</p>
-        </div>
-        <div class="info-item">
-            <p class="subtitle is-6">@Localizer.GetString(nameof(ResourceMovieDetailComponent.TotalViews))</p>
-            <p class="title is-5">@Movie.TotalViews</p>
-        </div>
-        @if (OnPlayClick.HasDelegate)
-        {
-            <AuthorizeView>
-                <Authorized>
-                    <button type="button" class="button is-success" @onclick=OnPlayClick>
-                        <span class="icon">
-                            <i class="fa-solid fa-play"></i>
-                        </span>
-                    </button>
-                </Authorized>
-            </AuthorizeView>
-        }
     </div>
-    @ChildContent
-    <div class="tags-section">
-        @foreach (string category in Movie.Categories)
-        {
-            <span class="tag is-success">@category</span>
-        }
-    </div>
-    <div class="additional-info">
-        <p>@Movie.Description</p>
-        <hr />
-        <div>
-            <strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Actors))</strong>
-            <div class="field is-grouped is-grouped-multiline is-centered">
-                @foreach (string actor in Movie.Actors)
-                {
-                    <div class="control">
-                        <div class="tags has-addons" @onclick="() => Actor = actor">
-                            <span class="tag">@actor</span>
-                            <span class="tag is-info">
-                                <span class="icon">
-                                    <i class="fa-solid fa-info"></i>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-        <div>
-            <strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.Directors))</strong>
-            <div class="field is-grouped is-grouped-multiline is-centered">
-                @foreach (string director in Movie.Directors)
-                {
-                    <div class="control">
-                        <div class="tags has-addons" @onclick="() => Actor = director">
-                            <span class="tag">@director</span>
-                            <span class="tag is-info">
-                                <span class="icon">
-                                    <i class="fa-solid fa-info"></i>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-        @if (string.IsNullOrEmpty(Movie.OriginalTitle) == false)
-        {
-            <p><strong>@Localizer.GetString(nameof(ResourceMovieDetailComponent.OriginalTtileLabel))</strong> @Movie.OriginalTitle</p>
-        }
-        <hr />
-    </div>
-    if (RelativesData is not null)
-    {
-        <div class="info-section">
-            <div class="info-item">
-                <p class="title is-5">@Localizer.GetString(nameof(ResourceMovieDetailComponent.Relatives)) (@RelativesData.RelativeOf)</p>
-            </div>
-        </div>
-        <RelativeMoviesComponent Data=RelativesData OnChangeRelative="ChangeRelative" MovieId="@Movie.Id" />
-    }
+    <RelativeMoviesComponent Data=RelativesData OnChangeRelative="ChangeRelative" MovieId="@Movie.Id" />
 }
-else
-{
-    <WaitingLoader />
-}
-
 <PersonInfoComponent ActorName=@Actor OnClose="() => Actor = string.Empty" />
+
+

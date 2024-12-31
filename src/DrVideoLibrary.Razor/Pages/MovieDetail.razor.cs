@@ -19,9 +19,8 @@ public partial class MovieDetail
 
     public async Task StartPlayMovie()
     {
-        string lang =  await JSRuntime.InvokeAsync<string>("blazorCulture.get");
+        string lang = await JSRuntime.InvokeAsync<string>("blazorCulture.get");
         await Client.RegisterWatchingNowAsync(Id, lang);
         Navigation.NavigateTo("watching");
     }
-
 }
