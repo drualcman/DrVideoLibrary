@@ -21,7 +21,7 @@
                     <a href="movie/@Movie.Id" class="button is-primary">@Localizer.GetString(nameof(ResourceListCard.DetailsLabel))</a>
                     <AuthorizeView>
                         <Authorized>
-                            <button type="button" class="button is-success" @onclick=OnPlay_Click>
+                            <button type="button" class="button is-success @(IsWorking ? "is-loading":"")" @onclick=OnPlay_Click>
                                 <span class="icon">
                                     <i class="fa-solid fa-play"></i>
                                 </span>

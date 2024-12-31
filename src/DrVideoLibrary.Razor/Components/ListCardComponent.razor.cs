@@ -5,9 +5,12 @@ public partial class ListCardComponent
     [Parameter] public ListCard Movie { get; set; }
     [Parameter] public EventCallback<string> OnPlay { get; set; }
 
+    bool IsWorking;
     async Task OnPlay_Click()
     {
-        if(OnPlay.HasDelegate)
+        IsWorking = true;
+        if (OnPlay.HasDelegate)
             await OnPlay.InvokeAsync(Movie.Id);
+        IsWorking = false;
     }
 }
