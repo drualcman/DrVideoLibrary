@@ -8,8 +8,8 @@ public class NotificationsClient : INotificationClient
     public NotificationsClient(HttpClient client, IOptions<PushNotificationOptions> options)
     {
         Client = client;
-        Client.BaseAddress = new Uri(options.Value.Url);
         Options = options.Value;
+        Client.BaseAddress = new Uri(Options.Url);
     }
 
     public async ValueTask SubscribeToNotification(NotificationSubscription subscription)

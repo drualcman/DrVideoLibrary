@@ -40,11 +40,15 @@ public partial class NotificationsRequestSubscription : ComponentBase, IAsyncDis
             }
             else
                 HasNotGrandNotifications = await PageScripts.InvokeAsync<bool>("hasNotGrandNotifications");
-            await InvokeAsync(StateHasChanged);
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.ToString());
+            Console.WriteLine(ex.Message);
+            HasNotGrandNotifications = true;
+        }
+        finally
+        {
+            await InvokeAsync(StateHasChanged);
         }
     }
 
@@ -62,7 +66,7 @@ public partial class NotificationsRequestSubscription : ComponentBase, IAsyncDis
     }
 
     public async ValueTask DisposeAsync()
-    {                                    
+    {
         if (PageScripts is not null)
         {
             await PageScripts.DisposeAsync();

@@ -11,10 +11,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="DrUalcman-BlazorIndexedDb" Version="1.8.47" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -22,11 +22,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Resources\ProgressBarComponentResource.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>ProgressBarComponentResource.resx</DependentUpon>
-		</Compile>
 		<Compile Update="Resources\ResourceAddMovie.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
