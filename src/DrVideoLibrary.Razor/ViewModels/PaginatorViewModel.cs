@@ -7,7 +7,7 @@ public abstract class PaginatorViewModel<TModel>(IOptions<PaginatorOptions> opti
 
     protected virtual void InitializePaginator(IReadOnlyList<TModel> data)
     {
-        Paginator = new PaginationObjectHandler<TModel>(data, options.Value.ElementsPerPage);
+        Paginator = new PaginationObjectHandler<TModel>(data ?? [], options.Value.ElementsPerPage);
     }
 
 }

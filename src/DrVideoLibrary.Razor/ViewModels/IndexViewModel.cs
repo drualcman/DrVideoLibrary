@@ -40,11 +40,16 @@ internal class IndexViewModel : PaginatorViewModel<ListCard>
     public async Task SeachMovie(string movie)
     {
         SelectedCategory = string.Empty;
-        if (!string.IsNullOrEmpty(movie))
+        if(!string.IsNullOrEmpty(movie))
         {
-            await ExecuteFilter(x => x.Title.Contains(movie, StringComparison.InvariantCultureIgnoreCase));
+            await ExecuteFilter(x =>
+                x != null &&
+                (x.Title != null && x.Title.Contains(movie, StringComparison.InvariantCultureIgnoreCase) ||
+                 x.OriginalTitle != null && x.OriginalTitle.Contains(movie, StringComparison.InvariantCultureIgnoreCase))
+            );
         }
-        else await GetList();
+        else
+            await GetList();
     }
 
     public bool IsSelectedCategory(string category) =>
@@ -53,20 +58,27 @@ internal class IndexViewModel : PaginatorViewModel<ListCard>
     public async Task FilterbyCategory(string category)
     {
         SelectedCategory = category;
-        if (!string.IsNullOrEmpty(category))
+        if(!string.IsNullOrEmpty(category))
         {
             await ExecuteFilter(x => x.Categories.Any(c => c.Equals(category, StringComparison.InvariantCultureIgnoreCase)));
         }
-        else await GetList();
+        else
+            await GetList();
     }
 
     private async Task ExecuteFilter(Func<ListCard, bool> query)
     {
         IsFiltering = true;
         IEnumerable<ListCard> movies = await CacheService.GetList();
-        movies = movies.Where(query);
-        TotalMovies = movies.Count();
-        InitializePaginator(movies.ToList());
+        if(movies is not null)
+        {
+            TotalMovies = movies?.Count() ?? 0;
+            if(TotalMovies > 0)
+            {
+                movies = movies.Where(query);
+                InitializePaginator(movies.ToList());
+            }
+        }
         IsFiltering = false;
     }
 }

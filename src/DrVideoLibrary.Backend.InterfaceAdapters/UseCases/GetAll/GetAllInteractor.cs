@@ -14,6 +14,6 @@ internal class GetAllInteractor : IGetAllInputPort
     public async Task Handle()
     {
         IEnumerable<Movie> data = await Repository.GetAll();
-        await Output.Handle(data.Select(m=> new ListCard(m.Id, m.Title, m.Cover, m.Year, m.Categories)));
+        await Output.Handle(data.Select(m => new ListCard(m.Id, m.Title, string.IsNullOrWhiteSpace(m.OriginalTitle) ? m.Title : m.OriginalTitle, m.Cover, m.Year, m.Categories)));
     }
 }
