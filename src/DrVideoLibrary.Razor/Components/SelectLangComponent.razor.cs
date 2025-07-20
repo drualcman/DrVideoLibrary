@@ -5,7 +5,7 @@ public partial class SelectLangComponent
     [Inject] IJSRuntime JS { get; set; }
     [Inject] NavigationManager Navigation { get; set; }
 
-    private Dictionary<string, (string Flag, string Language)> options = new()
+    private Dictionary<string, (string Flag, string Language)> Options = new()
     {
         { "es-ES", ("https://flagcdn.com/es.svg", "Español (España)") },
         { "en-GB", ("https://flagcdn.com/gb.svg", "English (United Kingdom)") },
@@ -13,13 +13,13 @@ public partial class SelectLangComponent
         { "ca-ES", ("https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Catalonia.svg/1200px-Flag_of_Catalonia.svg.png", "Català (Catalunya)") }
     };
 
-    private bool showOptions = false;
-    private string selectedFlag = "https://flagcdn.com/es.svg";
-    private string selectedLanguage = "Español (España)";
+    private bool ShowOptions = false;
+    private string SelectedFlag = "https://flagcdn.com/es.svg";
+    private string SelectedLanguage = "Español (España)";
 #nullable enable
-    private CultureInfo? selectedCulture;
+    private CultureInfo? SelectedCulture;
 
-    private CultureInfo[] supportedCultures = new[]
+    private CultureInfo[] SupportedCultures = new[]
     {
         new CultureInfo("en-US"),
         new CultureInfo("es-ES"),
@@ -29,29 +29,29 @@ public partial class SelectLangComponent
 
     protected override void OnInitialized()
     {
-        selectedCulture = CultureInfo.CurrentCulture;
-        if (options.TryGetValue(selectedCulture.Name, out var option))
+        SelectedCulture = CultureInfo.CurrentCulture;
+        if (Options.TryGetValue(SelectedCulture.Name, out var option))
         {
-            selectedFlag = option.Flag;
-            selectedLanguage = option.Language;
+            SelectedFlag = option.Flag;
+            SelectedLanguage = option.Language;
         }
     }
 
     private void ToggleOptions()
     {
-        showOptions = !showOptions;
+        ShowOptions = !ShowOptions;
     }
 
     private async Task SelectOption(string value, string flagSrc, string text)
     {
-        selectedCulture = new CultureInfo(value);
-        selectedFlag = flagSrc;
-        selectedLanguage = text;
-        showOptions = false;
- 
-        if (CultureInfo.CurrentCulture != selectedCulture)
+        SelectedCulture = new CultureInfo(value);
+        SelectedFlag = flagSrc;
+        SelectedLanguage = text;
+        ShowOptions = false;
+
+        if (CultureInfo.CurrentCulture != SelectedCulture)
         {
-            await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture!.Name);
+            await JS.InvokeVoidAsync("blazorCulture.set", SelectedCulture!.Name);
             Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
         }
     }

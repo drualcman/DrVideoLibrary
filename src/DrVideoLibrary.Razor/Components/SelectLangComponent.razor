@@ -1,15 +1,15 @@
 ﻿<div class="select-container">
     <div class="custom-select" @onclick="ToggleOptions">
-        <ImageProtector Src="@selectedFlag" />
+        <ImageProtector Src="@SelectedFlag" />
     </div>
 </div>
-@if (showOptions)
+@if (ShowOptions)
 {
     <div class="modal is-active">
-        <div class="modal-background" @onclick="() => showOptions = false"></div>
+        <div class="modal-background" @onclick="() => ShowOptions = false"></div>
         <div class="modal-content">
             <div class="custom-options">
-                @foreach (var option in options)
+                @foreach (var option in Options)
                 {
                     <div @onclick="() => SelectOption(option.Key, option.Value.Flag, option.Value.Language)">
                         <ImageProtector Src="@option.Value.Flag" />
