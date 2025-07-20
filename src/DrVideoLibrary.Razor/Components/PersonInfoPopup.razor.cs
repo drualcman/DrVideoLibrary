@@ -1,7 +1,7 @@
 
 
 namespace DrVideoLibrary.Razor.Components;
-public partial class PersonInfoComponent
+public partial class PersonInfoPopup
 {
     [Inject] ISearchMovieService<SearchMovieSpanishService> SearchMovieService { get; set; }
     [Parameter] public string ActorName { get; set; }
@@ -14,7 +14,7 @@ public partial class PersonInfoComponent
     protected override async Task OnParametersSetAsync()
     {
         Loading = true;
-        if (!string.IsNullOrEmpty(ActorName))
+        if(!string.IsNullOrEmpty(ActorName))
         {
             ActorResult = await SearchMovieService.SearchActor(ActorName);
         }

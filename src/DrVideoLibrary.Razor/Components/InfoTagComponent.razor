@@ -1,0 +1,43 @@
+﻿@if(Movie is not null)
+{
+    <div class="control">
+        <div class="tags has-addons">
+            <span class="tag is-info" @onclick="() => ShowCovers = true">@Movie.Count</span>
+            <span class="tag @(IsActive ? "is-success" : "is-dark")">@Movie.Name</span>
+            @if(Type == RelativeType.ACTOR || Type == RelativeType.DIRECTOR)
+            {
+                <span class="tag is-info" @onclick="() => ShowInfo = true">
+                    <span class="icon">
+                        <i class="fa-solid fa-info"></i>
+                    </span>
+                </span>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="control">
+        <div class="tags has-addons">
+            <span class="tag @(IsActive ? "is-success" : "is-dark")">@Name</span>
+            @if(Type == RelativeType.ACTOR || Type == RelativeType.DIRECTOR)
+            {
+                <span class="tag is-info" @onclick="() => ShowInfo = true">
+                    <span class="icon">
+                        <i class="fa-solid fa-info"></i>
+                    </span>
+                </span>
+            }
+        </div>
+    </div>
+}
+
+@if(ShowInfo)
+{
+    <PersonInfoPopup ActorName=@Name OnClose="() => ShowInfo = false" />
+}
+
+@if(ShowCovers)
+{
+    <MoviesRelationshipPoppup Movies=@Movie.Movies OnClose="() => ShowCovers = false" />
+}

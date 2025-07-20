@@ -49,17 +49,6 @@
 
     @if (Selection is not null)
     {
-        <div class="relatives-section">
-            @foreach (MovieBasic movie in Selection.Movies)
-            {
-                <a href="movie/@movie.Id" class="relative-item">
-                    <ImageProtector Src="@movie.Cover" />
-                    <p class="relative-title">@movie.Title</p>
-                </a>
-            }
-        </div>
-
+        <MoviesBasicListComponent Movies=Selection.Movies />
     }
 </div>
-
-<PersonInfoComponent ActorName=@Actor OnClose="() => Actor = string.Empty" />

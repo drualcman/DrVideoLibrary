@@ -1,0 +1,13 @@
+﻿<div class="relatives-section">
+    @foreach(MovieBasic movie in Movies)
+    {
+        <a href="movie/@movie.Id" class="relative-item">
+            <ImageProtector Src="@movie.Cover" />
+            <p class="relative-title">@movie.Title</p>
+        </a>
+    }
+</div>
+
+@code {
+    [Parameter] public MovieBasic[] Movies { get; set; }
+}

@@ -36,7 +36,7 @@
 <div class="tags-section">
     @foreach (string category in Movie.Categories)
     {
-        <span class="tag is-success">@category</span>
+        <InfoTagComponent Query="@category" Type=RelativeType.CATEGORY />        
     }
 </div>
 <div class="additional-info">
@@ -47,16 +47,7 @@
         <div class="field is-grouped is-grouped-multiline is-centered">
             @foreach (string actor in Movie.Actors)
             {
-                <div class="control">
-                    <div class="tags has-addons" @onclick="() => Actor = actor">
-                        <span class="tag">@actor</span>
-                        <span class="tag is-info">
-                            <span class="icon">
-                                <i class="fa-solid fa-info"></i>
-                            </span>
-                        </span>
-                    </div>
-                </div>
+                <InfoTagComponent Query="@actor" Type=RelativeType.ACTOR />
             }
         </div>
     </div>
@@ -65,16 +56,7 @@
         <div class="field is-grouped is-grouped-multiline is-centered">
             @foreach (string director in Movie.Directors)
             {
-                <div class="control">
-                    <div class="tags has-addons" @onclick="() => Actor = director">
-                        <span class="tag">@director</span>
-                        <span class="tag is-info">
-                            <span class="icon">
-                                <i class="fa-solid fa-info"></i>
-                            </span>
-                        </span>
-                    </div>
-                </div>
+                <InfoTagComponent Query="@director" Type=RelativeType.DIRECTOR />
             }
         </div>
     </div>
@@ -93,6 +75,5 @@
     </div>
     <RelativeMoviesComponent Data=RelativesData OnChangeRelative="ChangeRelative" MovieId="@Movie.Id" />
 }
-<PersonInfoComponent ActorName=@Actor OnClose="() => Actor = string.Empty" />
 
 
