@@ -72,12 +72,12 @@ internal class IndexViewModel : PaginatorViewModel<ListCard>
         IEnumerable<ListCard> movies = await CacheService.GetList();
         if(movies is not null)
         {
-            TotalMovies = movies?.Count() ?? 0;
             if(TotalMovies > 0)
             {
                 movies = movies.Where(query);
                 InitializePaginator(movies.ToList());
             }
+            TotalMovies = movies?.Count() ?? 0;
         }
         IsFiltering = false;
     }
