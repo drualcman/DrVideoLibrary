@@ -10,11 +10,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DrUalcman-BlazorIndexedDb" Version="1.8.47" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.1" />
+		<PackageReference Include="DrUalcman-BlazorIndexedDb" Version="1.8.48" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.11" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.11" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.11" />
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.11" />
 	</ItemGroup>
 
 	<ItemGroup>

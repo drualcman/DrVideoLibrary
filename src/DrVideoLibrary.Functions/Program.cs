@@ -1,3 +1,4 @@
+using DrVideoLibrary.Backend.ApplicationBusinessRules.Options;
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.Hosting;
 
@@ -22,12 +23,12 @@ var host = new HostBuilder()
                 });
 
                 services.AddApplicationServices(
-                    database => configuration.Bind(database),
-                    spanish => configuration.Bind(spanish),
-                    english => configuration.Bind(english),
-                    translation => configuration.Bind(translation),
-                    storage => configuration.Bind(storage),
-                    notification => configuration.Bind(notification));
+                    database => configuration.GetSection(ConnectionStringsOptions.SectionKey).Bind(database),
+                    spanish => configuration.GetSection(SearchMovieSpanishOption.SectionKey).Bind(spanish),
+                    english => configuration.GetSection(SearchMovieEnglishOption.SectionKey).Bind(english),
+                    translation => configuration.GetSection(TranslationOptions.SectionKey).Bind(translation),
+                    storage => configuration.GetSection(StorageOptions.SectionKey).Bind(storage),
+                    notification => configuration.GetSection(NotificationOptions.SectionKey).Bind(notification));
 
                 services.AddBlobStorageServices();
                 services.AddContextServices();
@@ -49,5 +50,6 @@ await host.RunAsync();
 // builder.Services
 //     .AddApplicationInsightsTelemetryWorkerService()
 //     .ConfigureFunctionsApplicationInsights();
+
 
 
