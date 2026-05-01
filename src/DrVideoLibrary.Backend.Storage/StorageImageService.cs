@@ -1,6 +1,5 @@
-﻿using DrVideoLibrary.Backend.ApplicationBusinessRules.Interfaces;
+﻿namespace DrVideoLibrary.Backend.Storage;
 
-namespace DrVideoLibrary.Backend.Storage;
 public class StorageImageService : IFileContent
 {
     readonly BlobServiceClient ImagesService;
