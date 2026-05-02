@@ -32,8 +32,22 @@ internal class MoviesContext : IMoviesContext
 
     public async Task<IEnumerable<MovieModel>> GetMoviesAll()
     {
-        string queryString = "SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c.directors, c.actors FROM c WHERE c.register = 'movies'";
-        return await GetCollection<MovieModel>(new QueryDefinition(queryString));
+        try
+        {
+            string queryString = "SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c.directors, c.actors FROM c WHERE c.register = 'movies'";
+            return await GetCollection<MovieModel>(new QueryDefinition(queryString));
+        }
+        catch (Exception ex)
+        {
+            return
+                [
+                    new MovieModel()
+                    {
+                        Title = ex.Message,
+                        Description = ex.ToString()
+                    }
+                ];
+        }
     }
 
     public async Task RegisterWatchingNow(RegisterView data)
