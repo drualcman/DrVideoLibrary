@@ -1,4 +1,5 @@
 ﻿namespace DrVideoLibrary.Cosmos.DbContext;
+
 internal class MoviesContext : IMoviesContext
 {
     const string MoviesContainer = "Movies";
@@ -6,12 +7,23 @@ internal class MoviesContext : IMoviesContext
     readonly PartitionKey Views = new PartitionKey("views");
 
     readonly CosmosClient CosmosClient;
+    readonly CosmosClient BackupClient;
     public MoviesContext(IOptions<ConnectionStringsOptions> connectionStrings)
     {
-        CosmosClient = new CosmosClient(connectionStrings.Value.Database);
+        CosmosClient = new CosmosClient(connectionStrings.Value.Database,
+            new CosmosClientOptions
+            {
+                AllowBulkExecution = true
+            });
+
+        BackupClient = new CosmosClient(connectionStrings.Value.Backup,
+            new CosmosClientOptions
+            {
+                AllowBulkExecution = true
+            });
     }
 
-    Container GetContainer() => CosmosClient.GetContainer("BDStartups", MoviesContainer);
+    Container GetContainer() => CosmosClient.GetContainer("SOG_Personal_Projects", MoviesContainer);
 
     public async Task AddMovie(MovieModel data)
     {
@@ -22,26 +34,6 @@ internal class MoviesContext : IMoviesContext
     {
         string queryString = "SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c.directors, c.actors FROM c WHERE c.register = 'movies'";
         return await GetCollection<MovieModel>(new QueryDefinition(queryString));
-    }
-
-    private async Task<IEnumerable<MovieModel>> GetAllBy(IEnumerable<string> conditions, string[] values)
-    {
-        string conditionsString = string.Join(" AND ", conditions);
-
-        string queryString = $"SELECT c.id, c.title, c.originaltitle, c.cover, c.year, c.description, c.rate, c.duration, c.categories, c.directors, c.actors FROM c WHERE c.register = 'movies'";
-
-        if (!string.IsNullOrEmpty(conditionsString))
-        {
-            queryString += $" AND ({conditionsString})";
-        }
-
-        QueryDefinition queryDefinition = new QueryDefinition(queryString);
-        for (int i = 0; i < values.Length; i++)
-        {
-            queryDefinition.WithParameter($"@value{i}", values[i]);
-        }
-
-        return await GetCollection<MovieModel>(queryDefinition);
     }
 
     public async Task RegisterWatchingNow(RegisterView data)
@@ -57,16 +49,24 @@ internal class MoviesContext : IMoviesContext
 
     private async Task<IEnumerable<TModel>> GetCollection<TModel>(QueryDefinition queryDefinition) where TModel : class
     {
-        FeedIterator<TModel> query = GetContainer().GetItemQueryIterator<TModel>(queryDefinition);
-        ConcurrentBag<TModel> results = new ConcurrentBag<TModel>();
-        List<Task> tasks = new List<Task>();
-        while (query.HasMoreResults)
+        try
         {
-            FeedResponse<TModel> response = await query.ReadNextAsync();
-            tasks.AddRange(response.Select(item => Task.Run(() => results.Add(item))));
+            FeedIterator<TModel> query = GetContainer().GetItemQueryIterator<TModel>(queryDefinition);
+            ConcurrentBag<TModel> results = new ConcurrentBag<TModel>();
+            List<Task> tasks = new List<Task>();
+            while (query.HasMoreResults)
+            {
+                FeedResponse<TModel> response = await query.ReadNextAsync();
+                tasks.AddRange(response.Select(item => Task.Run(() => results.Add(item))));
+            }
+            await Task.WhenAll(tasks);
+            return results;
         }
-        await Task.WhenAll(tasks);
-        return results;
+        catch (Exception ex)
+        {
+            string k = ex.ToString();
+            throw;
+        }
     }
 
     private async Task<TModel> GetSingle<TModel>(QueryDefinition queryDefinition) where TModel : class
@@ -103,5 +103,33 @@ internal class MoviesContext : IMoviesContext
     {
         string queryString = "SELECT v.movieid, COUNT(1) AS times FROM c v WHERE v.register = 'views' GROUP BY v.movieid";
         return await GetCollection<WatchedCountModel>(new QueryDefinition(queryString));
+    }
+
+    public async Task ExecuteBackup()
+    {
+        Container sourceContainer = CosmosClient.GetContainer("BDStartups", MoviesContainer);
+        Container destinationContainer = BackupClient.GetContainer("SOG_Personal_Projects", MoviesContainer);
+
+        QueryDefinition queryDefinition = new QueryDefinition("SELECT * FROM c");
+
+        FeedIterator<dynamic> iterator = sourceContainer.GetItemQueryIterator<dynamic>(queryDefinition);
+
+        while (iterator.HasMoreResults)
+        {
+            FeedResponse<dynamic> response = await iterator.ReadNextAsync();
+
+            List<Task> tasks = new List<Task>();
+
+            IEnumerator<dynamic> enumerator = response.GetEnumerator();
+
+            while (enumerator.MoveNext())
+            {
+                dynamic item = enumerator.Current;
+
+                tasks.Add(destinationContainer.UpsertItemAsync(item));
+            }
+
+            await Task.WhenAll(tasks);
+        }
     }
 }

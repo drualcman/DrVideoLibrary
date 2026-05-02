@@ -1,4 +1,5 @@
 ﻿namespace DrVideoLibrary.Backend.Repositories.Repositories;
+
 internal class MoviesRepository : IMoviesRepository
 {
     readonly IMoviesContext Context;
@@ -18,7 +19,7 @@ internal class MoviesRepository : IMoviesRepository
     {
         IEnumerable<MovieModel> movies = await Context.GetMoviesAll();
         return movies.Select(m => m.ToMovie()).OrderBy(m => m.Title);
-    } 
+    }
 
     public async Task<Movie> GetMovieById(string id)
     {
