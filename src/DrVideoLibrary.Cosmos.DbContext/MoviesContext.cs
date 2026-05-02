@@ -16,11 +16,11 @@ internal class MoviesContext : IMoviesContext
                 AllowBulkExecution = true
             });
 
-        BackupClient = new CosmosClient(connectionStrings.Value.Backup,
-            new CosmosClientOptions
-            {
-                AllowBulkExecution = true
-            });
+        //BackupClient = new CosmosClient(connectionStrings.Value.Backup,
+        //    new CosmosClientOptions
+        //    {
+        //        AllowBulkExecution = true
+        //    });
     }
 
     Container GetContainer() => CosmosClient.GetContainer("SOG_Personal_Projects", MoviesContainer);
